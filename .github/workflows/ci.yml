@@ -14,6 +14,9 @@ env:
   UPSTASH_REDIS_REST_TOKEN: ${{ secrets.UPSTASH_REDIS_REST_TOKEN }}
   IP_ADDRESS_SALT: ${{ secrets.IP_ADDRESS_SALT }}
   BETTER_AUTH_SECRET: ${{ secrets.BETTER_AUTH_SECRET }}
+  APP_ENV: ${{ secrets.APP_ENV }}
+  GITHUB_CLIENT_ID: ${{ secrets.GH_CLIENT_ID }}
+  GITHUB_CLIENT_SECRET: ${{ secrets.GH_CLIENT_SECRET }}
 
 jobs:
   tests:
