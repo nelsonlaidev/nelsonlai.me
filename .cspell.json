@@ -2,7 +2,7 @@
   "$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json",
   "dictionaries": ["software-terms", "npm", "fullstack", "redis"],
   "files": ["**", ".vscode/**", ".github/**"],
-  "ignorePaths": ["pnpm-lock.yaml", "packages/db/src/migrations"],
+  "ignorePaths": ["pnpm-lock.yaml", "packages/db/src/migrations", "**/mocks/data"],
   "import": ["@cspell/dict-redis/cspell-ext.json"],
   "useGitignore": true,
   "version": "0.2",

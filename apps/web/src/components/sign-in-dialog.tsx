@@ -102,6 +102,7 @@ const SignInDialog = () => {
             className='relative h-10 gap-3 rounded-xl font-semibold'
             onClick={() => handleSignIn('github')}
             disabled={isPending}
+            data-testid='github-sign-in-button'
           >
             {isPending ? <LoaderIcon className='animate-spin' /> : <SiGithub />}
             {t('dialog.sign-in.continue-with', { provider: 'GitHub' })}

@@ -152,6 +152,7 @@ const CommandMenu = () => {
         className='size-9 p-0'
         onClick={() => setIsOpen(true)}
         aria-label={t('command-menu.open-menu')}
+        data-testid='command-menu-button'
       >
         <CommandIcon />
       </Button>
