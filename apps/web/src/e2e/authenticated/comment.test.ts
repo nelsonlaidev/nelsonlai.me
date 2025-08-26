@@ -14,20 +14,12 @@ test.describe('comment page', () => {
     await page.getByTestId('comment-textarea-post').fill(commentText)
     await page.getByTestId('comment-submit-button').click()
 
-    await expect(page.getByTestId('comments-list').getByText(commentText)).toBeVisible({
-      timeout: 10_000
-    })
-    await expect(page.locator('li[data-sonner-toast]')).toContainText('Comment posted', {
-      timeout: 5000
-    })
+    await expect(page.getByTestId('comments-list').getByText(commentText)).toBeVisible()
+    await expect(page.locator('li[data-sonner-toast]')).toContainText('Comment posted')
 
     // Comment count should be updated in the blog header and comment header
-    await expect(async () => {
-      expect(await getNumberFlow(page.getByTestId('comment-count'))).toBe('1')
-    }).toPass({ timeout: 5000 })
-    await expect(async () => {
-      expect(await getNumberFlow(page.getByTestId('blog-comment-count'))).toBe('1 comment')
-    }).toPass({ timeout: 5000 })
+    expect(await getNumberFlow(page.getByTestId('comment-count'))).toBe('1')
+    expect(await getNumberFlow(page.getByTestId('blog-comment-count'))).toBe('1 comment')
   })
 
   test('should be able to delete a comment', async ({ page }) => {
@@ -44,27 +36,21 @@ test.describe('comment page', () => {
     await page.goto('/blog/test-delete')
 
     const commentBlock = page.getByTestId(`comment-${commentId}`)
-    await expect(commentBlock).toBeVisible({ timeout: 5000 })
+    await expect(commentBlock).toBeVisible()
     await commentBlock.getByTestId('comment-menu-button').click()
 
     await page.getByTestId('comment-delete-button').click()
 
     const deleteDialog = page.getByTestId('comment-dialog')
-    await expect(deleteDialog).toBeVisible({ timeout: 5000 })
+    await expect(deleteDialog).toBeVisible()
     await deleteDialog.getByTestId('comment-dialog-delete-button').click()
 
-    await expect(commentBlock).toBeHidden({ timeout: 10_000 })
-    await expect(page.locator('li[data-sonner-toast]')).toContainText('Deleted a comment', {
-      timeout: 5000
-    })
+    await expect(commentBlock).toBeHidden()
+    await expect(page.locator('li[data-sonner-toast]')).toContainText('Deleted a comment')
 
     // Comment count should be updated in the blog header and comment header
-    await expect(async () => {
-      expect(await getNumberFlow(page.getByTestId('comment-count'))).toBe('0')
-    }).toPass({ timeout: 5000 })
-    await expect(async () => {
-      expect(await getNumberFlow(page.getByTestId('blog-comment-count'))).toBe('0 comments')
-    }).toPass({ timeout: 5000 })
+    expect(await getNumberFlow(page.getByTestId('comment-count'))).toBe('0')
+    expect(await getNumberFlow(page.getByTestId('blog-comment-count'))).toBe('0 comments')
   })
 
   test('should be able to reply to a comment', async ({ page }) => {
@@ -89,23 +75,15 @@ test.describe('comment page', () => {
     await page.getByTestId('comment-submit-reply-button').click()
 
     const expandButton = parentCommentBlock.getByTestId('comment-replies-expand-button')
-    await expect(expandButton.getByTestId('comment-reply-count')).toContainText('1', {
-      timeout: 5000
-    })
+    await expect(expandButton.getByTestId('comment-reply-count')).toContainText('1')
     await expandButton.click()
 
-    await expect(page.getByTestId('comments-list').getByText(replyText)).toBeVisible({
-      timeout: 10_000
-    })
+    await expect(page.getByTestId('comments-list').getByText(replyText)).toBeVisible()
+    await expect(page.locator('li[data-sonner-toast]')).toContainText('Reply posted')
 
-    // Reply count should be updated in the comment header
-    await expect(async () => {
-      expect(await getNumberFlow(page.getByTestId('reply-count'))).toBe('1 reply')
-    }).toPass({ timeout: 5000 })
-
-    await expect(page.locator('li[data-sonner-toast]')).toContainText('Reply posted', {
-      timeout: 5000
-    })
+    // Reply count should be updated in the blog header and comment header
+    expect(await getNumberFlow(page.getByTestId('comment-count'))).toBe('2')
+    expect(await getNumberFlow(page.getByTestId('reply-count'))).toBe('1 reply')
   })
 
   test('should be able to delete a reply', async ({ page }) => {
@@ -131,29 +109,26 @@ test.describe('comment page', () => {
     await page.goto('/blog/test-delete-reply')
 
     const parentCommentBlock = page.getByTestId(`comment-${parentId}`)
-    await expect(parentCommentBlock).toBeVisible({ timeout: 5000 })
+    await expect(parentCommentBlock).toBeVisible()
 
     const expandButton = parentCommentBlock.getByTestId('comment-replies-expand-button')
     await expandButton.click()
 
     const replyCommentBlock = page.getByTestId(`comment-${replyId}`)
-    await expect(replyCommentBlock).toBeVisible({ timeout: 5000 })
+    await expect(replyCommentBlock).toBeVisible()
     await replyCommentBlock.getByTestId('comment-menu-button').click()
 
     await page.getByTestId('comment-delete-button').click()
 
     const deleteDialog = page.getByTestId('comment-dialog')
-    await expect(deleteDialog).toBeVisible({ timeout: 5000 })
+    await expect(deleteDialog).toBeVisible()
     await deleteDialog.getByTestId('comment-dialog-delete-button').click()
 
-    await expect(replyCommentBlock).toBeHidden({ timeout: 10_000 })
-    await expect(page.locator('li[data-sonner-toast]')).toContainText('Deleted a comment', {
-      timeout: 5000
-    })
+    await expect(replyCommentBlock).toBeHidden()
+    await expect(page.locator('li[data-sonner-toast]')).toContainText('Deleted a comment')
 
     // Reply count should be updated in the comment header
-    await expect(async () => {
-      expect(await getNumberFlow(page.getByTestId('reply-count'))).toBe('0 replies')
-    }).toPass({ timeout: 5000 })
+    expect(await getNumberFlow(page.getByTestId('comment-count'))).toBe('1')
+    expect(await getNumberFlow(page.getByTestId('reply-count'))).toBe('0 replies')
   })
 })
