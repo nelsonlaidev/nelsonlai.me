@@ -1,8 +1,8 @@
 import type { MockAgent } from 'undici'
 
-import TEST_GITHUB_USER from './data/test-user.json'
-import TEST_GITHUB_USER_ACCESS_TOKEN from './data/test-user-access-token.json'
-import TEST_GITHUB_USER_EMAILS from './data/test-user-emails.json'
+import { TEST_USER } from './data/test-user'
+import { TEST_USER_ACCESS_TOKEN } from './data/test-user-access-token'
+import { TEST_USER_EMAILS } from './data/test-user-emails'
 
 export const authHandlers = (mockAgent: MockAgent) => {
   const github = mockAgent.get('https://github.com')
@@ -13,7 +13,7 @@ export const authHandlers = (mockAgent: MockAgent) => {
       path: '/login/oauth/access_token',
       method: 'POST'
     })
-    .reply(200, TEST_GITHUB_USER_ACCESS_TOKEN)
+    .reply(200, TEST_USER_ACCESS_TOKEN)
     .persist()
 
   githubApi
@@ -21,7 +21,7 @@ export const authHandlers = (mockAgent: MockAgent) => {
       path: '/user',
       method: 'GET'
     })
-    .reply(200, TEST_GITHUB_USER)
+    .reply(200, TEST_USER)
     .persist()
 
   githubApi
@@ -29,6 +29,6 @@ export const authHandlers = (mockAgent: MockAgent) => {
       path: '/user/emails',
       method: 'GET'
     })
-    .reply(200, TEST_GITHUB_USER_EMAILS)
+    .reply(200, TEST_USER_EMAILS)
     .persist()
 }
