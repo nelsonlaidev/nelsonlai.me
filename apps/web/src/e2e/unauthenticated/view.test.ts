@@ -10,13 +10,11 @@ test.describe('views', () => {
   test('should be able to view a post', async ({ page }) => {
     const viewCount = page.getByTestId('view-count')
 
-    // First ensure the view count element appears (may show 0 initially)
-    await expect(viewCount).toBeVisible({ timeout: 10_000 })
+    await expect(viewCount).toBeVisible()
 
-    // Wait for the view tracking increment to complete and UI to update
-    await expect(async () => {
-      const count = await getNumberFlow(viewCount)
-      expect(Number.parseInt(String(count))).toBeGreaterThan(0)
-    }).toPass({ timeout: 20_000 })
+    // Ensure the view count is incremented
+    await page.reload()
+
+    expect(Number.parseInt(String(await getNumberFlow(viewCount)))).toBeGreaterThan(0)
   })
 })
