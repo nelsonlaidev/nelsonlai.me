@@ -1,4 +1,4 @@
-name: Check setup
+name: Setup
 
 runs:
   using: composite
