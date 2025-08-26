@@ -89,7 +89,6 @@
     "@next/bundle-analyzer": "^15.3.3",
     "@repo/eslint-config": "workspace:*",
     "@repo/kv": "workspace:*",
-    "@repo/shared": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "@tailwindcss/postcss": "^4.1.8",
     "@testing-library/jest-dom": "^6.6.3",

@@ -279,9 +279,6 @@ importers:
       '@repo/kv':
         specifier: workspace:*
         version: link:../../packages/kv
-      '@repo/shared':
-        specifier: workspace:*
-        version: link:../../packages/shared
       '@repo/typescript-config':
         specifier: workspace:*
         version: link:../../packages/typescript-config
@@ -511,15 +508,6 @@ importers:
       '@repo/env':
         specifier: workspace:*
         version: link:../env
-      '@repo/eslint-config':
-        specifier: workspace:*
-        version: link:../eslint-config
-      '@repo/typescript-config':
-        specifier: workspace:*
-        version: link:../typescript-config
-
-  packages/shared:
-    devDependencies:
       '@repo/eslint-config':
         specifier: workspace:*
         version: link:../eslint-config
@@ -11937,7 +11925,9 @@ snapshots:
       metro-runtime: 0.83.1
     transitivePeerDependencies:
       - '@babel/core'
+      - bufferutil
       - supports-color
+      - utf-8-validate
 
   '@react-native/normalize-colors@0.81.0': {}
 
