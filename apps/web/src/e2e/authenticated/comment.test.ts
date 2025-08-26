@@ -73,13 +73,13 @@ test.describe('comment page', () => {
 
     await page.getByTestId('comment-textarea-reply').fill(replyText)
     await page.getByTestId('comment-submit-reply-button').click()
+    await expect(page.locator('li[data-sonner-toast]')).toContainText('Reply posted')
 
     const expandButton = parentCommentBlock.getByTestId('comment-replies-expand-button')
     await expect(expandButton.getByTestId('comment-reply-count')).toContainText('1')
     await expandButton.click()
 
     await expect(page.getByTestId('comments-list').getByText(replyText)).toBeVisible()
-    await expect(page.locator('li[data-sonner-toast]')).toContainText('Reply posted')
 
     // Reply count should be updated in the blog header and comment header
     expect(await getNumberFlow(page.getByTestId('comment-count'))).toBe('2')
