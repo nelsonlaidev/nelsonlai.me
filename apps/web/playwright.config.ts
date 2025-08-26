@@ -5,28 +5,24 @@ const CI = !!process.env.CI
 const baseURL = 'http://localhost:3000'
 
 export default defineConfig({
-  globalTimeout: CI ? 1000 * 60 * 10 : undefined,
   testDir: './src/e2e',
-  fullyParallel: true,
+  fullyParallel: !CI,
   forbidOnly: CI,
-  retries: CI ? 2 : 0,
-  workers: CI ? 1 : undefined,
+  retries: CI ? 2 : 1,
+  workers: CI ? 1 : '50%',
   reporter: 'html',
   use: {
     baseURL,
-    trace: 'on-first-retry',
-    video: 'retain-on-failure',
-    actionTimeout: 10_000,
-    navigationTimeout: 30_000
+    trace: 'retain-on-failure',
+    screenshot: 'only-on-failure',
+    video: 'retain-on-failure'
   },
-  expect: {
-    timeout: 10_000
-  },
+  expect: { timeout: 10_000 },
   projects: [
     { name: 'setup', testMatch: /\.setup\.ts$/, teardown: 'teardown' },
     { name: 'authenticated', testMatch: /\.authenticated\.test\.ts$/, dependencies: ['setup'] },
     { name: 'unauthenticated', testMatch: /\.unauthenticated\.test\.ts$/, dependencies: ['setup'] },
-    { name: 'teardown', testMatch: /global\.teardown\.ts$/ },
+    { name: 'teardown', testMatch: /\.teardown\.ts$/ },
     {
       name: 'chromium',
       use: {
@@ -40,9 +36,8 @@ export default defineConfig({
     }
   ],
   webServer: {
-    command: `pnpm ${CI ? 'start' : 'dev'}`,
+    command: `pnpm dev`,
     url: baseURL,
-    timeout: 1000 * 60 * 5,
     reuseExistingServer: !CI
   }
 })

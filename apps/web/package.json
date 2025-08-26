@@ -7,15 +7,15 @@
   "scripts": {
     "build": "pnpm with-env next build",
     "build:mdx": "content-collections build",
-    "bundle-analyzer": "cross-env ANALYZE=true pnpm run build",
+    "bundle-analyzer": "cross-env ANALYZE=true pnpm build",
     "clean": "rm -rf .next .turbo .content-collections test-results playwright-report",
     "dev": "pnpm with-env next dev --turbopack -p 3000",
     "lint": "eslint . --max-warnings 0",
     "lint:fix": "eslint --fix .",
     "start": "pnpm with-env next start -p 3000",
-    "test:e2e": "cross-env NODE_ENV=test pnpm with-env playwright test",
-    "test:e2e:inspector": "cross-env NODE_ENV=test pnpm with-env playwright test $1 --debug",
-    "test:e2e:ui": "cross-env NODE_ENV=test pnpm with-env playwright test --ui",
+    "test:e2e": "pnpm with-env playwright test",
+    "test:e2e:inspector": "pnpm with-env playwright test $1 --debug",
+    "test:e2e:ui": "pnpm with-env playwright test --ui",
     "type-check": "tsc --noEmit",
     "typegen": "pnpm with-env next typegen",
     "with-env": "dotenv -e ../../.env.local --"
@@ -45,7 +45,6 @@
     "@tanstack/react-table": "^8.21.3",
     "@vercel/speed-insights": "^1.2.0",
     "better-auth": "^1.2.8",
-    "better-call": "^1.0.9",
     "canvas-confetti": "^1.9.3",
     "cobe": "^0.6.4",
     "cva": "1.0.0-beta.4",
@@ -105,6 +104,7 @@
     "@types/tinycolor2": "^1.4.6",
     "@vitejs/plugin-react": "^4.5.1",
     "schema-dts": "^1.1.5",
-    "tailwindcss": "^4.1.8"
+    "tailwindcss": "^4.1.8",
+    "undici": "^7.15.0"
   }
 }

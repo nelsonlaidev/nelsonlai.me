@@ -3,8 +3,10 @@
   "globalDependencies": [".env.*local"],
   "globalEnv": [
     "NODE_ENV",
+    "MOCK_SERVER",
     "CI",
     "ANALYZE",
+    "NEXT_RUNTIME",
     "DATABASE_URL",
     "UPSTASH_REDIS_REST_URL",
     "UPSTASH_REDIS_REST_TOKEN",
@@ -32,10 +34,6 @@
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
-      "outputs": [".next/**", "!.next/cache/**", ".content-collections/**"]
-    },
-    "build:apps": {
-      "dependsOn": ["^build:apps"],
       "outputs": [".next/**", "!.next/cache/**", ".content-collections/**"]
     },
     "build:mdx": {
@@ -71,18 +69,6 @@
       "persistent": true
     },
     "dev": {
-      "cache": false,
-      "persistent": true
-    },
-    "dev:docs": {
-      "cache": false,
-      "persistent": true
-    },
-    "dev:packages": {
-      "cache": false,
-      "persistent": true
-    },
-    "dev:web": {
       "cache": false,
       "persistent": true
     },
