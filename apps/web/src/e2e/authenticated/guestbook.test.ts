@@ -1,6 +1,6 @@
 import { createId } from '@paralleldrive/cuid2'
 import { expect, test } from '@playwright/test'
-import { db, eq, guestbook } from '@repo/db'
+import { db, guestbook } from '@repo/db'
 
 import { getTestUser } from '../utils/get-test-user'
 
@@ -13,21 +13,11 @@ test.describe('guestbook page', () => {
     const message = createId()
 
     await page.getByTestId('guestbook-textarea').fill(message)
+
     await page.getByTestId('guestbook-submit-button').click()
+    await expect(page.locator('li[data-sonner-toast]')).toContainText('Create message successfully')
 
-    // Check toast immediately after submission
-    await expect(page.locator('li[data-sonner-toast]')).toContainText(
-      'Create message successfully',
-      { timeout: 5000 }
-    )
-
-    // Then verify the message appears in the list
-    await expect(page.getByTestId('guestbook-messages-list').getByText(message)).toBeVisible({
-      timeout: 10_000
-    })
-
-    // Remove the message
-    await db.delete(guestbook).where(eq(guestbook.body, message))
+    await expect(page.getByTestId('guestbook-messages-list').getByText(message)).toBeVisible()
   })
 
   test('should be able to delete a message', async ({ page }) => {
@@ -40,23 +30,15 @@ test.describe('guestbook page', () => {
       userId: user.id
     })
 
-    await page.reload()
-
     const messageBlock = page.getByTestId(`message-${id}`)
-    await expect(messageBlock).toBeVisible({ timeout: 5000 })
+    await expect(messageBlock).toBeVisible()
     await messageBlock.getByTestId('guestbook-delete-button').click()
 
     const deleteDialog = page.getByTestId('guestbook-dialog')
-    await expect(deleteDialog).toBeVisible({ timeout: 5000 })
+    await expect(deleteDialog).toBeVisible()
     await deleteDialog.getByTestId('guestbook-dialog-delete-button').click()
 
-    await expect(messageBlock).toBeHidden({ timeout: 10_000 })
-    await expect(page.locator('li[data-sonner-toast]')).toContainText(
-      'Delete message successfully',
-      { timeout: 5000 }
-    )
-
-    // Remove the message
-    await db.delete(guestbook).where(eq(guestbook.id, id))
+    await expect(messageBlock).toBeHidden()
+    await expect(page.locator('li[data-sonner-toast]')).toContainText('Delete message successfully')
   })
 })
