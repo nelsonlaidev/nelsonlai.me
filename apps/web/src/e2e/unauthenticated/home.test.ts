@@ -1,7 +1,6 @@
 import { test } from '@playwright/test'
 
 import { a11y } from '../utils/a11y'
-import { scrollToBottom } from '../utils/scroll-to-bottom'
 import { createBrowserContext } from '../utils/theme'
 
 test.describe('homepage', () => {
@@ -9,7 +8,6 @@ test.describe('homepage', () => {
     page
   }) => {
     await page.goto('/')
-    await scrollToBottom(page)
 
     await a11y({ page })
   })
@@ -25,7 +23,6 @@ test.describe('homepage', () => {
 
     const page = await context.newPage()
     await page.goto('/')
-    await scrollToBottom(page)
 
     await a11y({ page })
   })
