@@ -1,3 +1,6 @@
+// eslint-disable-next-line @typescript-eslint/triple-slash-reference -- no other options
+/// <reference path="./types/global.d.ts" />
+
 import eslint from '@eslint/js'
 import reactPlugin from '@eslint-react/eslint-plugin'
 import { flatConfig as nextPlugin } from '@next/eslint-plugin-next'
