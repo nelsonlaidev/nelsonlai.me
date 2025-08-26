@@ -11,18 +11,14 @@ test.describe('like button', () => {
     const likeCount = page.getByTestId('like-count')
     const likeButton = page.getByTestId('like-button')
 
-    await expect(likeCount).toBeVisible({ timeout: 5000 })
+    await expect(likeCount).toBeVisible()
     expect(await getNumberFlow(likeCount)).toBe('0')
 
     await likeButton.click()
-    await expect(async () => {
-      expect(await getNumberFlow(likeCount)).toBe('1')
-    }).toPass({ timeout: 5000 })
+    expect(await getNumberFlow(likeCount)).toBe('1')
 
     await likeButton.click()
     await likeButton.click()
-    await expect(async () => {
-      expect(await getNumberFlow(likeCount)).toBe('3')
-    }).toPass({ timeout: 5000 })
+    expect(await getNumberFlow(likeCount)).toBe('3')
   })
 })
