@@ -2,7 +2,6 @@ import eslint from '@eslint/js'
 import reactPlugin from '@eslint-react/eslint-plugin'
 import { flatConfig as nextPlugin } from '@next/eslint-plugin-next'
 import gitignore from 'eslint-config-flat-gitignore'
-// @ts-expect-error -- no types
 import eslintCommentsPlugin from 'eslint-plugin-eslint-comments'
 import importPlugin from 'eslint-plugin-import'
 import jsxA11yPlugin from 'eslint-plugin-jsx-a11y'
@@ -45,10 +44,7 @@ export const defineConfig = async (options: Options) => {
           globals: {
             ...globals.browser,
             ...globals.node,
-            ...globals.es2022,
-            document: 'readonly',
-            navigator: 'readonly',
-            window: 'readonly'
+            ...globals.es2022
           }
         }
       },
@@ -287,7 +283,6 @@ export const defineConfig = async (options: Options) => {
   )
 
   if (next) {
-    // @ts-expect-error -- no types
     config.push(nextPlugin.coreWebVitals)
   }
 
