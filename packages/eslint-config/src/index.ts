@@ -184,7 +184,8 @@ export const defineConfig = async (options: Options) => {
         'sonarjs/no-duplicate-string': 'off',
         'sonarjs/no-nested-functions': 'off',
         'sonarjs/no-commented-code': 'off',
-        'sonarjs/pseudo-random': 'off'
+        'sonarjs/pseudo-random': 'off',
+        'sonarjs/function-return-type': 'off'
       }
     },
 

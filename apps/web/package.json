@@ -103,8 +103,8 @@
     "@types/rss": "^0.0.32",
     "@types/tinycolor2": "^1.4.6",
     "@vitejs/plugin-react": "^4.5.1",
-    "msw": "^2.10.5",
     "schema-dts": "^1.1.5",
-    "tailwindcss": "^4.1.8"
+    "tailwindcss": "^4.1.8",
+    "undici": "^7.15.0"
   }
 }

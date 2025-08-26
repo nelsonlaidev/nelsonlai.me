@@ -2,7 +2,7 @@ import { createId } from '@paralleldrive/cuid2'
 import { expect, test } from '@playwright/test'
 import { comments, db } from '@repo/db'
 
-import { TEST_USER } from '../constants'
+import { getTestUser } from '../utils/get-test-user'
 import { getNumberFlow } from '../utils/number-flow'
 
 test.describe('comment page', () => {
@@ -32,12 +32,13 @@ test.describe('comment page', () => {
 
   test('should be able to delete a comment', async ({ page }) => {
     const commentId = createId()
+    const user = await getTestUser()
 
     await db.insert(comments).values({
       id: commentId,
       body: 'Test Comment',
       postId: 'test-delete',
-      userId: TEST_USER.id
+      userId: user.id
     })
 
     await page.goto('/blog/test-delete')
@@ -69,12 +70,13 @@ test.describe('comment page', () => {
   test('should be able to reply to a comment', async ({ page }) => {
     const parentId = createId()
     const replyText = `reply-${createId()}`
+    const user = await getTestUser()
 
     await db.insert(comments).values({
       id: parentId,
       body: 'Parent Comment',
       postId: 'test-reply',
-      userId: TEST_USER.id
+      userId: user.id
     })
 
     await page.goto('/blog/test-reply')
@@ -109,19 +111,20 @@ test.describe('comment page', () => {
   test('should be able to delete a reply', async ({ page }) => {
     const parentId = createId()
     const replyId = createId()
+    const user = await getTestUser()
 
     await db.insert(comments).values({
       id: parentId,
       body: 'Parent Comment',
       postId: 'test-delete-reply',
-      userId: TEST_USER.id
+      userId: user.id
     })
 
     await db.insert(comments).values({
       id: replyId,
       body: 'Reply comment',
       postId: 'test-delete-reply',
-      userId: TEST_USER.id,
+      userId: user.id,
       parentId
     })
 

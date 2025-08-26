@@ -2,7 +2,7 @@ import { createId } from '@paralleldrive/cuid2'
 import { expect, test } from '@playwright/test'
 import { db, eq, guestbook } from '@repo/db'
 
-import { TEST_USER } from '../constants'
+import { getTestUser } from '../utils/get-test-user'
 
 test.describe('guestbook page', () => {
   test.beforeEach(async ({ page }) => {
@@ -32,11 +32,12 @@ test.describe('guestbook page', () => {
 
   test('should be able to delete a message', async ({ page }) => {
     const id = createId()
+    const user = await getTestUser()
 
     await db.insert(guestbook).values({
       id,
       body: 'Test message',
-      userId: TEST_USER.id
+      userId: user.id
     })
 
     await page.reload()

@@ -1,6 +1,6 @@
 import path from 'node:path'
 
-import { test as setup } from '@playwright/test'
+import { expect, test as setup } from '@playwright/test'
 
 const storagePath = path.resolve(import.meta.dirname, '../.auth/user.json')
 
@@ -21,13 +21,27 @@ setup('authenticate', async ({ page }) => {
     })
   })
 
-  await page.goto('http://localhost:3000/')
+  await page.goto('/')
 
   await page.getByTestId('command-menu-button').click()
   await page.locator('[data-value="Sign in"]').click()
   await page.getByTestId('github-sign-in-button').click()
 
-  await new Promise((resolve) => setTimeout(resolve, 5000))
+  // After signing in, wait for the getSession (that has response body) API call to complete
+  const response = await page.waitForResponse(async (r) => {
+    if (r.url().includes('/api/auth/get-session') && r.status() === 200) {
+      try {
+        const data = await r.json()
+        return !!data
+      } catch {
+        return false
+      }
+    }
+
+    return false
+  })
+
+  expect(response.status()).toBe(200)
 
   await page.context().storageState({ path: storagePath })
 })
