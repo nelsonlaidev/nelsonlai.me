@@ -48,7 +48,7 @@ const Header = (props: HeaderProps) => {
         <div className='grid grid-cols-2 text-sm max-md:gap-4 md:grid-cols-4'>
           <div className='space-y-1 md:mx-auto'>
             <div className='text-muted-foreground'>{t('blog.header.written-by')}</div>
-            <Link href='https://github.com/tszhong0411' className='flex items-center gap-2'>
+            <Link href='https://github.com/nelsonlaidev' className='flex items-center gap-2'>
               <BlurImage
                 src='/images/avatar.png'
                 className='rounded-full'

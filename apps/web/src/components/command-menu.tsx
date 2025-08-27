@@ -109,7 +109,7 @@ const CommandMenu = () => {
         {
           title: t('command-menu.actions.source-code'),
           icon: <CodeIcon />,
-          onSelect: () => openLink('https://github.com/tszhong0411/nelsonlai.me')
+          onSelect: () => openLink('https://github.com/nelsonlaidev/nelsonlai.me')
         }
       ]
     },

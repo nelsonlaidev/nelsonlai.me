@@ -2,7 +2,7 @@
   "name": "@repo/kv",
   "version": "0.0.0",
   "license": "MIT",
-  "author": "Nelson Lai <me@nelsonlai.me> (https://github.com/tszhong0411/)",
+  "author": "Nelson Lai <me@nelsonlai.me> (https://github.com/nelsonlaidev/)",
   "type": "module",
   "main": "./src/index.ts",
   "types": "./src/index.ts",

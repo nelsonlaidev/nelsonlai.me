@@ -42,7 +42,7 @@ const Stats = () => {
   const data: Card[] = [
     {
       title: t('dashboard.stat.coding-hours'),
-      link: 'https://wakatime.com/@tszhong0411',
+      link: 'https://wakatime.com/@nelsonlaidev',
       value: wakatimeQuery.data?.hours,
       icon: <SiWakatime className='text-[#0061ff]' />,
       linkText: 'WakaTime',
@@ -54,7 +54,7 @@ const Stats = () => {
     },
     {
       title: t('dashboard.stat.youtube-subscribers'),
-      link: 'https://www.youtube.com/@tszhong0411',
+      link: 'https://www.youtube.com/@nelsonlaidev',
       value: youtubeQuery.data?.subscribers,
       icon: <SiYoutube className='text-[#ff0000]' />,
       linkText: 'YouTube',
@@ -65,7 +65,7 @@ const Stats = () => {
     },
     {
       title: t('dashboard.stat.youtube-views'),
-      link: 'https://www.youtube.com/@tszhong0411',
+      link: 'https://www.youtube.com/@nelsonlaidev',
       value: youtubeQuery.data?.views,
       icon: <SiYoutube className='text-[#ff0000]' />,
       linkText: 'YouTube',
@@ -76,7 +76,7 @@ const Stats = () => {
     },
     {
       title: t('dashboard.stat.github-followers'),
-      link: 'https://github.com/tszhong0411',
+      link: 'https://github.com/nelsonlaidev',
       value: githubQuery.data?.followers,
       icon: <SiGithub className='text-[#fee000]' />,
       linkText: 'GitHub',
@@ -87,7 +87,7 @@ const Stats = () => {
     },
     {
       title: t('dashboard.stat.github-stars'),
-      link: 'https://github.com/tszhong0411',
+      link: 'https://github.com/nelsonlaidev',
       value: githubQuery.data?.stars,
       icon: <StarIcon className='size-6 text-[#fee000]' />,
       linkText: 'GitHub',

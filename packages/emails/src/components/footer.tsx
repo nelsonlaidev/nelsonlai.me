@@ -7,12 +7,15 @@ const Footer = () => {
       <Section>
         <Row className='mt-4' align='left' width='auto'>
           <Column className='pr-6 align-middle'>
-            <Link href='https://x.com/tszhong0411' className='text-xl text-black'>
+            <Link href='https://x.com/nelsonlaidev' className='text-xl text-black'>
               <Img src='https://nelsonlai.me/images/email/x.png' alt='X' width={22} height={22} />
             </Link>
           </Column>
           <Column className='align-middle'>
-            <Link href='https://github.com/tszhong0411/nelsonlai.me' className='text-xl text-black'>
+            <Link
+              href='https://github.com/nelsonlaidev/nelsonlai.me'
+              className='text-xl text-black'
+            >
               <Img
                 src='https://nelsonlai.me/images/email/github.png'
                 alt='GitHub'

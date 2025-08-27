@@ -10,7 +10,7 @@ const Hello = () => {
 
 If you're digging this code, check out my GitHub repo:
 
-https://github.com/tszhong0411/nelsonlai.me
+https://github.com/nelsonlaidev/nelsonlai.me
 
 and give it a star ⭐
 `,

@@ -62,9 +62,9 @@ export const generateMetadata = async (props: LayoutProps): Promise<Metadata> =>
       card: 'summary_large_image',
       title: SITE_NAME,
       description: t('site-description'),
-      site: '@tszhong0411',
+      site: '@nelsonlaidev',
       siteId: '1152256803746377730',
-      creator: '@tszhong0411',
+      creator: '@nelsonlaidev',
       creatorId: '1152256803746377730',
       images: [
         {
