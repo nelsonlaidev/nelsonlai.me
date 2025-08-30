@@ -56,7 +56,7 @@ const DataTableFacetedFilter = <TData, TValue>(props: DataTableFacetedFilterProp
         } else {
           newSelectedValues.add(option.value)
         }
-        const filterValues = Array.from(newSelectedValues)
+        const filterValues = [...newSelectedValues]
         column.setFilterValue(filterValues.length > 0 ? filterValues : undefined)
       } else {
         column.setFilterValue(isSelected ? undefined : [option.value])
@@ -76,7 +76,7 @@ const DataTableFacetedFilter = <TData, TValue>(props: DataTableFacetedFilterProp
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
-      <PopoverTrigger asChild>
+      <PopoverTrigger asChild={true}>
         <Button variant='outline' size='sm' className='border-dashed'>
           {selectedValues.size > 0 ? (
             <div
@@ -90,7 +90,7 @@ const DataTableFacetedFilter = <TData, TValue>(props: DataTableFacetedFilterProp
                   onReset()
                 }
               }}
-              className='focus-visible:ring-ring rounded-sm opacity-70 transition-opacity hover:opacity-100 focus-visible:outline-none focus-visible:ring-1'
+              className='rounded-sm opacity-70 transition-opacity hover:opacity-100 focus-visible:ring-1 focus-visible:ring-ring focus-visible:outline-none'
             >
               <XCircleIcon />
             </div>
@@ -128,15 +128,20 @@ const DataTableFacetedFilter = <TData, TValue>(props: DataTableFacetedFilterProp
           <CommandInput placeholder={title} />
           <CommandList className='max-h-full'>
             <CommandEmpty>No results found.</CommandEmpty>
-            <CommandGroup className='max-h-[18.75rem] overflow-y-auto overflow-x-hidden'>
+            <CommandGroup className='max-h-[18.75rem] overflow-x-hidden overflow-y-auto'>
               {options.map((option) => {
                 const isSelected = selectedValues.has(option.value)
 
                 return (
-                  <CommandItem key={option.value} onSelect={() => onItemSelect(option, isSelected)}>
+                  <CommandItem
+                    key={option.value}
+                    onSelect={() => {
+                      onItemSelect(option, isSelected)
+                    }}
+                  >
                     <div
                       className={cn(
-                        'border-primary flex size-4 items-center justify-center rounded-sm border',
+                        'flex size-4 items-center justify-center rounded-sm border border-primary',
                         isSelected ? 'bg-primary' : 'opacity-50 [&_svg]:invisible'
                       )}
                     >
@@ -153,7 +158,12 @@ const DataTableFacetedFilter = <TData, TValue>(props: DataTableFacetedFilterProp
               <>
                 <CommandSeparator />
                 <CommandGroup>
-                  <CommandItem onSelect={() => onReset()} className='justify-center text-center'>
+                  <CommandItem
+                    onSelect={() => {
+                      onReset()
+                    }}
+                    className='justify-center text-center'
+                  >
                     Clear filters
                   </CommandItem>
                 </CommandGroup>

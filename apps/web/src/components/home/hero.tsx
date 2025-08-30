@@ -47,9 +47,13 @@ const Hero = () => {
   const t = useTranslations()
 
   useEffect(() => {
-    const timer = setInterval(() => setCurrentIndex((prev) => (prev + 1) % TEXTS.length), SPEED * 1000)
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % TEXTS.length)
+    }, SPEED * 1000)
 
-    return () => clearInterval(timer)
+    return () => {
+      clearInterval(timer)
+    }
   }, [])
 
   const textItem = TEXTS[currentIndex]
@@ -69,7 +73,7 @@ const Hero = () => {
               transition={{ ease: 'easeOut' }}
               className='flex gap-2'
             >
-              <motion.div layout key='title-middle-left' className='leading-[30px] sm:leading-[45px]'>
+              <motion.div layout={true} key='title-middle-left' className='leading-[30px] sm:leading-[45px]'>
                 {t('homepage.hero.title-middle-left')}
               </motion.div>
               <div className='relative overflow-hidden'>
@@ -80,7 +84,7 @@ const Hero = () => {
                     initial='enter'
                     animate='center'
                     exit='exit'
-                    layout
+                    layout={true}
                     transition={{
                       type: 'tween',
                       duration: 0.3
@@ -91,7 +95,7 @@ const Hero = () => {
                   </motion.div>
                 </AnimatePresence>
               </div>
-              <motion.div layout key='title-middle-right' className='leading-[30px] sm:leading-[45px]'>
+              <motion.div layout={true} key='title-middle-right' className='leading-[30px] sm:leading-[45px]'>
                 {t('homepage.hero.title-middle-right')}
               </motion.div>
             </motion.div>
@@ -103,7 +107,7 @@ const Hero = () => {
             initial={{ x: 50, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ ease: 'easeOut' }}
-            className='text-muted-foreground text-sm'
+            className='text-sm text-muted-foreground'
           >
             {t('homepage.hero.location-timezone')}
           </motion.div>
@@ -128,7 +132,7 @@ const Hero = () => {
             alt='Nelson Lai'
             lazy={false}
           />
-          <div className='bg-linear-to-tl absolute inset-0 -z-10 from-purple-700 to-orange-700 opacity-50 blur-2xl' />
+          <div className='absolute inset-0 -z-10 bg-linear-to-tl from-purple-700 to-orange-700 opacity-50 blur-2xl' />
         </motion.div>
       </div>
     </div>

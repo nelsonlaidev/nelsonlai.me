@@ -32,6 +32,9 @@ export const rehypeCode: Plugin<[RehypeShikiOptions], Root> = () => {
       /**
        * - Remove trailing newline
        * - Remove title from meta
+       * @param code
+       * @param root0
+       * @param root0.meta
        */
       preprocess(code, { meta }) {
         if (meta) {

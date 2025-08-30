@@ -36,7 +36,7 @@ const DeleteButton = (props: DeleteButtonProps) => {
   return (
     <div className='mt-4 flex justify-end'>
       <AlertDialog>
-        <AlertDialogTrigger asChild>
+        <AlertDialogTrigger asChild={true}>
           <Button
             variant='destructive'
             disabled={isDeleting}
@@ -54,7 +54,9 @@ const DeleteButton = (props: DeleteButtonProps) => {
           <AlertDialogFooter>
             <AlertDialogCancel>{t('common.cancel')}</AlertDialogCancel>
             <AlertDialogAction
-              onClick={() => handleDeleteMessage(message.id)}
+              onClick={() => {
+                handleDeleteMessage(message.id)
+              }}
               className={buttonVariants({ variant: 'destructive' })}
               data-testid='guestbook-dialog-delete-button'
             >

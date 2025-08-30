@@ -36,7 +36,7 @@ const UpdatedDate = (props: UpdatedDateProps) => {
 
   if (!formattedDate) return <Skeleton className='h-4 w-24 rounded-md' />
 
-  return <div className='text-muted-foreground text-xs'>{formattedDate}</div>
+  return <div className='text-xs text-muted-foreground'>{formattedDate}</div>
 }
 
 const Messages = () => {
@@ -59,12 +59,12 @@ const Messages = () => {
       <span ref={ref} className='invisible' />
       {isError && (
         <div className='flex min-h-24 items-center justify-center'>
-          <p className='text-muted-foreground text-sm'>{t('error.failed-to-load-messages')}</p>
+          <p className='text-sm text-muted-foreground'>{t('error.failed-to-load-messages')}</p>
         </div>
       )}
       {noMessages && (
         <div className='flex min-h-24 items-center justify-center'>
-          <p className='text-muted-foreground text-sm'>{t('guestbook.no-messages')}</p>
+          <p className='text-sm text-muted-foreground'>{t('guestbook.no-messages')}</p>
         </div>
       )}
     </div>
@@ -84,7 +84,7 @@ const Message = (props: MessageProps) => {
   const defaultImage = getDefaultImage(message.userId)
 
   return (
-    <div className='shadow-xs rounded-lg border p-4 dark:bg-zinc-900/30' data-testid={`message-${message.id}`}>
+    <div className='rounded-lg border p-4 shadow-xs dark:bg-zinc-900/30' data-testid={`message-${message.id}`}>
       <div className='mb-3 flex gap-3'>
         <Avatar className='size-10'>
           <AvatarImage src={message.user.image ?? defaultImage} alt={message.user.name} />
@@ -95,7 +95,7 @@ const Message = (props: MessageProps) => {
           <UpdatedDate date={message.updatedAt} />
         </div>
       </div>
-      <div className='break-words pl-[52px]'>{message.body}</div>
+      <div className='pl-[52px] break-words'>{message.body}</div>
       {isAuthor && <DeleteButton message={message} />}
     </div>
   )

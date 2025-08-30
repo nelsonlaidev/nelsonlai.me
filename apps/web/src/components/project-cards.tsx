@@ -27,7 +27,7 @@ const ProjectCard = (props: ProjectCardProps) => {
   const { name, description, techstack, slug } = props
 
   return (
-    <Link href={`/projects/${slug}`} className='shadow-feature-card group rounded-xl px-2 py-4'>
+    <Link href={`/projects/${slug}`} className='group rounded-xl px-2 py-4 shadow-feature-card'>
       <BlurImage
         src={`/images/projects/${slug}/cover.png`}
         width={1280}

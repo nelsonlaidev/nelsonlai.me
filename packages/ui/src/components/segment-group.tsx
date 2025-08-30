@@ -21,7 +21,7 @@ const SegmentGroup = (props: SegmentGroupProps) => {
         data-slot='segment-group-indicator'
         className={cn(
           'border-foreground',
-          'data-[orientation=horizontal]:w-(--width) data-[orientation=horizontal]:bottom-0 data-[orientation=horizontal]:translate-y-px data-[orientation=horizontal]:border-b-2',
+          'data-[orientation=horizontal]:bottom-0 data-[orientation=horizontal]:w-(--width) data-[orientation=horizontal]:translate-y-px data-[orientation=horizontal]:border-b-2',
           'data-[orientation=vertical]:h-(--height) data-[orientation=vertical]:-translate-x-px data-[orientation=vertical]:border-l-2',
           className
         )}
@@ -40,12 +40,12 @@ const SegmentGroupItem = (props: SegmentGroupItemProps) => {
     <SegmentGroupPrimitive.Item
       data-slot='segment-group-item'
       className={cn(
-        'text-muted-foreground cursor-pointer font-medium transition-colors',
+        'cursor-pointer font-medium text-muted-foreground transition-colors',
         'hover:text-accent-foreground',
         'data-[state=checked]:text-foreground',
         'data-[orientation=horizontal]:px-1 data-[orientation=horizontal]:pb-3',
         'data-[orientation=vertical]:px-3 data-[orientation=vertical]:py-1.5',
-        'data-disabled:text-muted-foreground data-disabled:cursor-not-allowed data-disabled:opacity-50',
+        'data-disabled:cursor-not-allowed data-disabled:text-muted-foreground data-disabled:opacity-50',
         className
       )}
       {...rest}

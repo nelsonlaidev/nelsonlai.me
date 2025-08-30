@@ -27,7 +27,7 @@ type DateTableDateFilterProps<TData> = {
 const parseColumnFilterValue = (value: unknown): Array<string | number | undefined> => {
   let array: unknown[]
 
-  if (value == null) {
+  if (value == undefined) {
     array = []
   } else if (Array.isArray(value)) {
     array = value
@@ -81,7 +81,7 @@ const DataTableDateFilter = <TData,>(props: DateTableDateFilterProps<TData>) => 
         const range = date as DateRange
         const from = range.from?.getTime()
         const to = range.to?.getTime()
-        column.setFilterValue(from == null && to == null ? undefined : [from, to])
+        column.setFilterValue(from == undefined && to == undefined ? undefined : [from, to])
       } else {
         column.setFilterValue((date as Date).getTime())
       }
@@ -137,7 +137,7 @@ const DataTableDateFilter = <TData,>(props: DateTableDateFilterProps<TData>) => 
 
   return (
     <Popover>
-      <PopoverTrigger asChild>
+      <PopoverTrigger asChild={true}>
         <Button variant='outline' size='sm' className='border-dashed'>
           {hasValue ? (
             <div
@@ -151,7 +151,7 @@ const DataTableDateFilter = <TData,>(props: DateTableDateFilterProps<TData>) => 
                   onReset()
                 }
               }}
-              className='focus-visible:ring-ring rounded-sm opacity-70 transition-opacity hover:opacity-100 focus-visible:outline-none focus-visible:ring-1'
+              className='rounded-sm opacity-70 transition-opacity hover:opacity-100 focus-visible:ring-1 focus-visible:ring-ring focus-visible:outline-none'
             >
               <XCircleIcon />
             </div>
@@ -163,9 +163,9 @@ const DataTableDateFilter = <TData,>(props: DateTableDateFilterProps<TData>) => 
       </PopoverTrigger>
       <PopoverContent className='w-auto p-0' align='start'>
         {multiple ? (
-          <Calendar initialFocus mode='range' selected={selectedDates} onSelect={onSelect} />
+          <Calendar initialFocus={true} mode='range' selected={selectedDates} onSelect={onSelect} />
         ) : (
-          <Calendar initialFocus mode='single' selected={selectedDates.from} onSelect={onSelect} />
+          <Calendar initialFocus={true} mode='single' selected={selectedDates.from} onSelect={onSelect} />
         )}
       </PopoverContent>
     </Popover>

@@ -16,7 +16,7 @@ const LocaleSwitcher = () => {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild>
+      <DropdownMenuTrigger asChild={true}>
         <Button variant='ghost' className='size-9 p-0' aria-label={t('layout.change-language')}>
           <LanguagesIcon />
         </Button>
@@ -41,7 +41,9 @@ const Item = (props: ItemProps) => {
   const pathname = usePathname()
 
   const switchLanguage = () => {
-    startTransition(() => router.replace(pathname, { locale }))
+    startTransition(() => {
+      router.replace(pathname, { locale })
+    })
   }
 
   return (

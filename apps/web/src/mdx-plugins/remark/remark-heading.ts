@@ -6,7 +6,7 @@ import Slugger from 'github-slugger'
 import { visit } from 'unist-util-visit'
 
 declare module 'mdast' {
-  interface Data {
+  type Data = {
     hProperties?: {
       id?: string
     }

@@ -149,14 +149,14 @@ const DataTableSliderFilter = <TData,>(props: DataTableSliderFilterProps<TData>)
 
   return (
     <Popover>
-      <PopoverTrigger asChild>
+      <PopoverTrigger asChild={true}>
         <Button variant='outline' size='sm' className='border-dashed'>
           {columnFilterValue ? (
             <div
               role='button'
               aria-label={`Clear ${title} filter`}
               tabIndex={0}
-              className='focus-visible:ring-ring rounded-sm opacity-70 transition-opacity hover:opacity-100 focus-visible:outline-none focus-visible:ring-1'
+              className='rounded-sm opacity-70 transition-opacity hover:opacity-100 focus-visible:ring-1 focus-visible:ring-ring focus-visible:outline-none'
               onClick={onReset}
               onKeyDown={(e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
@@ -182,7 +182,7 @@ const DataTableSliderFilter = <TData,>(props: DataTableSliderFilterProps<TData>)
       </PopoverTrigger>
       <PopoverContent align='start' className='flex w-auto flex-col gap-4'>
         <div className='flex flex-col gap-3'>
-          <p className='font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70'>{title}</p>
+          <p className='leading-none font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-70'>{title}</p>
           <div className='flex items-center gap-4'>
             <Label htmlFor={`${id}-from`} className='sr-only'>
               From
@@ -199,7 +199,9 @@ const DataTableSliderFilter = <TData,>(props: DataTableSliderFilterProps<TData>)
                 max={max}
                 value={range[0].toString()}
                 onChange={onFromInputChange}
-                onKeyDown={(e) => handleKeyDown(e, 'from')}
+                onKeyDown={(e) => {
+                  handleKeyDown(e, 'from')
+                }}
                 className={cn('h-8 w-24', unit && 'pr-8')}
                 aria-valuemin={min}
                 aria-valuemax={max}
@@ -207,7 +209,7 @@ const DataTableSliderFilter = <TData,>(props: DataTableSliderFilterProps<TData>)
                 aria-valuetext={`${range[0]}${unit ?? ''}`}
               />
               {unit && (
-                <span className='bg-accent text-muted-foreground absolute bottom-0 right-0 top-0 flex items-center rounded-r-md px-2 text-sm'>
+                <span className='absolute top-0 right-0 bottom-0 flex items-center rounded-r-md bg-accent px-2 text-sm text-muted-foreground'>
                   {unit}
                 </span>
               )}
@@ -227,7 +229,9 @@ const DataTableSliderFilter = <TData,>(props: DataTableSliderFilterProps<TData>)
                 max={max}
                 value={range[1].toString()}
                 onChange={onToInputChange}
-                onKeyDown={(e) => handleKeyDown(e, 'to')}
+                onKeyDown={(e) => {
+                  handleKeyDown(e, 'to')
+                }}
                 className={cn('h-8 w-24', unit && 'pr-8')}
                 aria-valuemin={min}
                 aria-valuemax={max}
@@ -235,7 +239,7 @@ const DataTableSliderFilter = <TData,>(props: DataTableSliderFilterProps<TData>)
                 aria-valuetext={`${range[1]}${unit ?? ''}`}
               />
               {unit && (
-                <span className='bg-accent text-muted-foreground absolute bottom-0 right-0 top-0 flex items-center rounded-r-md px-2 text-sm'>
+                <span className='absolute top-0 right-0 bottom-0 flex items-center rounded-r-md bg-accent px-2 text-sm text-muted-foreground'>
                   {unit}
                 </span>
               )}

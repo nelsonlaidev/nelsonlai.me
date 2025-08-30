@@ -15,7 +15,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '.
 
 declare module '@tanstack/react-table' {
   // eslint-disable-next-line unused-imports/no-unused-vars -- must have identical type parameters
-  interface ColumnMeta<TData extends RowData, TValue> {
+  type ColumnMeta<TData extends RowData, TValue> = {
     label?: string
     placeholder?: string
     variant?: FilterVariant

@@ -51,7 +51,7 @@ const CommentMenu = () => {
   return (
     <AlertDialog>
       <DropdownMenu>
-        <DropdownMenuTrigger asChild>
+        <DropdownMenuTrigger asChild={true}>
           <Button
             variant='ghost'
             size='icon'
@@ -73,7 +73,7 @@ const CommentMenu = () => {
           >
             {t('blog.comments.copy-link')}
           </DropdownMenuItem>
-          <AlertDialogTrigger asChild>
+          <AlertDialogTrigger asChild={true}>
             {isAuthor && (
               <DropdownMenuItem
                 disabled={isDeleting}
@@ -95,7 +95,9 @@ const CommentMenu = () => {
         <AlertDialogFooter>
           <AlertDialogCancel>{t('common.cancel')}</AlertDialogCancel>
           <AlertDialogAction
-            onClick={() => deleteComment({ id })}
+            onClick={() => {
+              deleteComment({ id })
+            }}
             className={buttonVariants({ variant: 'destructive' })}
             data-testid='comment-dialog-delete-button'
           >

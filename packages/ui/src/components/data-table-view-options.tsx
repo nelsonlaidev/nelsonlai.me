@@ -32,7 +32,7 @@ const DataTableViewOptions = <TData,>(props: DataTableViewOptionsProps<TData>) =
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
-      <PopoverTrigger asChild>
+      <PopoverTrigger asChild={true}>
         <Button
           aria-label='Toggle columns'
           role='combobox'
@@ -55,7 +55,12 @@ const DataTableViewOptions = <TData,>(props: DataTableViewOptionsProps<TData>) =
             <CommandEmpty>No columns found.</CommandEmpty>
             <CommandGroup>
               {columns.map((column) => (
-                <CommandItem key={column.id} onSelect={() => column.toggleVisibility(!column.getIsVisible())}>
+                <CommandItem
+                  key={column.id}
+                  onSelect={() => {
+                    column.toggleVisibility(!column.getIsVisible())
+                  }}
+                >
                   <span className='truncate'>{column.columnDef.meta?.label ?? column.id}</span>
                   <CheckIcon
                     className={cn('ml-auto size-4 shrink-0', column.getIsVisible() ? 'opacity-100' : 'opacity-0')}

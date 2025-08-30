@@ -146,7 +146,7 @@ const Page = async (props: PageProps) => {
         <article className='w-full lg:w-[670px]'>
           <Mdx code={code} />
         </article>
-        <aside className='lg:min-w-[270px] lg:max-w-[270px]'>
+        <aside className='lg:max-w-[270px] lg:min-w-[270px]'>
           <div className='sticky top-24'>
             {toc.length > 0 && <TableOfContents toc={toc} />}
             <LikeButton slug={slug} />

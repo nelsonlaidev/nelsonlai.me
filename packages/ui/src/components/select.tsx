@@ -26,10 +26,10 @@ const SelectTrigger = (props: SelectTriggerProps) => {
       data-slot='select-trigger'
       data-size={size}
       className={cn(
-        'border-input shadow-xs flex w-fit items-center justify-between gap-2 whitespace-nowrap rounded-md border bg-transparent px-3 py-2 text-sm outline-none transition-[color,box-shadow]',
-        'dark:aria-invalid:ring-destructive/40 dark:bg-input/30 dark:hover:bg-input/50',
-        'focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]',
-        'aria-invalid:ring-destructive/20 aria-invalid:border-destructive',
+        'flex w-fit items-center justify-between gap-2 rounded-md border border-input bg-transparent px-3 py-2 text-sm whitespace-nowrap shadow-xs transition-[color,box-shadow] outline-none',
+        'dark:bg-input/30 dark:hover:bg-input/50 dark:aria-invalid:ring-destructive/40',
+        'focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50',
+        'aria-invalid:border-destructive aria-invalid:ring-destructive/20',
         'disabled:cursor-not-allowed disabled:opacity-50',
         'data-[placeholder]:text-muted-foreground',
         'data-[size=default]:h-9',
@@ -43,7 +43,7 @@ const SelectTrigger = (props: SelectTriggerProps) => {
       {...rest}
     >
       {children}
-      <SelectPrimitive.Icon asChild>
+      <SelectPrimitive.Icon asChild={true}>
         <ChevronDownIcon className='opacity-50' />
       </SelectPrimitive.Icon>
     </SelectPrimitive.Trigger>
@@ -60,7 +60,7 @@ const SelectContent = (props: SelectContentProps) => {
       <SelectPrimitive.Content
         data-slot='select-content'
         className={cn(
-          'bg-popover text-popover-foreground max-h-(--radix-select-content-available-height) origin-(--radix-select-content-transform-origin) relative z-50 min-w-32 overflow-y-auto overflow-x-hidden rounded-md border shadow-md',
+          'relative z-50 max-h-(--radix-select-content-available-height) min-w-32 origin-(--radix-select-content-transform-origin) overflow-x-hidden overflow-y-auto rounded-md border bg-popover text-popover-foreground shadow-md',
           'data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95',
           'data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95',
           'data-[side=top]:slide-in-from-bottom-2',
@@ -79,7 +79,7 @@ const SelectContent = (props: SelectContentProps) => {
           className={cn(
             'p-1',
             position === 'popper' &&
-              'h-(--radix-select-trigger-height) min-w-(--radix-select-trigger-width) w-full scroll-my-1'
+              'h-(--radix-select-trigger-height) w-full min-w-(--radix-select-trigger-width) scroll-my-1'
           )}
         >
           {children}
@@ -98,7 +98,7 @@ const SelectLabel = (props: SelectLabelProps) => {
   return (
     <SelectPrimitive.Label
       data-slot='select-label'
-      className={cn('text-muted-foreground px-2 py-1.5 text-xs', className)}
+      className={cn('px-2 py-1.5 text-xs text-muted-foreground', className)}
       {...rest}
     />
   )
@@ -113,7 +113,7 @@ const SelectItem = (props: SelectItemProps) => {
     <SelectPrimitive.Item
       data-slot='select-item'
       className={cn(
-        'outline-hidden relative flex w-full cursor-default select-none items-center gap-2 rounded-sm py-1.5 pl-2 pr-8 text-sm',
+        'relative flex w-full cursor-default items-center gap-2 rounded-sm py-1.5 pr-8 pl-2 text-sm outline-hidden select-none',
         'focus:bg-accent focus:text-accent-foreground',
         'data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
         '*:[span]:last:flex *:[span]:last:items-center *:[span]:last:gap-2',
@@ -142,7 +142,7 @@ const SelectSeparator = (props: SelectSeparatorProps) => {
   return (
     <SelectPrimitive.Separator
       data-slot='select-separator'
-      className={cn('bg-border pointer-events-none -mx-1 my-1 h-px', className)}
+      className={cn('pointer-events-none -mx-1 my-1 h-px bg-border', className)}
       {...rest}
     />
   )

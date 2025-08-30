@@ -120,7 +120,7 @@ const LastUsed = () => {
   const t = useTranslations()
 
   return (
-    <Badge variant='outline' className='bg-background absolute -right-2 -top-2'>
+    <Badge variant='outline' className='absolute -top-2 -right-2 bg-background'>
       {t('dialog.sign-in.last-used')}
     </Badge>
   )

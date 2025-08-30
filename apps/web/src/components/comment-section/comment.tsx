@@ -113,7 +113,7 @@ const Comment = (props: CommentProps) => {
             </div>
 
             {isDeleted ? (
-              <p className='text-muted-foreground my-3 ml-0.5 text-sm'>
+              <p className='my-3 ml-0.5 text-sm text-muted-foreground'>
                 {t('blog.comments.this-comment-has-been-deleted')}
               </p>
             ) : (

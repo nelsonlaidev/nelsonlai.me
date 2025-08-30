@@ -15,7 +15,7 @@ const ThemeSwitcher = () => {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild>
+      <DropdownMenuTrigger asChild={true}>
         <Button
           variant='ghost'
           className='size-9 p-0'
@@ -27,13 +27,31 @@ const ThemeSwitcher = () => {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align='end'>
-        <DropdownMenuItem className='gap-2' onClick={() => setTheme('light')} data-testid='theme-light-button'>
+        <DropdownMenuItem
+          className='gap-2'
+          onClick={() => {
+            setTheme('light')
+          }}
+          data-testid='theme-light-button'
+        >
           <SunIcon className='size-[18px]' /> {t('theme-toggle.options.light')}
         </DropdownMenuItem>
-        <DropdownMenuItem className='gap-2' onClick={() => setTheme('dark')} data-testid='theme-dark-button'>
+        <DropdownMenuItem
+          className='gap-2'
+          onClick={() => {
+            setTheme('dark')
+          }}
+          data-testid='theme-dark-button'
+        >
           <MoonIcon className='size-[18px]' /> {t('theme-toggle.options.dark')}
         </DropdownMenuItem>
-        <DropdownMenuItem className='gap-2' onClick={() => setTheme('system')} data-testid='theme-system-button'>
+        <DropdownMenuItem
+          className='gap-2'
+          onClick={() => {
+            setTheme('system')
+          }}
+          data-testid='theme-system-button'
+        >
           <MonitorIcon className='size-[18px]' /> {t('theme-toggle.options.system')}
         </DropdownMenuItem>
       </DropdownMenuContent>

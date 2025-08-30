@@ -32,7 +32,9 @@ const BlurImage = (props: ImageProps) => {
         loading={lazy ? 'lazy' : undefined}
         priority={!lazy}
         quality={100}
-        onLoad={() => setIsLoading(false)}
+        onLoad={() => {
+          setIsLoading(false)
+        }}
         {...rest}
       />
     </div>

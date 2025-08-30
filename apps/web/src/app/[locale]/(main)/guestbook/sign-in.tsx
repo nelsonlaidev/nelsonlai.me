@@ -12,8 +12,10 @@ const SignIn = () => {
   return (
     <>
       <Button
-        className='dark:text-foreground bg-linear-to-br inline-block from-[#fcd34d] via-[#ef4444] to-[#ec4899] font-extrabold'
-        onClick={() => setIsSignInOpen(true)}
+        className='inline-block bg-linear-to-br from-[#fcd34d] via-[#ef4444] to-[#ec4899] font-extrabold dark:text-foreground'
+        onClick={() => {
+          setIsSignInOpen(true)
+        }}
       >
         {t('common.sign-in')}
       </Button>

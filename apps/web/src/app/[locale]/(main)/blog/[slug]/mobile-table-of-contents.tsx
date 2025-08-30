@@ -23,8 +23,8 @@ const MobileTableOfContents = (props: MobileTableOfContentsProps) => {
 
   return (
     <Popover open={isOpen} onOpenChange={setIsOpen}>
-      <PopoverTrigger className='gap-2' asChild>
-        <Button variant='secondary' className='fixed bottom-2 right-2 z-50 lg:hidden'>
+      <PopoverTrigger className='gap-2' asChild={true}>
+        <Button variant='secondary' className='fixed right-2 bottom-2 z-50 lg:hidden'>
           <AlignLeftIcon /> {t('blog.on-this-page')}
         </Button>
       </PopoverTrigger>
@@ -36,7 +36,7 @@ const MobileTableOfContents = (props: MobileTableOfContentsProps) => {
             <Link
               key={url}
               href={`#${url}`}
-              className='text-muted-foreground hover:text-foreground block py-2.5 pr-2.5 text-sm leading-[1.2] transition-colors'
+              className='block py-2.5 pr-2.5 text-sm leading-[1.2] text-muted-foreground transition-colors hover:text-foreground'
               style={{
                 paddingLeft: (depth - 1) * 16
               }}

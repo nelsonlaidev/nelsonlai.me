@@ -25,7 +25,7 @@ const ItemGrid = (props: ItemGridProps) => {
         <Link
           key={item.name}
           href={item.url}
-          className='shadow-xs flex gap-6 rounded-lg border p-4 no-underline transition-colors hover:bg-zinc-100 sm:flex-col sm:gap-3 dark:bg-zinc-900 dark:hover:bg-zinc-800'
+          className='flex gap-6 rounded-lg border p-4 no-underline shadow-xs transition-colors hover:bg-zinc-100 sm:flex-col sm:gap-3 dark:bg-zinc-900 dark:hover:bg-zinc-800'
         >
           <BlurImage
             src={item.image}
@@ -37,7 +37,7 @@ const ItemGrid = (props: ItemGridProps) => {
           />
           <div className='flex flex-col justify-center gap-2'>
             <div className='text-lg font-extrabold'>{item.name}</div>
-            <div className='text-muted-foreground text-sm'>{item.description}</div>
+            <div className='text-sm text-muted-foreground'>{item.description}</div>
           </div>
         </Link>
       ))}

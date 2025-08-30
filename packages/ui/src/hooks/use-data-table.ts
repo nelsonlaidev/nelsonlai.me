@@ -189,8 +189,8 @@ export const useDataTable = <TData>(props: UseDataTableProps<TData>) => {
         let processedValue: string[]
         if (Array.isArray(value)) {
           processedValue = value
-        } else if (typeof value === 'string' && /[^a-zA-Z0-9]/.test(value)) {
-          processedValue = value.split(/[^a-zA-Z0-9]+/).filter(Boolean)
+        } else if (typeof value === 'string' && /[^a-z0-9]/i.test(value)) {
+          processedValue = value.split(/[^a-z0-9]+/i).filter(Boolean)
         } else {
           processedValue = [value]
         }

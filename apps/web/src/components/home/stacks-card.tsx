@@ -32,12 +32,12 @@ const StacksCard = () => {
   const t = useTranslations()
 
   return (
-    <div className='shadow-feature-card flex h-60 flex-col gap-2 overflow-hidden rounded-xl p-4 lg:p-6'>
+    <div className='flex h-60 flex-col gap-2 overflow-hidden rounded-xl p-4 shadow-feature-card lg:p-6'>
       <div className='flex items-center gap-2'>
         <ZapIcon className='size-[18px]' />
         <h2 className='text-sm'>{t('homepage.about-me.stacks')}</h2>
       </div>
-      <Marquee gap='20px' className='py-4' fade pauseOnHover>
+      <Marquee gap='20px' className='py-4' fade={true} pauseOnHover={true}>
         <SiHtml5 className='size-10' />
         <SiCss className='size-10' />
         <SiJavascript className='size-10' />
@@ -50,7 +50,7 @@ const StacksCard = () => {
         <SiPostgresql className='size-10' />
         <SiRadixui className='size-10' />
       </Marquee>
-      <Marquee gap='20px' className='py-4' reverse fade pauseOnHover>
+      <Marquee gap='20px' className='py-4' reverse={true} fade={true} pauseOnHover={true}>
         <SiPrisma className='size-10' />
         <SiMysql className='size-10' />
         <SiFirebase className='size-10' />

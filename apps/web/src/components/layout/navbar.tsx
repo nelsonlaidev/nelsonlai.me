@@ -31,7 +31,7 @@ const Navbar = () => {
               </Link>
               {isActive && (
                 <>
-                  <div className='bg-nav-link-indicator absolute bottom-0 left-1/2 h-px w-12 -translate-x-1/2' />
+                  <div className='absolute bottom-0 left-1/2 h-px w-12 -translate-x-1/2 bg-nav-link-indicator' />
                   <div className='absolute bottom-0 left-1/2 size-2.5 -translate-x-1/2 rounded-[4px] bg-[rgb(255_122_151)] blur-sm dark:bg-[rgb(223_29_72)]' />
                 </>
               )}

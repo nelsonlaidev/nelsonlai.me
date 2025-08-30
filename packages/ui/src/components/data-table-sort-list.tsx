@@ -82,10 +82,9 @@ const DataTableSortList = <TData,>(props: DataTableSortListProps<TData>) => {
     [onSortingChange]
   )
 
-  const onSortingReset = useCallback(
-    () => onSortingChange(table.initialState.sorting),
-    [onSortingChange, table.initialState.sorting]
-  )
+  const onSortingReset = useCallback(() => {
+    onSortingChange(table.initialState.sorting)
+  }, [onSortingChange, table.initialState.sorting])
 
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
@@ -105,7 +104,9 @@ const DataTableSortList = <TData,>(props: DataTableSortListProps<TData>) => {
     }
 
     globalThis.addEventListener('keydown', onKeyDown)
-    return () => globalThis.removeEventListener('keydown', onKeyDown)
+    return () => {
+      globalThis.removeEventListener('keydown', onKeyDown)
+    }
   }, [sorting.length, onSortingReset])
 
   const onTriggerKeyDown = useCallback(
@@ -121,7 +122,7 @@ const DataTableSortList = <TData,>(props: DataTableSortListProps<TData>) => {
   return (
     <Sortable value={sorting} onValueChange={onSortingChange} getItemValue={(item) => item.id}>
       <Popover open={open} onOpenChange={setOpen}>
-        <PopoverTrigger asChild>
+        <PopoverTrigger asChild={true}>
           <Button variant='outline' size='sm' onKeyDown={onTriggerKeyDown}>
             <ArrowDownUp />
             Sort
@@ -138,19 +139,19 @@ const DataTableSortList = <TData,>(props: DataTableSortListProps<TData>) => {
         <PopoverContent
           aria-labelledby={labelId}
           aria-describedby={descriptionId}
-          className='max-w-(--radix-popover-content-available-width) origin-(--radix-popover-content-transform-origin) flex w-full flex-col gap-3.5 p-4 sm:min-w-[380px]'
+          className='flex w-full max-w-(--radix-popover-content-available-width) origin-(--radix-popover-content-transform-origin) flex-col gap-3.5 p-4 sm:min-w-[380px]'
           {...rest}
         >
           <div className='flex flex-col gap-1'>
-            <h4 id={labelId} className='font-medium leading-none'>
+            <h4 id={labelId} className='leading-none font-medium'>
               {sorting.length > 0 ? 'Sort by' : 'No sorting applied'}
             </h4>
-            <p id={descriptionId} className={cn('text-muted-foreground text-sm', sorting.length > 0 && 'sr-only')}>
+            <p id={descriptionId} className={cn('text-sm text-muted-foreground', sorting.length > 0 && 'sr-only')}>
               {sorting.length > 0 ? 'Modify sorting to organize your rows.' : 'Add sorting to organize your rows.'}
             </p>
           </div>
           {sorting.length > 0 && (
-            <SortableContent asChild>
+            <SortableContent asChild={true}>
               <div role='list' className='flex max-h-[300px] flex-col gap-2 overflow-y-auto p-1'>
                 {sorting.map((sort) => (
                   <DataTableSortItem
@@ -169,7 +170,7 @@ const DataTableSortList = <TData,>(props: DataTableSortListProps<TData>) => {
           <div className='flex w-full items-center gap-2'>
             <Button
               size='sm'
-              className='rounded'
+              className='rounded-sm'
               ref={addButtonRef}
               onClick={onSortAdd}
               disabled={columns.length === 0}
@@ -177,7 +178,7 @@ const DataTableSortList = <TData,>(props: DataTableSortListProps<TData>) => {
               Add sort
             </Button>
             {sorting.length > 0 && (
-              <Button variant='outline' size='sm' className='rounded' onClick={onSortingReset}>
+              <Button variant='outline' size='sm' className='rounded-sm' onClick={onSortingReset}>
                 Reset sorting
               </Button>
             )}
@@ -186,10 +187,10 @@ const DataTableSortList = <TData,>(props: DataTableSortListProps<TData>) => {
       </Popover>
       <SortableOverlay>
         <div className='flex items-center gap-2'>
-          <div className='bg-primary/10 h-8 w-[180px] rounded-sm' />
-          <div className='bg-primary/10 h-8 w-24 rounded-sm' />
-          <div className='bg-primary/10 size-8 shrink-0 rounded-sm' />
-          <div className='bg-primary/10 size-8 shrink-0 rounded-sm' />
+          <div className='h-8 w-[180px] rounded-sm bg-primary/10' />
+          <div className='h-8 w-24 rounded-sm bg-primary/10' />
+          <div className='size-8 shrink-0 rounded-sm bg-primary/10' />
+          <div className='size-8 shrink-0 rounded-sm bg-primary/10' />
         </div>
       </SortableOverlay>
     </Sortable>
@@ -215,10 +216,10 @@ const DataTableSortItem = (props: DataTableSortItemProps) => {
   const [showDirectionSelector, setShowDirectionSelector] = useState(false)
 
   return (
-    <SortableItem value={sort.id} asChild>
+    <SortableItem value={sort.id} asChild={true}>
       <div role='listitem' id={sortItemId} className='flex items-center gap-2'>
         <Popover open={showFieldSelector} onOpenChange={setShowFieldSelector}>
-          <PopoverTrigger asChild>
+          <PopoverTrigger asChild={true}>
             <Button
               id={fieldTriggerId}
               role='combobox'
@@ -226,7 +227,7 @@ const DataTableSortItem = (props: DataTableSortItemProps) => {
               aria-expanded={showFieldSelector}
               variant='outline'
               size='sm'
-              className='w-44 justify-between rounded font-normal'
+              className='w-44 justify-between rounded-sm font-normal'
             >
               <span className='truncate'>{columnLabels.get(sort.id)}</span>
               <ChevronsUpDown className='opacity-50' />
@@ -245,7 +246,9 @@ const DataTableSortItem = (props: DataTableSortItemProps) => {
                     <CommandItem
                       key={column.id}
                       value={column.id}
-                      onSelect={(value) => onSortUpdate(sort.id, { id: value })}
+                      onSelect={(value) => {
+                        onSortUpdate(sort.id, { id: value })
+                      }}
                     >
                       <span className='truncate'>{column.label}</span>
                     </CommandItem>
@@ -259,9 +262,11 @@ const DataTableSortItem = (props: DataTableSortItemProps) => {
           open={showDirectionSelector}
           onOpenChange={setShowDirectionSelector}
           value={sort.desc ? 'desc' : 'asc'}
-          onValueChange={(value: SortDirection) => onSortUpdate(sort.id, { desc: value === 'desc' })}
+          onValueChange={(value: SortDirection) => {
+            onSortUpdate(sort.id, { desc: value === 'desc' })
+          }}
         >
-          <SelectTrigger aria-controls={directionListboxId} className='h-8 w-24 rounded [&[data-size]]:h-8'>
+          <SelectTrigger aria-controls={directionListboxId} className='h-8 w-24 rounded-sm [&[data-size]]:h-8'>
             <SelectValue />
           </SelectTrigger>
           <SelectContent
@@ -279,13 +284,15 @@ const DataTableSortItem = (props: DataTableSortItemProps) => {
           aria-controls={sortItemId}
           variant='outline'
           size='icon'
-          className='size-8 shrink-0 rounded'
-          onClick={() => onSortRemove(sort.id)}
+          className='size-8 shrink-0 rounded-sm'
+          onClick={() => {
+            onSortRemove(sort.id)
+          }}
         >
           <Trash2 />
         </Button>
-        <SortableItemHandle asChild>
-          <Button variant='outline' size='icon' className='size-8 shrink-0 rounded'>
+        <SortableItemHandle asChild={true}>
+          <Button variant='outline' size='icon' className='size-8 shrink-0 rounded-sm'>
             <GripVertical />
           </Button>
         </SortableItemHandle>

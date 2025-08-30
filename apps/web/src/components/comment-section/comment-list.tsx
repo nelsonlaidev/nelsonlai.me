@@ -68,12 +68,12 @@ const CommentList = () => {
         {(isLoading || isFetchingNextPage) && <CommentLoader />}
         {isError && (
           <div className='flex min-h-20 items-center justify-center'>
-            <p className='text-muted-foreground text-sm'>{t('error.failed-to-load-comments')}</p>
+            <p className='text-sm text-muted-foreground'>{t('error.failed-to-load-comments')}</p>
           </div>
         )}
         {noComments && (
           <div className='flex min-h-20 items-center justify-center'>
-            <p className='text-muted-foreground text-sm'>{t('blog.comments.no-comments')}</p>
+            <p className='text-sm text-muted-foreground'>{t('blog.comments.no-comments')}</p>
           </div>
         )}
         <span ref={ref} className='invisible' />

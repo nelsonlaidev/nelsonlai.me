@@ -56,7 +56,7 @@ const CommentEmailTemplate = (props: CommentEmailTemplateProps) => {
             <Logo />
             <Section>
               <Text className='m-0 p-0 text-xl font-semibold text-gray-900'>New Comment on Your Blog Post</Text>
-              <Text className='mx-0 mb-0 mt-2 p-0 text-base font-normal text-gray-500'>
+              <Text className='mx-0 mt-2 mb-0 p-0 text-base font-normal text-gray-500'>
                 Someone has commented on{' '}
                 <Link href={post.url} className='font-medium text-gray-900'>
                   {post.title}
@@ -75,11 +75,11 @@ const CommentEmailTemplate = (props: CommentEmailTemplateProps) => {
                   />
                 </Column>
                 <Column>
-                  <Text className='m-0 py-0 pl-3 pr-0 text-base font-medium text-gray-900'>{commenter.name}</Text>
-                  <Text className='m-0 py-0 pl-3 pr-0 text-sm font-normal text-gray-500'>{date}</Text>
+                  <Text className='m-0 py-0 pr-0 pl-3 text-base font-medium text-gray-900'>{commenter.name}</Text>
+                  <Text className='m-0 py-0 pr-0 pl-3 text-sm font-normal text-gray-500'>{date}</Text>
                 </Column>
               </Row>
-              <Text className='mx-0 mb-0 mt-4 p-0 text-base font-normal text-gray-700'>{comment}</Text>
+              <Text className='mx-0 mt-4 mb-0 p-0 text-base font-normal text-gray-700'>{comment}</Text>
             </Section>
             <Button
               className='mt-6 rounded-full bg-gray-900 px-8 py-2.5 align-middle text-sm font-medium text-white'

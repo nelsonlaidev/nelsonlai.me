@@ -31,19 +31,19 @@ const DataTablePagination = <TData,>(props: DataTablePaginationProps<TData>) => 
       )}
       {...rest}
     >
-      <div className='text-muted-foreground flex-1 whitespace-nowrap text-sm'>
+      <div className='flex-1 text-sm whitespace-nowrap text-muted-foreground'>
         {table.getFilteredSelectedRowModel().rows.length} of {table.getFilteredRowModel().rows.length} row(s) selected.
       </div>
       <div className='flex flex-col-reverse items-center gap-4 sm:flex-row sm:gap-6 lg:gap-8'>
         <div className='flex items-center space-x-2'>
-          <p className='whitespace-nowrap text-sm font-medium'>Rows per page</p>
+          <p className='text-sm font-medium whitespace-nowrap'>Rows per page</p>
           <Select
             value={`${table.getState().pagination.pageSize}`}
             onValueChange={(value) => {
               table.setPageSize(Number(value))
             }}
           >
-            <SelectTrigger className='w-18 h-8 [&[data-size]]:h-8'>
+            <SelectTrigger className='h-8 w-18 [&[data-size]]:h-8'>
               <SelectValue placeholder={table.getState().pagination.pageSize} />
             </SelectTrigger>
             <SelectContent side='top'>
@@ -64,7 +64,9 @@ const DataTablePagination = <TData,>(props: DataTablePaginationProps<TData>) => 
             variant='outline'
             size='icon'
             className='hidden size-8 lg:flex'
-            onClick={() => table.setPageIndex(0)}
+            onClick={() => {
+              table.setPageIndex(0)
+            }}
             disabled={!table.getCanPreviousPage()}
           >
             <ChevronsLeftIcon />
@@ -74,7 +76,9 @@ const DataTablePagination = <TData,>(props: DataTablePaginationProps<TData>) => 
             variant='outline'
             size='icon'
             className='size-8'
-            onClick={() => table.previousPage()}
+            onClick={() => {
+              table.previousPage()
+            }}
             disabled={!table.getCanPreviousPage()}
           >
             <ChevronLeftIcon />
@@ -84,7 +88,9 @@ const DataTablePagination = <TData,>(props: DataTablePaginationProps<TData>) => 
             variant='outline'
             size='icon'
             className='size-8'
-            onClick={() => table.nextPage()}
+            onClick={() => {
+              table.nextPage()
+            }}
             disabled={!table.getCanNextPage()}
           >
             <ChevronRightIcon />
@@ -94,7 +100,9 @@ const DataTablePagination = <TData,>(props: DataTablePaginationProps<TData>) => 
             variant='outline'
             size='icon'
             className='hidden size-8 lg:flex'
-            onClick={() => table.setPageIndex(table.getPageCount() - 1)}
+            onClick={() => {
+              table.setPageIndex(table.getPageCount() - 1)
+            }}
             disabled={!table.getCanNextPage()}
           >
             <ChevronsRightIcon />

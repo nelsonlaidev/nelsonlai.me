@@ -14,8 +14,8 @@ const Video = (props: VideoProps) => {
     <AspectRatio ratio={16 / 9}>
       <video
         className={cn('my-4 rounded-lg shadow-lg', className)}
-        loop
-        muted
+        loop={true}
+        muted={true}
         src={src}
         controls={controls}
         width={width}

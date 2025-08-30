@@ -113,7 +113,7 @@ const Card = (props: CardProps) => {
   const likesQuery = usePostLikeCount({ slug })
 
   return (
-    <Link href={`/blog/${slug}`} className='shadow-feature-card group relative rounded-xl p-2'>
+    <Link href={`/blog/${slug}`} className='group relative rounded-xl p-2 shadow-feature-card'>
       <div className='flex items-center justify-between p-4'>
         <div className='flex items-center gap-3'>
           <PencilIcon className='size-[18px]' />
@@ -136,7 +136,7 @@ const Card = (props: CardProps) => {
       </div>
       <div className='flex flex-col px-2 py-4 transition-transform ease-out group-hover:translate-x-0.5'>
         <h3 className='text-2xl font-semibold'>{title}</h3>
-        <p className='text-muted-foreground mt-2'>{summary}</p>
+        <p className='mt-2 text-muted-foreground'>{summary}</p>
       </div>
     </Link>
   )

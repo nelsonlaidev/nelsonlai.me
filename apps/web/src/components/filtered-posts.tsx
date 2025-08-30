@@ -36,7 +36,7 @@ const FilteredPosts = (props: FilteredPostsProps) => {
           id='search'
         />
         <Label htmlFor='search'>
-          <SearchIcon className='absolute left-4 top-1/2 size-4 -translate-y-1/2' />
+          <SearchIcon className='absolute top-1/2 left-4 size-4 -translate-y-1/2' />
         </Label>
       </div>
       {filteredPosts.length === 0 && (

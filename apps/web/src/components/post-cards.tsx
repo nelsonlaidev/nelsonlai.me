@@ -37,7 +37,7 @@ const PostCard = (props: PostCardProps) => {
   const likesQuery = usePostLikeCount({ slug })
 
   return (
-    <Link href={`/blog/${slug}`} className='shadow-feature-card group rounded-xl px-2 py-4'>
+    <Link href={`/blog/${slug}`} className='group rounded-xl px-2 py-4 shadow-feature-card'>
       <BlurImage
         src={`/images/blog/${slug}/cover.png`}
         className='rounded-lg'
@@ -60,7 +60,7 @@ const PostCard = (props: PostCardProps) => {
       </div>
       <div className='flex flex-col px-2 py-4'>
         <h3 className='text-2xl font-semibold'>{title}</h3>
-        <p className='text-muted-foreground mt-2'>{summary}</p>
+        <p className='mt-2 text-muted-foreground'>{summary}</p>
       </div>
     </Link>
   )

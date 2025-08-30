@@ -249,9 +249,13 @@ const Sortable = <T,>(props: SortableProps<T>) => {
         sensors={sensors}
         {...sortableProps}
         id={id}
-        onDragStart={composeEventHandlers(sortableProps.onDragStart, ({ active }) => setActiveId(active.id))}
+        onDragStart={composeEventHandlers(sortableProps.onDragStart, ({ active }) => {
+          setActiveId(active.id)
+        })}
         onDragEnd={composeEventHandlers(sortableProps.onDragEnd, onDragEnd)}
-        onDragCancel={composeEventHandlers(sortableProps.onDragCancel, () => setActiveId(null))}
+        onDragCancel={composeEventHandlers(sortableProps.onDragCancel, () => {
+          setActiveId(null)
+        })}
         accessibility={{
           announcements,
           screenReaderInstructions,
@@ -373,7 +377,7 @@ const SortableItem = (props: SortableItemProps) => {
         ref={composedRef}
         style={composedStyle}
         className={cn(
-          'focus-visible:ring-ring focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-offset-1',
+          'focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-1 focus-visible:outline-hidden',
           {
             'touch-none select-none': asHandle,
             'cursor-default': context.flatCursor,
@@ -423,7 +427,7 @@ const SortableItemHandle = (props: SortableItemHandleProps) => {
       className={cn(
         'select-none',
         'disabled:pointer-events-none disabled:opacity-50',
-        context.flatCursor ? 'cursor-default' : 'data-dragging:cursor-grabbing cursor-grab',
+        context.flatCursor ? 'cursor-default' : 'cursor-grab data-dragging:cursor-grabbing',
         className
       )}
       disabled={isDisabled}

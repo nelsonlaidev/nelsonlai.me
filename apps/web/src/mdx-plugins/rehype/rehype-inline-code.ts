@@ -18,7 +18,7 @@ import { visit } from 'unist-util-visit'
 
 import { DEFAULT_SHIKI_THEMES } from './rehype-code'
 
-const inlineShikiRegex = /^(.*?){:(.*)}$/
+const inlineShikiRegex = /^(.*?)\{:(.*)\}$/
 
 const themeNames = Object.values(DEFAULT_SHIKI_THEMES)
 const themeKeys = Object.keys(DEFAULT_SHIKI_THEMES)
