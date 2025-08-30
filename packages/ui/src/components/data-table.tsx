@@ -6,12 +6,7 @@
  * Modified by: Nelson Lai
  */
 import { cn } from '@repo/utils'
-import {
-  type ColumnSort,
-  flexRender,
-  type RowData,
-  type Table as TanstackTable
-} from '@tanstack/react-table'
+import { type ColumnSort, flexRender, type RowData, type Table as TanstackTable } from '@tanstack/react-table'
 
 import { type DataTableConfig, getCommonPinningStyles } from '../lib/data-table'
 
@@ -70,9 +65,7 @@ const DataTable = <TData,>(props: DataTableProps<TData>) => {
                       ...getCommonPinningStyles({ column: header.column })
                     }}
                   >
-                    {header.isPlaceholder
-                      ? null
-                      : flexRender(header.column.columnDef.header, header.getContext())}
+                    {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
                   </TableHead>
                 ))}
               </TableRow>
@@ -106,9 +99,7 @@ const DataTable = <TData,>(props: DataTableProps<TData>) => {
       </div>
       <div className='flex flex-col gap-2.5'>
         <DataTablePagination table={table} />
-        {actionBar !== undefined &&
-          table.getFilteredSelectedRowModel().rows.length > 0 &&
-          actionBar}
+        {actionBar !== undefined && table.getFilteredSelectedRowModel().rows.length > 0 && actionBar}
       </div>
     </div>
   )

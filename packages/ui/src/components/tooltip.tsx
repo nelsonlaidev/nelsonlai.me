@@ -8,11 +8,7 @@ const TooltipProvider = (props: TooltipProviderProps) => {
 
   return (
     // eslint-disable-next-line @eslint-react/no-context-provider -- custom component
-    <TooltipPrimitive.Provider
-      data-slot='tooltip-provider'
-      delayDuration={delayDuration}
-      {...rest}
-    />
+    <TooltipPrimitive.Provider data-slot='tooltip-provider' delayDuration={delayDuration} {...rest} />
   )
 }
 

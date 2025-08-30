@@ -4,12 +4,7 @@ import type { ListAllUsersOutput } from '@/orpc/routers'
 
 import { useTranslations } from '@repo/i18n/client'
 import { Checkbox } from '@repo/ui/components/checkbox'
-import {
-  DataTable,
-  DataTableColumnHeader,
-  DataTableSortList,
-  DataTableToolbar
-} from '@repo/ui/components/data-table'
+import { DataTable, DataTableColumnHeader, DataTableSortList, DataTableToolbar } from '@repo/ui/components/data-table'
 import { useDataTable } from '@repo/ui/hooks/use-data-table'
 import { formatDate } from '@repo/ui/lib/data-table'
 import { type ColumnDef } from '@tanstack/react-table'
@@ -43,10 +38,7 @@ const UsersTable = (props: UsersTableProps) => {
       id: 'select',
       header: ({ table }) => (
         <Checkbox
-          checked={
-            table.getIsAllPageRowsSelected() ||
-            (table.getIsSomePageRowsSelected() && 'indeterminate')
-          }
+          checked={table.getIsAllPageRowsSelected() || (table.getIsSomePageRowsSelected() && 'indeterminate')}
           onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
           aria-label='Select all'
         />
@@ -77,9 +69,7 @@ const UsersTable = (props: UsersTableProps) => {
     {
       id: 'email',
       accessorKey: 'email',
-      header: ({ column }) => (
-        <DataTableColumnHeader column={column} title={t('admin.table.users.email')} />
-      ),
+      header: ({ column }) => <DataTableColumnHeader column={column} title={t('admin.table.users.email')} />,
       meta: {
         label: 'Email'
       }
@@ -87,9 +77,7 @@ const UsersTable = (props: UsersTableProps) => {
     {
       id: 'role',
       accessorKey: 'role',
-      header: ({ column }) => (
-        <DataTableColumnHeader column={column} title={t('admin.table.users.role')} />
-      ),
+      header: ({ column }) => <DataTableColumnHeader column={column} title={t('admin.table.users.role')} />,
       meta: {
         label: 'Role',
         variant: 'multiSelect',
@@ -106,9 +94,7 @@ const UsersTable = (props: UsersTableProps) => {
     {
       id: 'createdAt',
       accessorKey: 'createdAt',
-      header: ({ column }) => (
-        <DataTableColumnHeader column={column} title={t('admin.table.createdAt')} />
-      ),
+      header: ({ column }) => <DataTableColumnHeader column={column} title={t('admin.table.createdAt')} />,
       cell: ({ row }) =>
         formatDate(row.original.createdAt, {
           month: 'short',

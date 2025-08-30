@@ -109,9 +109,7 @@ const GetInTouch = () => {
                   d='M12 5.50676L0 0L2.83818 13L6.30623 7.86537L12 5.50676V5.50676Z'
                 />
               </svg>
-              <span className='relative left-4 rounded-3xl bg-red-500 px-2 py-0.5 text-xs text-white'>
-                Nelson
-              </span>
+              <span className='relative left-4 rounded-3xl bg-red-500 px-2 py-0.5 text-xs text-white'>Nelson</span>
             </div>
           </div>
 
@@ -119,14 +117,9 @@ const GetInTouch = () => {
             <p className='bg-linear-to-r mb-2 from-black to-black/70 bg-clip-text text-3xl font-semibold text-transparent dark:from-zinc-100 dark:to-zinc-400'>
               {t('homepage.get-in-touch.title')}
             </p>
-            <p className='text-zinc-800 dark:text-zinc-300'>
-              {t('homepage.get-in-touch.description')}
-            </p>
+            <p className='text-zinc-800 dark:text-zinc-300'>{t('homepage.get-in-touch.description')}</p>
             <div className='my-8'>
-              <a
-                href='mailto:me@nelsonlai.me'
-                className='bg-email-button rounded-full px-4 py-2 text-sm text-white'
-              >
+              <a href='mailto:me@nelsonlai.me' className='bg-email-button rounded-full px-4 py-2 text-sm text-white'>
                 me@nelsonlai.me
               </a>
             </div>

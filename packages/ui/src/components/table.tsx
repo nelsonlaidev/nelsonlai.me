@@ -8,11 +8,7 @@ const Table = (props: TableProps) => {
   return (
     <div data-slot='table-container' className='relative w-full overflow-x-auto'>
       {/* eslint-disable-next-line sonarjs/table-header -- it's a component */}
-      <table
-        data-slot='table'
-        className={cn('w-full caption-bottom text-sm', className)}
-        {...rest}
-      />
+      <table data-slot='table' className={cn('w-full caption-bottom text-sm', className)} {...rest} />
     </div>
   )
 }
@@ -30,13 +26,7 @@ type TableBodyProps = React.ComponentProps<'tbody'>
 const TableBody = (props: TableBodyProps) => {
   const { className, ...rest } = props
 
-  return (
-    <tbody
-      data-slot='table-body'
-      className={cn('[&_tr:last-child]:border-0', className)}
-      {...rest}
-    />
-  )
+  return <tbody data-slot='table-body' className={cn('[&_tr:last-child]:border-0', className)} {...rest} />
 }
 
 type TableFooterProps = React.ComponentProps<'tfoot'>
@@ -61,10 +51,7 @@ const TableRow = (props: TableRowProps) => {
   return (
     <tr
       data-slot='table-row'
-      className={cn(
-        'hover:bg-muted/50 data-[state=selected]:bg-muted border-b transition-colors',
-        className
-      )}
+      className={cn('hover:bg-muted/50 data-[state=selected]:bg-muted border-b transition-colors', className)}
       {...rest}
     />
   )
@@ -109,13 +96,7 @@ type TableCaptionProps = React.ComponentProps<'caption'>
 const TableCaption = (props: TableCaptionProps) => {
   const { className, ...rest } = props
 
-  return (
-    <caption
-      data-slot='table-caption'
-      className={cn('text-muted-foreground mt-4 text-sm', className)}
-      {...rest}
-    />
-  )
+  return <caption data-slot='table-caption' className={cn('text-muted-foreground mt-4 text-sm', className)} {...rest} />
 }
 
 export { Table, TableBody, TableCaption, TableCell, TableFooter, TableHead, TableHeader, TableRow }

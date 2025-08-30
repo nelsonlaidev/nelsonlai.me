@@ -74,9 +74,7 @@ export const listAllComments = adminProcedure
           and(
             input.body ? ilike(comments.body, `%${input.body}%`) : undefined,
             input.parentId.length > 0 ? getParentIdFilter(input.parentId) : undefined,
-            input.createdAt.length > 0
-              ? getCommentsCreatedDateFilter(createdFrom, createdTo)
-              : undefined
+            input.createdAt.length > 0 ? getCommentsCreatedDateFilter(createdFrom, createdTo) : undefined
           )
         )
         .offset(offset)
@@ -154,9 +152,7 @@ export const listAllUsers = adminProcedure
           and(
             input.name ? ilike(users.name, `%${input.name}%`) : undefined,
             input.role.length > 0 ? inArray(users.role, input.role) : undefined,
-            input.createdAt.length > 0
-              ? getUsersCreatedDateFilter(createdFrom, createdTo)
-              : undefined
+            input.createdAt.length > 0 ? getUsersCreatedDateFilter(createdFrom, createdTo) : undefined
           )
         )
         .offset(offset)

@@ -21,11 +21,7 @@ const AvatarImage = (props: AvatarImageProps) => {
   const { className, ...rest } = props
 
   return (
-    <AvatarPrimitive.Image
-      data-slot='avatar-image'
-      className={cn('aspect-square size-full', className)}
-      {...rest}
-    />
+    <AvatarPrimitive.Image data-slot='avatar-image' className={cn('aspect-square size-full', className)} {...rest} />
   )
 }
 

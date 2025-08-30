@@ -20,12 +20,7 @@ const config: KnipConfig = {
   ],
   workspaces: {
     'apps/web': {
-      entry: [
-        'content-collections.ts',
-        'src/i18n/request.ts',
-        'src/e2e/**/*.setup.ts',
-        'src/e2e/**/*.teardown.ts'
-      ]
+      entry: ['content-collections.ts', 'src/i18n/request.ts', 'src/e2e/**/*.setup.ts', 'src/e2e/**/*.teardown.ts']
     },
     'packages/db': {
       entry: ['src/seed.ts', 'src/reset.ts']
@@ -48,8 +43,7 @@ const config: KnipConfig = {
   },
   // Credit to https://github.com/webpro-nl/knip/issues/1008#issuecomment-2756559038
   compilers: {
-    css: (text: string) =>
-      [...text.matchAll(/(?<=@)(import|plugin)[^;]+/g)].join('\n').replace('plugin', 'import')
+    css: (text: string) => [...text.matchAll(/(?<=@)(import|plugin)[^;]+/g)].join('\n').replace('plugin', 'import')
   }
 }
 

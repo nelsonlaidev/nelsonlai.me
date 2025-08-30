@@ -19,9 +19,7 @@ const Page = () => {
         title={t('admin.page-header.users.title')}
         description={t('admin.page-header.users.description')}
       />
-      {isSuccess && (
-        <UsersTable data={data.users} pageCount={data.pageCount} roleCounts={data.roleCounts} />
-      )}
+      {isSuccess && <UsersTable data={data.users} pageCount={data.pageCount} roleCounts={data.roleCounts} />}
       {isLoading && <DataTableSkeleton columnCount={4} rowCount={10} filterCount={3} />}
       {isError && <div>{t('error.failed-to-fetch-users-data')}</div>}
     </div>

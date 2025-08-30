@@ -27,10 +27,7 @@ const DataTableToolbar = <TData,>(props: DataTableToolbarProps<TData>) => {
 
   const isFiltered = table.getState().columnFilters.length > 0
 
-  const columns = useMemo(
-    () => table.getAllColumns().filter((column) => column.getCanFilter()),
-    [table]
-  )
+  const columns = useMemo(() => table.getAllColumns().filter((column) => column.getCanFilter()), [table])
 
   const onReset = useCallback(() => {
     table.resetColumnFilters()
@@ -48,13 +45,7 @@ const DataTableToolbar = <TData,>(props: DataTableToolbarProps<TData>) => {
           <DataTableToolbarFilter key={column.id} column={column} />
         ))}
         {isFiltered && (
-          <Button
-            aria-label='Reset filters'
-            variant='outline'
-            size='sm'
-            className='border-dashed'
-            onClick={onReset}
-          >
+          <Button aria-label='Reset filters' variant='outline' size='sm' className='border-dashed' onClick={onReset}>
             <XIcon />
             Reset
           </Button>

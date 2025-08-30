@@ -19,9 +19,7 @@ const FilteredPosts = (props: FilteredPostsProps) => {
   const [searchValue, setSearchValue] = useState('')
   const t = useTranslations()
 
-  const filteredPosts = posts.filter((post) =>
-    post.title.toLowerCase().includes(searchValue.toLowerCase())
-  )
+  const filteredPosts = posts.filter((post) => post.title.toLowerCase().includes(searchValue.toLowerCase()))
 
   return (
     <>
@@ -42,9 +40,7 @@ const FilteredPosts = (props: FilteredPostsProps) => {
         </Label>
       </div>
       {filteredPosts.length === 0 && (
-        <div className='my-24 text-center text-xl'>
-          {t('component.filtered-posts.no-posts-found')}
-        </div>
+        <div className='my-24 text-center text-xl'>{t('component.filtered-posts.no-posts-found')}</div>
       )}
       <PostCards posts={filteredPosts} />
     </>

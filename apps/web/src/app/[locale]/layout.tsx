@@ -151,11 +151,7 @@ const Layout = async (props: LayoutProps) => {
   setRequestLocale(locale)
 
   return (
-    <html
-      lang={locale}
-      className={cn(fontSans.variable, fontMono.variable)}
-      suppressHydrationWarning
-    >
+    <html lang={locale} className={cn(fontSans.variable, fontMono.variable)} suppressHydrationWarning>
       <body className='relative flex min-h-screen flex-col'>
         <NuqsAdapter>
           <Providers>

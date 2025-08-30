@@ -24,10 +24,7 @@ export const generateStaticParams = (): Array<{ locale: string }> => {
   return i18n.locales.map((locale) => ({ locale }))
 }
 
-export const generateMetadata = async (
-  props: PageProps,
-  parent: ResolvingMetadata
-): Promise<Metadata> => {
+export const generateMetadata = async (props: PageProps, parent: ResolvingMetadata): Promise<Metadata> => {
   const { locale } = await props.params
   const previousOpenGraph = (await parent).openGraph ?? {}
   const previousTwitter = (await parent).twitter ?? {}
@@ -43,9 +40,7 @@ export const generateMetadata = async (
     alternates: {
       canonical: url,
       languages: {
-        ...Object.fromEntries(
-          i18n.locales.map((l) => [l, getLocalizedPath({ slug, locale: l, absolute: false })])
-        ),
+        ...Object.fromEntries(i18n.locales.map((l) => [l, getLocalizedPath({ slug, locale: l, absolute: false })])),
         'x-default': getLocalizedPath({ slug, locale: i18n.defaultLocale, absolute: false })
       }
     },
@@ -87,10 +82,7 @@ const Page = async (props: PageProps) => {
 
   return (
     <>
-      <script
-        type='application/ld+json'
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <PageTitle title={title} description={description} />
       <div className='mx-auto max-w-xl space-y-10'>
         <Pinned />

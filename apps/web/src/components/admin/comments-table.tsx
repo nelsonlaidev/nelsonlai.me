@@ -2,21 +2,11 @@
 
 import { useTranslations } from '@repo/i18n/client'
 import { Checkbox } from '@repo/ui/components/checkbox'
-import {
-  DataTable,
-  DataTableColumnHeader,
-  DataTableSortList,
-  DataTableToolbar
-} from '@repo/ui/components/data-table'
+import { DataTable, DataTableColumnHeader, DataTableSortList, DataTableToolbar } from '@repo/ui/components/data-table'
 import { useDataTable } from '@repo/ui/hooks/use-data-table'
 import { formatDate } from '@repo/ui/lib/data-table'
 import { type ColumnDef } from '@tanstack/react-table'
-import {
-  CalendarIcon,
-  CircleDashedIcon,
-  MessageSquareIcon,
-  MessageSquareMoreIcon
-} from 'lucide-react'
+import { CalendarIcon, CircleDashedIcon, MessageSquareIcon, MessageSquareMoreIcon } from 'lucide-react'
 
 import { COMMENT_TYPES } from '@/lib/constants'
 import { type ListAllCommentsOutput } from '@/orpc/routers'
@@ -47,10 +37,7 @@ const CommentsTable = (props: CommentsTableProps) => {
       id: 'select',
       header: ({ table }) => (
         <Checkbox
-          checked={
-            table.getIsAllPageRowsSelected() ||
-            (table.getIsSomePageRowsSelected() && 'indeterminate')
-          }
+          checked={table.getIsAllPageRowsSelected() || (table.getIsSomePageRowsSelected() && 'indeterminate')}
           onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
           aria-label='Select all'
         />
@@ -69,9 +56,7 @@ const CommentsTable = (props: CommentsTableProps) => {
     {
       id: 'userId',
       accessorKey: 'userId',
-      header: ({ column }) => (
-        <DataTableColumnHeader column={column} title={t('admin.table.comments.userId')} />
-      ),
+      header: ({ column }) => <DataTableColumnHeader column={column} title={t('admin.table.comments.userId')} />,
       meta: {
         label: 'User ID'
       }
@@ -79,9 +64,7 @@ const CommentsTable = (props: CommentsTableProps) => {
     {
       id: 'body',
       accessorKey: 'body',
-      header: ({ column }) => (
-        <DataTableColumnHeader column={column} title={t('admin.table.comments.body')} />
-      ),
+      header: ({ column }) => <DataTableColumnHeader column={column} title={t('admin.table.comments.body')} />,
       meta: {
         label: 'Body',
         placeholder: 'Search body...',
@@ -92,9 +75,7 @@ const CommentsTable = (props: CommentsTableProps) => {
     {
       id: 'parentId',
       accessorKey: 'parentId',
-      header: ({ column }) => (
-        <DataTableColumnHeader column={column} title={t('admin.table.comments.type')} />
-      ),
+      header: ({ column }) => <DataTableColumnHeader column={column} title={t('admin.table.comments.type')} />,
       cell: ({ row }) => {
         return row.original.parentId ? 'reply' : 'comment'
       },
@@ -114,9 +95,7 @@ const CommentsTable = (props: CommentsTableProps) => {
     {
       id: 'createdAt',
       accessorKey: 'createdAt',
-      header: ({ column }) => (
-        <DataTableColumnHeader column={column} title={t('admin.table.createdAt')} />
-      ),
+      header: ({ column }) => <DataTableColumnHeader column={column} title={t('admin.table.createdAt')} />,
       cell: ({ row }) =>
         formatDate(row.original.createdAt, {
           month: 'short',

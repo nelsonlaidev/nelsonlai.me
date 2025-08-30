@@ -39,9 +39,7 @@ export const generateMetadata = async (props: PageProps): Promise<Metadata> => {
     alternates: {
       canonical: getLocalizedPath({ slug, locale, absolute: false }),
       languages: {
-        ...Object.fromEntries(
-          i18n.locales.map((l) => [l, getLocalizedPath({ slug, locale: l, absolute: false })])
-        ),
+        ...Object.fromEntries(i18n.locales.map((l) => [l, getLocalizedPath({ slug, locale: l, absolute: false })])),
         'x-default': getLocalizedPath({ slug, locale: i18n.defaultLocale, absolute: false })
       }
     }
@@ -80,10 +78,7 @@ const Page = async (props: PageProps) => {
 
   return (
     <>
-      <script
-        type='application/ld+json'
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Hero />
       <SelectedProjects />
       <AboutMe />

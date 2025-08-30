@@ -38,12 +38,7 @@ const TreeViewNode = (props: TreeViewNodeProps) => {
   const { node, indexPath } = props
 
   return (
-    <TreeViewPrimitive.NodeProvider
-      data-slot='tree-view-node'
-      key={node.id}
-      node={node}
-      indexPath={indexPath}
-    >
+    <TreeViewPrimitive.NodeProvider data-slot='tree-view-node' key={node.id} node={node} indexPath={indexPath}>
       {node.children ? (
         <TreeViewPrimitive.Branch>
           <TreeViewPrimitive.BranchControl className='hover:bg-accent hover:text-accent-foreground flex items-center justify-between rounded-sm px-2 py-1.5 pl-[calc(var(--depth)*8px)] text-sm'>

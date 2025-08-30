@@ -8,21 +8,15 @@ const Dialog = (props: DialogProps) => <DialogPrimitive.Root data-slot='dialog' 
 
 type DialogTriggerProps = React.ComponentProps<typeof DialogPrimitive.Trigger>
 
-const DialogTrigger = (props: DialogTriggerProps) => (
-  <DialogPrimitive.Trigger data-slot='dialog-trigger' {...props} />
-)
+const DialogTrigger = (props: DialogTriggerProps) => <DialogPrimitive.Trigger data-slot='dialog-trigger' {...props} />
 
 type DialogPortalProps = React.ComponentProps<typeof DialogPrimitive.Portal>
 
-const DialogPortal = (props: DialogPortalProps) => (
-  <DialogPrimitive.Portal data-slot='dialog-portal' {...props} />
-)
+const DialogPortal = (props: DialogPortalProps) => <DialogPrimitive.Portal data-slot='dialog-portal' {...props} />
 
 type DialogCloseProps = React.ComponentProps<typeof DialogPrimitive.Close>
 
-const DialogClose = (props: DialogCloseProps) => (
-  <DialogPrimitive.Close data-slot='dialog-close' {...props} />
-)
+const DialogClose = (props: DialogCloseProps) => <DialogPrimitive.Close data-slot='dialog-close' {...props} />
 
 type DialogOverlayProps = React.ComponentProps<typeof DialogPrimitive.Overlay>
 

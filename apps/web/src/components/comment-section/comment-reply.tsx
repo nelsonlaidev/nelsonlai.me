@@ -74,11 +74,7 @@ const CommentReply = () => {
         >
           {t('blog.comments.reply')}
         </Button>
-        <Button
-          variant='secondary'
-          className='h-8 px-2 text-xs font-medium'
-          onClick={() => setIsReplying(false)}
-        >
+        <Button variant='secondary' className='h-8 px-2 text-xs font-medium' onClick={() => setIsReplying(false)}>
           {t('common.cancel')}
         </Button>
       </div>

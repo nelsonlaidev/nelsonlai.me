@@ -17,16 +17,7 @@ type CodeBlockProps = {
 } & React.ComponentProps<'pre'>
 
 const CodeBlock = (props: CodeBlockProps) => {
-  const {
-    children,
-    className,
-    title,
-    'data-lang': lang,
-    figureClassName,
-    scrollAreaClassName,
-    ref,
-    ...rest
-  } = props
+  const { children, className, title, 'data-lang': lang, figureClassName, scrollAreaClassName, ref, ...rest } = props
 
   const textInput = useRef<HTMLPreElement>(null)
   const Icon = getIconByLanguage(lang ?? '')

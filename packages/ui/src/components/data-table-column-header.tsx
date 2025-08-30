@@ -76,10 +76,7 @@ const DataTableColumnHeader = <TData, TValue>(props: DataTableColumnHeaderProps<
               Desc
             </DropdownMenuCheckboxItem>
             {column.getIsSorted() && (
-              <DropdownMenuItem
-                className='[&_svg]:text-muted-foreground pl-2'
-                onClick={() => column.clearSorting()}
-              >
+              <DropdownMenuItem className='[&_svg]:text-muted-foreground pl-2' onClick={() => column.clearSorting()}>
                 <XIcon />
                 Reset
               </DropdownMenuItem>

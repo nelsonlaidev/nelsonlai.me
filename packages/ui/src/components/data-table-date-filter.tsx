@@ -35,9 +35,7 @@ const parseColumnFilterValue = (value: unknown): Array<string | number | undefin
     array = [value]
   }
 
-  return array.map((item) =>
-    typeof item === 'number' || typeof item === 'string' ? item : undefined
-  )
+  return array.map((item) => (typeof item === 'number' || typeof item === 'string' ? item : undefined))
 }
 
 const parseAsDate = (timestamp: number | string | undefined): Date | undefined => {

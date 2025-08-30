@@ -40,8 +40,7 @@ const UpdatedDate = (props: UpdatedDateProps) => {
 }
 
 const Messages = () => {
-  const { isSuccess, isLoading, isError, data, fetchNextPage, hasNextPage, isFetchingNextPage } =
-    useGuestbookMessages()
+  const { isSuccess, isLoading, isError, data, fetchNextPage, hasNextPage, isFetchingNextPage } = useGuestbookMessages()
   const t = useTranslations()
 
   const { ref, inView } = useInView()
@@ -55,9 +54,7 @@ const Messages = () => {
   return (
     <div className='flex flex-col gap-4' data-testid='guestbook-messages-list'>
       {isSuccess &&
-        data.pages.map((page) =>
-          page.messages.map((message) => <Message key={message.id} message={message} />)
-        )}
+        data.pages.map((page) => page.messages.map((message) => <Message key={message.id} message={message} />))}
       {(isLoading || isFetchingNextPage) && <MessagesLoader />}
       <span ref={ref} className='invisible' />
       {isError && (
@@ -87,10 +84,7 @@ const Message = (props: MessageProps) => {
   const defaultImage = getDefaultImage(message.userId)
 
   return (
-    <div
-      className='shadow-xs rounded-lg border p-4 dark:bg-zinc-900/30'
-      data-testid={`message-${message.id}`}
-    >
+    <div className='shadow-xs rounded-lg border p-4 dark:bg-zinc-900/30' data-testid={`message-${message.id}`}>
       <div className='mb-3 flex gap-3'>
         <Avatar className='size-10'>
           <AvatarImage src={message.user.image ?? defaultImage} alt={message.user.name} />

@@ -1,13 +1,7 @@
 import type { ListAllUsersOutput } from '@/orpc/routers'
 
 import { getSortingStateParser } from '@repo/ui/lib/data-table'
-import {
-  parseAsArrayOf,
-  parseAsInteger,
-  parseAsString,
-  parseAsTimestamp,
-  useQueryStates
-} from 'nuqs'
+import { parseAsArrayOf, parseAsInteger, parseAsString, parseAsTimestamp, useQueryStates } from 'nuqs'
 import { z } from 'zod'
 
 import { USER_ROLES } from '@/lib/constants'

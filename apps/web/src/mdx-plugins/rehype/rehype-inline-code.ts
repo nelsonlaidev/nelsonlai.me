@@ -77,8 +77,8 @@ export const rehypeInlineCode: Plugin<[RehypeShikiCoreOptions], Root> = () => {
       if (!isLang) {
         const colors = themeNames.map(
           (name) =>
-            highlighter.getTheme(name).settings.find(({ scope }) => scope?.includes(lang.slice(1)))
-              ?.settings.foreground ?? 'inherit'
+            highlighter.getTheme(name).settings.find(({ scope }) => scope?.includes(lang.slice(1)))?.settings
+              .foreground ?? 'inherit'
         )
 
         const spanNode = inlineCode.children[0]
@@ -86,9 +86,7 @@ export const rehypeInlineCode: Plugin<[RehypeShikiCoreOptions], Root> = () => {
         if (spanNode?.type !== 'element') return
         if (spanNode.tagName !== 'span') return
 
-        spanNode.properties.style = themeKeys
-          .map((key, i) => `--shiki-${key}:${colors[i]}`)
-          .join(';')
+        spanNode.properties.style = themeKeys.map((key, i) => `--shiki-${key}:${colors[i]}`).join(';')
       }
 
       inlineCode.properties.className = ['shiki']

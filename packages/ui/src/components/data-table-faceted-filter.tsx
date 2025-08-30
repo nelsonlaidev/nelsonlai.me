@@ -35,9 +35,7 @@ type DataTableFacetedFilterProps<TData, TValue> = {
   multiple?: boolean
 }
 
-const DataTableFacetedFilter = <TData, TValue>(
-  props: DataTableFacetedFilterProps<TData, TValue>
-) => {
+const DataTableFacetedFilter = <TData, TValue>(props: DataTableFacetedFilterProps<TData, TValue>) => {
   const { column, title, options, multiple } = props
   const [open, setOpen] = useState(false)
 
@@ -102,10 +100,7 @@ const DataTableFacetedFilter = <TData, TValue>(
           {title}
           {selectedValues.size > 0 && (
             <>
-              <Separator
-                orientation='vertical'
-                className='mx-0.5 data-[orientation=vertical]:h-4'
-              />
+              <Separator orientation='vertical' className='mx-0.5 data-[orientation=vertical]:h-4' />
               <Badge variant='secondary' className='rounded-sm px-1 font-normal lg:hidden'>
                 {selectedValues.size}
               </Badge>
@@ -118,11 +113,7 @@ const DataTableFacetedFilter = <TData, TValue>(
                   options
                     .filter((option) => selectedValues.has(option.value))
                     .map((option) => (
-                      <Badge
-                        variant='secondary'
-                        key={option.value}
-                        className='rounded-sm px-1 font-normal'
-                      >
+                      <Badge variant='secondary' key={option.value} className='rounded-sm px-1 font-normal'>
                         {option.label}
                       </Badge>
                     ))
@@ -153,9 +144,7 @@ const DataTableFacetedFilter = <TData, TValue>(
                     </div>
                     {option.icon && <option.icon />}
                     <span className='truncate'>{option.label}</span>
-                    {option.count !== undefined && (
-                      <span className='ml-auto font-mono text-xs'>{option.count}</span>
-                    )}
+                    {option.count !== undefined && <span className='ml-auto font-mono text-xs'>{option.count}</span>}
                   </CommandItem>
                 )
               })}

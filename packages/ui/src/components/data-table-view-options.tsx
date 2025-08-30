@@ -14,14 +14,7 @@ import { CheckIcon, ChevronsUpDownIcon, Settings2Icon } from 'lucide-react'
 import { useId, useMemo, useState } from 'react'
 
 import { Button } from './button'
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList
-} from './command'
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from './command'
 import { Popover, PopoverContent, PopoverTrigger } from './popover'
 
 type DataTableViewOptionsProps<TData> = {
@@ -33,10 +26,7 @@ const DataTableViewOptions = <TData,>(props: DataTableViewOptionsProps<TData>) =
   const [open, setOpen] = useState(false)
   const id = useId()
   const columns = useMemo(
-    () =>
-      table
-        .getAllColumns()
-        .filter((column) => column.accessorFn !== undefined && column.getCanHide()),
+    () => table.getAllColumns().filter((column) => column.accessorFn !== undefined && column.getCanHide()),
     [table]
   )
 
@@ -65,16 +55,10 @@ const DataTableViewOptions = <TData,>(props: DataTableViewOptionsProps<TData>) =
             <CommandEmpty>No columns found.</CommandEmpty>
             <CommandGroup>
               {columns.map((column) => (
-                <CommandItem
-                  key={column.id}
-                  onSelect={() => column.toggleVisibility(!column.getIsVisible())}
-                >
+                <CommandItem key={column.id} onSelect={() => column.toggleVisibility(!column.getIsVisible())}>
                   <span className='truncate'>{column.columnDef.meta?.label ?? column.id}</span>
                   <CheckIcon
-                    className={cn(
-                      'ml-auto size-4 shrink-0',
-                      column.getIsVisible() ? 'opacity-100' : 'opacity-0'
-                    )}
+                    className={cn('ml-auto size-4 shrink-0', column.getIsVisible() ? 'opacity-100' : 'opacity-0')}
                   />
                 </CommandItem>
               ))}

@@ -63,11 +63,7 @@ const MessageBox = (props: MessageBoxProps) => {
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <Textarea
-                    placeholder={t('guestbook.placeholder')}
-                    data-testid='guestbook-textarea'
-                    {...field}
-                  />
+                  <Textarea placeholder={t('guestbook.placeholder')} data-testid='guestbook-textarea' {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>

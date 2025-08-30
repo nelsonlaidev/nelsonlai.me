@@ -15,13 +15,7 @@ const Providers = (props: ProvidesProps) => {
 
   return (
     <ORPCQueryProvider>
-      <ThemeProvider
-        attribute='class'
-        defaultTheme='system'
-        enableSystem
-        enableColorScheme
-        disableTransitionOnChange
-      >
+      <ThemeProvider attribute='class' defaultTheme='system' enableSystem enableColorScheme disableTransitionOnChange>
         <TooltipProvider>
           {children}
           <Toaster

@@ -28,11 +28,7 @@ const Marquee = (props: MarqueeProps) => {
 
   return (
     <div
-      className={cn(
-        'group flex overflow-hidden',
-        direction === 'left' ? 'flex-row' : 'flex-col',
-        className
-      )}
+      className={cn('group flex overflow-hidden', direction === 'left' ? 'flex-row' : 'flex-col', className)}
       style={{
         maskImage: mask,
         WebkitMaskImage: mask,

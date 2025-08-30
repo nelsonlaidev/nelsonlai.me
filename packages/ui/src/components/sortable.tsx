@@ -26,11 +26,7 @@ import {
   useSensor,
   useSensors
 } from '@dnd-kit/core'
-import {
-  restrictToHorizontalAxis,
-  restrictToParentElement,
-  restrictToVerticalAxis
-} from '@dnd-kit/modifiers'
+import { restrictToHorizontalAxis, restrictToParentElement, restrictToVerticalAxis } from '@dnd-kit/modifiers'
 import {
   arrayMove,
   horizontalListSortingStrategy,
@@ -242,17 +238,7 @@ const Sortable = <T,>(props: SortableProps<T>) => {
       getItemValue,
       flatCursor
     }),
-    [
-      id,
-      items,
-      modifiers,
-      strategy,
-      config.modifiers,
-      config.strategy,
-      activeId,
-      getItemValue,
-      flatCursor
-    ]
+    [id, items, modifiers, strategy, config.modifiers, config.strategy, activeId, getItemValue, flatCursor]
   )
 
   return (
@@ -263,9 +249,7 @@ const Sortable = <T,>(props: SortableProps<T>) => {
         sensors={sensors}
         {...sortableProps}
         id={id}
-        onDragStart={composeEventHandlers(sortableProps.onDragStart, ({ active }) =>
-          setActiveId(active.id)
-        )}
+        onDragStart={composeEventHandlers(sortableProps.onDragStart, ({ active }) => setActiveId(active.id))}
         onDragEnd={composeEventHandlers(sortableProps.onDragEnd, onDragEnd)}
         onDragCancel={composeEventHandlers(sortableProps.onDragCancel, () => setActiveId(null))}
         accessibility={{
@@ -343,15 +327,10 @@ const SortableItem = (props: SortableItemProps) => {
 
   const context = useSortableContext(ITEM_NAME)
   const id = useId()
-  const {
-    attributes,
-    listeners,
-    setNodeRef,
-    setActivatorNodeRef,
-    transform,
-    transition,
-    isDragging
-  } = useSortable({ id: value, disabled })
+  const { attributes, listeners, setNodeRef, setActivatorNodeRef, transform, transition, isDragging } = useSortable({
+    id: value,
+    disabled
+  })
 
   const composedRef = useComposedRefs(ref, (node) => {
     if (disabled) return
@@ -485,8 +464,7 @@ const SortableOverlay = (props: SortableOverlayProps) => {
 
   let overlayContent: React.ReactNode = null
   if (context.activeId) {
-    overlayContent =
-      typeof children === 'function' ? children({ value: context.activeId }) : children
+    overlayContent = typeof children === 'function' ? children({ value: context.activeId }) : children
   }
 
   return createPortal(

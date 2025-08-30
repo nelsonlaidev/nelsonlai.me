@@ -40,8 +40,6 @@ const PopoverContent = (props: PopoverContentProps) => {
 
 type PopoverAnchorProps = React.ComponentProps<typeof PopoverPrimitive.Anchor>
 
-const PopoverAnchor = (props: PopoverAnchorProps) => (
-  <PopoverPrimitive.Anchor data-slot='popover-anchor' {...props} />
-)
+const PopoverAnchor = (props: PopoverAnchorProps) => <PopoverPrimitive.Anchor data-slot='popover-anchor' {...props} />
 
 export { Popover, PopoverAnchor, PopoverContent, PopoverTrigger }

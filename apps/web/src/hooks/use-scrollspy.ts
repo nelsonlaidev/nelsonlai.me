@@ -1,9 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 
-export const useScrollspy = (
-  ids: string[],
-  options: IntersectionObserverInit
-): string | undefined => {
+export const useScrollspy = (ids: string[], options: IntersectionObserverInit): string | undefined => {
   const [activeId, setActiveId] = useState<string>()
   const observer = useRef<IntersectionObserver | null>(null)
 

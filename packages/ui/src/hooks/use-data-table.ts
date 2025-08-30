@@ -62,12 +62,7 @@ type UseDataTableProps<TData> = {
   startTransition?: TransitionStartFunction
 } & Omit<
   TableOptions<TData>,
-  | 'state'
-  | 'pageCount'
-  | 'getCoreRowModel'
-  | 'manualFiltering'
-  | 'manualPagination'
-  | 'manualSorting'
+  'state' | 'pageCount' | 'getCoreRowModel' | 'manualFiltering' | 'manualPagination' | 'manualSorting'
 > &
   Required<Pick<TableOptions<TData>, 'pageCount'>>
 
@@ -100,17 +95,10 @@ export const useDataTable = <TData>(props: UseDataTableProps<TData>) => {
     [history, scroll, shallow, throttleMs, debounceMs, clearOnDefault, startTransition]
   )
 
-  const [rowSelection, setRowSelection] = useState<RowSelectionState>(
-    initialState?.rowSelection ?? {}
-  )
-  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>(
-    initialState?.columnVisibility ?? {}
-  )
+  const [rowSelection, setRowSelection] = useState<RowSelectionState>(initialState?.rowSelection ?? {})
+  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>(initialState?.columnVisibility ?? {})
 
-  const [page, setPage] = useQueryState(
-    PAGE_KEY,
-    parseAsInteger.withOptions(queryStateOptions).withDefault(1)
-  )
+  const [page, setPage] = useQueryState(PAGE_KEY, parseAsInteger.withOptions(queryStateOptions).withDefault(1))
   const [perPage, setPerPage] = useQueryState(
     PER_PAGE_KEY,
     parseAsInteger

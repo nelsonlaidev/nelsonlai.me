@@ -8,15 +8,11 @@ const Select = (props: SelectProps) => <SelectPrimitive.Root data-slot='select' 
 
 type SelectGroupProps = React.ComponentProps<typeof SelectPrimitive.Group>
 
-const SelectGroup = (props: SelectGroupProps) => (
-  <SelectPrimitive.Group data-slot='select-group' {...props} />
-)
+const SelectGroup = (props: SelectGroupProps) => <SelectPrimitive.Group data-slot='select-group' {...props} />
 
 type SelectValueProps = React.ComponentProps<typeof SelectPrimitive.Value>
 
-const SelectValue = (props: SelectValueProps) => (
-  <SelectPrimitive.Value data-slot='select-value' {...props} />
-)
+const SelectValue = (props: SelectValueProps) => <SelectPrimitive.Value data-slot='select-value' {...props} />
 
 type SelectTriggerProps = React.ComponentProps<typeof SelectPrimitive.Trigger> & {
   size?: 'sm' | 'default'

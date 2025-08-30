@@ -17,23 +17,10 @@ import { dataTableConfig } from '../lib/data-table'
 
 import { Badge } from './badge'
 import { Button } from './button'
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList
-} from './command'
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from './command'
 import { Popover, PopoverContent, PopoverTrigger } from './popover'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './select'
-import {
-  Sortable,
-  SortableContent,
-  SortableItem,
-  SortableItemHandle,
-  SortableOverlay
-} from './sortable'
+import { Sortable, SortableContent, SortableItem, SortableItemHandle, SortableOverlay } from './sortable'
 
 const OPEN_MENU_SHORTCUT = 's'
 const REMOVE_SORT_SHORTCUTS = new Set(['backspace', 'delete'])
@@ -83,9 +70,7 @@ const DataTableSortList = <TData,>(props: DataTableSortListProps<TData>) => {
 
   const onSortUpdate = useCallback(
     (sortId: string, updates: Partial<ColumnSort>) => {
-      onSortingChange((prevSorting) =>
-        prevSorting.map((sort) => (sort.id === sortId ? { ...sort, ...updates } : sort))
-      )
+      onSortingChange((prevSorting) => prevSorting.map((sort) => (sort.id === sortId ? { ...sort, ...updates } : sort)))
     },
     [onSortingChange]
   )
@@ -108,12 +93,7 @@ const DataTableSortList = <TData,>(props: DataTableSortListProps<TData>) => {
         return
       }
 
-      if (
-        event.key.toLowerCase() === OPEN_MENU_SHORTCUT &&
-        !event.ctrlKey &&
-        !event.metaKey &&
-        !event.shiftKey
-      ) {
+      if (event.key.toLowerCase() === OPEN_MENU_SHORTCUT && !event.ctrlKey && !event.metaKey && !event.shiftKey) {
         event.preventDefault()
         setOpen(true)
       }
@@ -165,13 +145,8 @@ const DataTableSortList = <TData,>(props: DataTableSortListProps<TData>) => {
             <h4 id={labelId} className='font-medium leading-none'>
               {sorting.length > 0 ? 'Sort by' : 'No sorting applied'}
             </h4>
-            <p
-              id={descriptionId}
-              className={cn('text-muted-foreground text-sm', sorting.length > 0 && 'sr-only')}
-            >
-              {sorting.length > 0
-                ? 'Modify sorting to organize your rows.'
-                : 'Add sorting to organize your rows.'}
+            <p id={descriptionId} className={cn('text-muted-foreground text-sm', sorting.length > 0 && 'sr-only')}>
+              {sorting.length > 0 ? 'Modify sorting to organize your rows.' : 'Add sorting to organize your rows.'}
             </p>
           </div>
           {sorting.length > 0 && (
@@ -284,14 +259,9 @@ const DataTableSortItem = (props: DataTableSortItemProps) => {
           open={showDirectionSelector}
           onOpenChange={setShowDirectionSelector}
           value={sort.desc ? 'desc' : 'asc'}
-          onValueChange={(value: SortDirection) =>
-            onSortUpdate(sort.id, { desc: value === 'desc' })
-          }
+          onValueChange={(value: SortDirection) => onSortUpdate(sort.id, { desc: value === 'desc' })}
         >
-          <SelectTrigger
-            aria-controls={directionListboxId}
-            className='h-8 w-24 rounded [&[data-size]]:h-8'
-          >
+          <SelectTrigger aria-controls={directionListboxId} className='h-8 w-24 rounded [&[data-size]]:h-8'>
             <SelectValue />
           </SelectTrigger>
           <SelectContent

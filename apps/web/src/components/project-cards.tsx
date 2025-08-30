@@ -44,10 +44,7 @@ const ProjectCard = (props: ProjectCardProps) => {
         <div className='mt-4 flex flex-wrap gap-2'>
           {techstack.map((label) => {
             return (
-              <div
-                key={label}
-                className='rounded-full border bg-zinc-50 px-3 py-2 text-xs leading-4 dark:bg-zinc-900'
-              >
+              <div key={label} className='rounded-full border bg-zinc-50 px-3 py-2 text-xs leading-4 dark:bg-zinc-900'>
                 {label}
               </div>
             )

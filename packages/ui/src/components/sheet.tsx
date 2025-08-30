@@ -8,21 +8,15 @@ const Sheet = (props: SheetProps) => <SheetPrimitive.Root data-slot='sheet' {...
 
 type SheetTriggerProps = React.ComponentProps<typeof SheetPrimitive.Trigger>
 
-const SheetTrigger = (props: SheetTriggerProps) => (
-  <SheetPrimitive.Trigger data-slot='sheet-trigger' {...props} />
-)
+const SheetTrigger = (props: SheetTriggerProps) => <SheetPrimitive.Trigger data-slot='sheet-trigger' {...props} />
 
 type SheetCloseProps = React.ComponentProps<typeof SheetPrimitive.Close>
 
-const SheetClose = (props: SheetCloseProps) => (
-  <SheetPrimitive.Close data-slot='sheet-close' {...props} />
-)
+const SheetClose = (props: SheetCloseProps) => <SheetPrimitive.Close data-slot='sheet-close' {...props} />
 
 type SheetPortalProps = React.ComponentProps<typeof SheetPrimitive.Portal>
 
-const SheetPortal = (props: SheetPortalProps) => (
-  <SheetPrimitive.Portal data-slot='sheet-portal' {...props} />
-)
+const SheetPortal = (props: SheetPortalProps) => <SheetPrimitive.Portal data-slot='sheet-portal' {...props} />
 
 type SheetOverlayProps = React.ComponentProps<typeof SheetPrimitive.Overlay>
 
@@ -94,13 +88,7 @@ type SheetHeaderProps = React.ComponentProps<'div'>
 const SheetHeader = (props: SheetHeaderProps) => {
   const { className, ...rest } = props
 
-  return (
-    <div
-      data-slot='sheet-header'
-      className={cn('flex flex-col gap-1.5 p-4', className)}
-      {...rest}
-    />
-  )
+  return <div data-slot='sheet-header' className={cn('flex flex-col gap-1.5 p-4', className)} {...rest} />
 }
 
 type SheetFooterProps = React.ComponentProps<'div'>
@@ -108,13 +96,7 @@ type SheetFooterProps = React.ComponentProps<'div'>
 const SheetFooter = (props: SheetFooterProps) => {
   const { className, ...rest } = props
 
-  return (
-    <div
-      data-slot='sheet-footer'
-      className={cn('mt-auto flex flex-col gap-2 p-4', className)}
-      {...rest}
-    />
-  )
+  return <div data-slot='sheet-footer' className={cn('mt-auto flex flex-col gap-2 p-4', className)} {...rest} />
 }
 
 type SheetTitleProps = React.ComponentProps<typeof SheetPrimitive.Title>
@@ -145,13 +127,4 @@ const SheetDescription = (props: SheetDescriptionProps) => {
   )
 }
 
-export {
-  Sheet,
-  SheetClose,
-  SheetContent,
-  SheetDescription,
-  SheetFooter,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger
-}
+export { Sheet, SheetClose, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger }

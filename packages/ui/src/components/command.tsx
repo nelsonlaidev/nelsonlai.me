@@ -14,10 +14,7 @@ const Command = (props: CommandProps) => {
   return (
     <CommandPrimitive
       data-slot='command'
-      className={cn(
-        'bg-popover text-popover-foreground flex size-full flex-col overflow-hidden rounded-md',
-        className
-      )}
+      className={cn('bg-popover text-popover-foreground flex size-full flex-col overflow-hidden rounded-md', className)}
       {...rest}
     />
   )
@@ -29,12 +26,7 @@ type CommandDialogProps = React.ComponentProps<typeof Dialog> & {
 }
 
 const CommandDialog = (props: CommandDialogProps) => {
-  const {
-    title = 'Command Palette',
-    description = 'Search for a command to run...',
-    children,
-    ...rest
-  } = props
+  const { title = 'Command Palette', description = 'Search for a command to run...', children, ...rest } = props
 
   return (
     <Dialog {...rest}>
@@ -104,11 +96,7 @@ const CommandEmpty = (props: CommandEmptyProps) => {
   const { className, ...rest } = props
 
   return (
-    <CommandPrimitive.Empty
-      data-slot='command-empty'
-      className={cn('py-6 text-center text-sm', className)}
-      {...rest}
-    />
+    <CommandPrimitive.Empty data-slot='command-empty' className={cn('py-6 text-center text-sm', className)} {...rest} />
   )
 }
 

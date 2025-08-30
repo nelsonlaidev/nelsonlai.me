@@ -4,9 +4,7 @@ import { CheckIcon, ChevronRightIcon, CircleIcon } from 'lucide-react'
 
 type DropdownMenuProps = React.ComponentProps<typeof DropdownMenuPrimitive.Root>
 
-const DropdownMenu = (props: DropdownMenuProps) => (
-  <DropdownMenuPrimitive.Root data-slot='dropdown-menu' {...props} />
-)
+const DropdownMenu = (props: DropdownMenuProps) => <DropdownMenuPrimitive.Root data-slot='dropdown-menu' {...props} />
 
 type DropdownMenuPortalProps = React.ComponentProps<typeof DropdownMenuPrimitive.Portal>
 

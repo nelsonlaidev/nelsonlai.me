@@ -91,10 +91,7 @@ const handleKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>, command:
   }
 }
 
-const decorateText = (
-  textarea: HTMLTextAreaElement | null,
-  type: 'bold' | 'italic' | 'strikethrough'
-) => {
+const decorateText = (textarea: HTMLTextAreaElement | null, type: 'bold' | 'italic' | 'strikethrough') => {
   if (!textarea) return
 
   const { selectionStart, selectionEnd, value } = textarea

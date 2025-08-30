@@ -41,12 +41,7 @@ const Button = (props: ButtonProps) => {
   const { className, variant, size, type = 'button', ...rest } = props
 
   return (
-    <button
-      data-slot='button'
-      type={type}
-      className={cn(buttonVariants({ variant, size, className }))}
-      {...rest}
-    />
+    <button data-slot='button' type={type} className={cn(buttonVariants({ variant, size, className }))} {...rest} />
   )
 }
 

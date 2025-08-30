@@ -20,9 +20,7 @@ type GetCommonPinningStylesOptions<TData> = {
   withBorder?: boolean
 }
 
-export const getCommonPinningStyles = <TData>(
-  options: GetCommonPinningStylesOptions<TData>
-): React.CSSProperties => {
+export const getCommonPinningStyles = <TData>(options: GetCommonPinningStylesOptions<TData>): React.CSSProperties => {
   const { column, withBorder = false } = options
   const isPinned = column.getIsPinned()
   const isLastLeftPinnedColumn = isPinned === 'left' && column.getIsLastColumn('left')
@@ -50,10 +48,7 @@ export const getCommonPinningStyles = <TData>(
   }
 }
 
-export const formatDate = (
-  date: Date | string | number | undefined,
-  opts: Intl.DateTimeFormatOptions = {}
-) => {
+export const formatDate = (date: Date | string | number | undefined, opts: Intl.DateTimeFormatOptions = {}) => {
   if (!date) return ''
 
   try {
@@ -122,16 +117,7 @@ export const dataTableConfig = {
     { label: 'Asc', value: 'asc' as const },
     { label: 'Desc', value: 'desc' as const }
   ],
-  filterVariants: [
-    'text',
-    'number',
-    'range',
-    'date',
-    'dateRange',
-    'boolean',
-    'select',
-    'multiSelect'
-  ] as const,
+  filterVariants: ['text', 'number', 'range', 'date', 'dateRange', 'boolean', 'select', 'multiSelect'] as const,
   operators: [
     'iLike',
     'notILike',
@@ -182,7 +168,6 @@ export const getSortingStateParser = <TData>(columnIds?: string[] | Set<string>)
     },
     serialize: (value) => JSON.stringify(value),
     eq: (a, b) =>
-      a.length === b.length &&
-      a.every((item, index) => item.id === b[index]?.id && item.desc === b[index].desc)
+      a.length === b.length && a.every((item, index) => item.id === b[index]?.id && item.desc === b[index].desc)
   })
 }

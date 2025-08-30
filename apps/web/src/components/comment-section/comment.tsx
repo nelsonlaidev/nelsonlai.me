@@ -86,13 +86,7 @@ const Comment = (props: CommentProps) => {
       <div ref={commentRef} className='p-2.5' data-testid={`comment-${id}`}>
         {isHighlighted && <Badge className='mb-4'>{t('blog.comments.highlighted-comment')}</Badge>}
         <div className='flex gap-4'>
-          <Image
-            src={image ?? defaultImage}
-            alt={name}
-            width={32}
-            height={32}
-            className='z-10 size-8 rounded-full'
-          />
+          <Image src={image ?? defaultImage} alt={name} width={32} height={32} className='z-10 size-8 rounded-full' />
           <div className='flex-1 overflow-hidden'>
             <div className='ml-0.5 flex h-8 items-center justify-between'>
               <div className='flex items-center gap-2 text-sm'>

@@ -10,10 +10,7 @@ type Options = {
 export const a11y = async (options: Options) => {
   const { page } = options
 
-  const { violations } = await new AxeBuilder({ page })
-    .disableRules(['color-contrast'])
-    .withTags(A11Y_TAGS)
-    .analyze()
+  const { violations } = await new AxeBuilder({ page }).disableRules(['color-contrast']).withTags(A11Y_TAGS).analyze()
 
   if (violations.length > 0) {
     console.log(

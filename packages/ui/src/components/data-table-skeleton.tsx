@@ -42,9 +42,7 @@ const DataTableSkeleton = (props: DataTableSkeletonProps) => {
       <div className='flex w-full items-center justify-between gap-2 overflow-auto p-1'>
         <div className='flex flex-1 items-center gap-2'>
           {filterCount > 0
-            ? range(filterCount).map((i) => (
-                <Skeleton key={i} className='h-7 w-[4.5rem] border-dashed' />
-              ))
+            ? range(filterCount).map((i) => <Skeleton key={i} className='h-7 w-[4.5rem] border-dashed' />)
             : null}
         </div>
         {withViewOptions ? <Skeleton className='ml-auto hidden h-7 w-[4.5rem] lg:flex' /> : null}

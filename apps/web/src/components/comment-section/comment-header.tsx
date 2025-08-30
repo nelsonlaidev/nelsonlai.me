@@ -26,8 +26,7 @@ const CommentHeader = () => {
     <div className='flex items-center justify-between px-1'>
       <NumberFlowGroup>
         <div>
-          {commentCountQuery.status === 'pending' &&
-            `-- ${t('blog.comments.comments', { count: 0 })}`}
+          {commentCountQuery.status === 'pending' && `-- ${t('blog.comments.comments', { count: 0 })}`}
           {commentCountQuery.status === 'error' && t('common.error')}
           {commentCountQuery.status === 'success' && (
             <NumberFlow
@@ -62,12 +61,8 @@ const CommentHeader = () => {
               setSort(value as ListCommentsInput['sort'])
             }}
           >
-            <DropdownMenuRadioItem value='newest'>
-              {t('blog.comments.newest')}
-            </DropdownMenuRadioItem>
-            <DropdownMenuRadioItem value='oldest'>
-              {t('blog.comments.oldest')}
-            </DropdownMenuRadioItem>
+            <DropdownMenuRadioItem value='newest'>{t('blog.comments.newest')}</DropdownMenuRadioItem>
+            <DropdownMenuRadioItem value='oldest'>{t('blog.comments.oldest')}</DropdownMenuRadioItem>
           </DropdownMenuRadioGroup>
         </DropdownMenuContent>
       </DropdownMenu>

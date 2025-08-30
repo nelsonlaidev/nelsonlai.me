@@ -18,9 +18,7 @@ const Pinned = () => {
             <MessageCircleIcon className='text-primary size-5' />
           </div>
           <div className='space-y-4'>
-            <h2 className='text-foreground text-xl font-semibold'>
-              {t('guestbook.pinned.greeting')}
-            </h2>
+            <h2 className='text-foreground text-xl font-semibold'>{t('guestbook.pinned.greeting')}</h2>
             <p className='text-muted-foreground'>{t('guestbook.pinned.description')}</p>
           </div>
         </div>

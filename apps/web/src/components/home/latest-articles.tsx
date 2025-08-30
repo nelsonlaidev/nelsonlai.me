@@ -121,27 +121,17 @@ const Card = (props: CardProps) => {
         </div>
         <ArrowUpRightIcon className='size-[18px] opacity-0 transition-opacity group-hover:opacity-100' />
       </div>
-      <BlurImage
-        width={1200}
-        height={630}
-        src={`/images/blog/${slug}/cover.png`}
-        alt={title}
-        className='rounded-lg'
-      />
+      <BlurImage width={1200} height={630} src={`/images/blog/${slug}/cover.png`} alt={title} className='rounded-lg' />
       <div className='flex items-center justify-between gap-2 px-2 pt-4 text-sm text-zinc-500'>
         {formattedDate}
         <div className='flex gap-2'>
           {likesQuery.status === 'pending' && '--'}
           {likesQuery.status === 'error' && t('common.error')}
-          {likesQuery.status === 'success' && (
-            <div>{t('common.likes', { count: likesQuery.data.likes })}</div>
-          )}
+          {likesQuery.status === 'success' && <div>{t('common.likes', { count: likesQuery.data.likes })}</div>}
           <div>&middot;</div>
           {viewsQuery.status === 'pending' && '--'}
           {viewsQuery.status === 'error' && t('common.error')}
-          {viewsQuery.status === 'success' && (
-            <div>{t('common.views', { count: viewsQuery.data.views })}</div>
-          )}
+          {viewsQuery.status === 'success' && <div>{t('common.views', { count: viewsQuery.data.views })}</div>}
         </div>
       </div>
       <div className='flex flex-col px-2 py-4 transition-transform ease-out group-hover:translate-x-0.5'>

@@ -19,13 +19,7 @@ const Page = () => {
         title={t('admin.page-header.comments.title')}
         description={t('admin.page-header.comments.description')}
       />
-      {isSuccess && (
-        <CommentsTable
-          data={data.comments}
-          pageCount={data.pageCount}
-          typeCounts={data.typeCounts}
-        />
-      )}
+      {isSuccess && <CommentsTable data={data.comments} pageCount={data.pageCount} typeCounts={data.typeCounts} />}
       {isLoading && <DataTableSkeleton columnCount={4} rowCount={10} filterCount={3} />}
       {isError && <div>{t('error.failed-to-fetch-comments-data')}</div>}
     </div>

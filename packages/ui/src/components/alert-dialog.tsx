@@ -5,9 +5,7 @@ import { buttonVariants } from './button'
 
 type AlertDialogProps = React.ComponentProps<typeof AlertDialogPrimitive.Root>
 
-const AlertDialog = (props: AlertDialogProps) => (
-  <AlertDialogPrimitive.Root data-slot='alert-dialog' {...props} />
-)
+const AlertDialog = (props: AlertDialogProps) => <AlertDialogPrimitive.Root data-slot='alert-dialog' {...props} />
 
 type AlertDialogTriggerProps = React.ComponentProps<typeof AlertDialogPrimitive.Trigger>
 
@@ -132,12 +130,7 @@ type AlertDialogCancelProps = React.ComponentProps<typeof AlertDialogPrimitive.C
 const AlertDialogCancel = (props: AlertDialogCancelProps) => {
   const { className, ...rest } = props
 
-  return (
-    <AlertDialogPrimitive.Cancel
-      className={cn(buttonVariants({ variant: 'outline' }), className)}
-      {...rest}
-    />
-  )
+  return <AlertDialogPrimitive.Cancel className={cn(buttonVariants({ variant: 'outline' }), className)} {...rest} />
 }
 
 export {

@@ -34,10 +34,7 @@ export const generateStaticParams = (): Array<{ slug: string; locale: string }> 
   }))
 }
 
-export const generateMetadata = async (
-  props: PageProps,
-  parent: ResolvingMetadata
-): Promise<Metadata> => {
+export const generateMetadata = async (props: PageProps, parent: ResolvingMetadata): Promise<Metadata> => {
   const { slug, locale } = await props.params
 
   const post = allPosts.find((p) => p.slug === slug && p.locale === locale)
@@ -60,10 +57,7 @@ export const generateMetadata = async (
       canonical: url,
       languages: {
         ...Object.fromEntries(
-          i18n.locales.map((l) => [
-            l,
-            getLocalizedPath({ slug: fullSlug, locale: l, absolute: false })
-          ])
+          i18n.locales.map((l) => [l, getLocalizedPath({ slug: fullSlug, locale: l, absolute: false })])
         ),
         'x-default': getLocalizedPath({
           slug: fullSlug,
@@ -144,10 +138,7 @@ const Page = async (props: PageProps) => {
 
   return (
     <>
-      <script
-        type='application/ld+json'
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
       <Header post={post} />
 

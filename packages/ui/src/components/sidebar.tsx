@@ -51,15 +51,7 @@ type SidebarProviderProps = React.ComponentProps<'div'> & {
 }
 
 const SidebarProvider = (props: SidebarProviderProps) => {
-  const {
-    defaultOpen = true,
-    open: openProp,
-    onOpenChange: setOpenProp,
-    className,
-    style,
-    children,
-    ...rest
-  } = props
+  const { defaultOpen = true, open: openProp, onOpenChange: setOpenProp, className, style, children, ...rest } = props
   const isMobile = useIsMobile()
   const [openMobile, setOpenMobile] = useState(false)
 
@@ -130,10 +122,7 @@ const SidebarProvider = (props: SidebarProviderProps) => {
               ...style
             } as React.CSSProperties
           }
-          className={cn(
-            'group/sidebar-wrapper has-data-[variant=inset]:bg-sidebar flex min-h-svh w-full',
-            className
-          )}
+          className={cn('group/sidebar-wrapper has-data-[variant=inset]:bg-sidebar flex min-h-svh w-full', className)}
           {...rest}
         >
           {children}
@@ -150,24 +139,14 @@ type SidebarProps = React.ComponentProps<'div'> & {
 }
 
 const Sidebar = (props: SidebarProps) => {
-  const {
-    side = 'left',
-    variant = 'sidebar',
-    collapsible = 'offcanvas',
-    className,
-    children,
-    ...rest
-  } = props
+  const { side = 'left', variant = 'sidebar', collapsible = 'offcanvas', className, children, ...rest } = props
   const { isMobile, state, openMobile, setOpenMobile } = useSidebar()
 
   if (collapsible === 'none') {
     return (
       <div
         data-slot='sidebar'
-        className={cn(
-          'bg-sidebar text-sidebar-foreground w-(--sidebar-width) flex h-full flex-col',
-          className
-        )}
+        className={cn('bg-sidebar text-sidebar-foreground w-(--sidebar-width) flex h-full flex-col', className)}
         {...rest}
       >
         {children}
@@ -593,12 +572,7 @@ const SidebarMenuButton = (props: SidebarMenuButtonProps) => {
   return (
     <Tooltip>
       <TooltipTrigger asChild>{button}</TooltipTrigger>
-      <TooltipContent
-        side='right'
-        align='center'
-        hidden={state !== 'collapsed' || isMobile}
-        {...tooltipClone}
-      />
+      <TooltipContent side='right' align='center' hidden={state !== 'collapsed' || isMobile} {...tooltipClone} />
     </Tooltip>
   )
 }

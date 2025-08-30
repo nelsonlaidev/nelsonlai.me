@@ -151,24 +151,10 @@ const FormMessage = (props: FormMessageProps) => {
   }
 
   return (
-    <p
-      data-slot='form-message'
-      id={formMessageId}
-      className={cn('text-destructive text-sm', className)}
-      {...rest}
-    >
+    <p data-slot='form-message' id={formMessageId} className={cn('text-destructive text-sm', className)} {...rest}>
       {body}
     </p>
   )
 }
 
-export {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-  useFormField
-}
+export { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage, useFormField }

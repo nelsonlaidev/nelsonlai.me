@@ -5,13 +5,7 @@ import { useTranslations } from '@repo/i18n/client'
 import { usePathname } from '@repo/i18n/routing'
 import { Badge } from '@repo/ui/components/badge'
 import { Button } from '@repo/ui/components/button'
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle
-} from '@repo/ui/components/dialog'
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@repo/ui/components/dialog'
 import { toast } from '@repo/ui/components/sonner'
 import { LoaderIcon } from 'lucide-react'
 import { useEffect, useState } from 'react'
@@ -93,9 +87,7 @@ const SignInDialog = () => {
       <DialogContent className='sm:max-w-[425px]'>
         <DialogHeader>
           <DialogTitle className='text-left text-2xl'>{t('common.sign-in')}</DialogTitle>
-          <DialogDescription className='text-left'>
-            {t('dialog.sign-in.description')}
-          </DialogDescription>
+          <DialogDescription className='text-left'>{t('dialog.sign-in.description')}</DialogDescription>
         </DialogHeader>
         <div className='my-6 flex flex-col gap-4'>
           <Button
