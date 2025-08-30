@@ -56,8 +56,8 @@
     "zod": "^3.25.51"
   },
   "devDependencies": {
-    "@repo/eslint-config": "workspace:*",
-    "@repo/typescript-config": "workspace:*",
+    "@nelsonlaidev/eslint-config": "file:../../../config/packages/eslint-config",
+    "@nelsonlaidev/typescript-config": "^0.0.2",
     "@repo/utils": "workspace:*",
     "@tailwindcss/postcss": "^4.1.8",
     "@types/react": "^19.1.6",

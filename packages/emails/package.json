@@ -10,7 +10,8 @@
     "dev": "email dev --port 3001 --dir src/templates",
     "export": "email export",
     "lint": "eslint . --max-warnings 0",
-    "lint:fix": "eslint --fix ."
+    "lint:fix": "eslint --fix .",
+    "type-check": "tsc --noEmit"
   },
   "lint-staged": {
     "*.{ts,tsx}": "eslint --fix"
@@ -21,8 +22,8 @@
     "react-email": "^4.0.16"
   },
   "devDependencies": {
-    "@repo/eslint-config": "workspace:*",
-    "@repo/typescript-config": "workspace:*",
+    "@nelsonlaidev/eslint-config": "file:../../../config/packages/eslint-config",
+    "@nelsonlaidev/typescript-config": "^0.0.2",
     "@types/node": "^22.15.29",
     "@types/react": "^19.1.6",
     "tailwindcss": "^4.1.8"
