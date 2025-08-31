@@ -1,3 +1,5 @@
+import { Buffer } from 'node:buffer'
+
 import { env } from '@repo/env'
 
 import { publicProcedure } from '../root'

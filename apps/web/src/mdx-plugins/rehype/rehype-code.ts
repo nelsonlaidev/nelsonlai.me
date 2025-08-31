@@ -29,13 +29,8 @@ export const DEFAULT_SHIKI_THEMES = {
 export const rehypeCode: Plugin<[RehypeShikiOptions], Root> = () => {
   const transformers: ShikiTransformer[] = [
     {
-      /**
-       * - Remove trailing newline
-       * - Remove title from meta
-       * @param code
-       * @param root0
-       * @param root0.meta
-       */
+      // Remove trailing newline
+      // Remove title from meta
       preprocess(code, { meta }) {
         if (meta) {
           meta.__raw = meta.__raw?.replace(titleRegex, '')

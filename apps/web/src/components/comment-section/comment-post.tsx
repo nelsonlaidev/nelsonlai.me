@@ -4,10 +4,11 @@ import { useTranslations } from '@repo/i18n/client'
 import { Button } from '@repo/ui/components/button'
 import { toast } from '@repo/ui/components/sonner'
 import { SendIcon } from 'lucide-react'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 import { useCommentsContext } from '@/contexts/comments.context'
 import { useCreatePostComment } from '@/hooks/queries/post.query'
+import { useIsMounted } from '@/hooks/use-is-mounted'
 import { useSession } from '@/lib/auth-client'
 
 import CommentEditor from './comment-editor'
@@ -16,7 +17,7 @@ import UnauthorizedOverlay from './unauthorized-overlay'
 const CommentPost = () => {
   const { slug } = useCommentsContext()
   const [content, setContent] = useState('')
-  const [isMounted, setIsMounted] = useState(false)
+  const isMounted = useIsMounted()
   const { data: session, isPending } = useSession()
   const t = useTranslations()
 
@@ -43,10 +44,6 @@ const CommentPost = () => {
       })
     })
   }
-
-  useEffect(() => {
-    setIsMounted(true)
-  }, [])
 
   if (!isMounted) {
     return null

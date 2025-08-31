@@ -1,5 +1,3 @@
-import process from 'node:process'
-
 import { createEnv } from '@t3-oss/env-nextjs'
 import { vercel } from '@t3-oss/env-nextjs/presets-zod'
 import { z } from 'zod'

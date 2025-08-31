@@ -25,6 +25,14 @@ const themeKeys = Object.keys(DEFAULT_SHIKI_THEMES)
 
 let cachedHighlighter: Highlighter | null = null
 
+const getScopeColors = (highlighter: Highlighter, scope: string): string[] => {
+  return themeNames.map(
+    (name) =>
+      highlighter.getTheme(name).settings.find(({ scope: themeScope }) => themeScope?.includes(scope))?.settings
+        .foreground ?? 'inherit'
+  )
+}
+
 const getHighlighter = async () => {
   if (cachedHighlighter) return cachedHighlighter
 
@@ -75,12 +83,7 @@ export const rehypeInlineCode: Plugin<[RehypeShikiCoreOptions], Root> = () => {
        * @example `myFunction{:.entity.name.function}`
        */
       if (!isLang) {
-        const colors = themeNames.map(
-          (name) =>
-            highlighter.getTheme(name).settings.find(({ scope }) => scope?.includes(lang.slice(1)))?.settings
-              .foreground ?? 'inherit'
-        )
-
+        const colors = getScopeColors(highlighter, lang.slice(1))
         const spanNode = inlineCode.children[0]
 
         if (spanNode?.type !== 'element') return

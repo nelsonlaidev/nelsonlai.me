@@ -100,6 +100,7 @@
     "@types/react": "^19.1.6",
     "@types/react-dom": "^19.1.6",
     "@types/rss": "^0.0.32",
+    "@types/spotify-api": "^0.0.25",
     "@types/tinycolor2": "^1.4.6",
     "@vitejs/plugin-react": "^4.5.1",
     "schema-dts": "^1.1.5",

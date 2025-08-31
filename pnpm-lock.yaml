@@ -312,6 +312,9 @@ importers:
       '@types/rss':
         specifier: ^0.0.32
         version: 0.0.32
+      '@types/spotify-api':
+        specifier: ^0.0.25
+        version: 0.0.25
       '@types/tinycolor2':
         specifier: ^1.4.6
         version: 1.4.6
@@ -3825,6 +3828,9 @@ packages:
 
   '@types/rss@0.0.32':
     resolution: {integrity: sha512-2oKNqKyUY4RSdvl5eZR1n2Q9yvw3XTe3mQHsFPn9alaNBxfPnbXBtGP8R0SV8pK1PrVnLul0zx7izbm5/gF5Qw==}
+
+  '@types/spotify-api@0.0.25':
+    resolution: {integrity: sha512-okhoy0U9fPWtwqCfbDyW8VxamhqvXE0gXIVeMOh5HcvEFQvWW2X0VsvdiX/OyiGQpZbZiOJXIGrbnIPfK0AIpA==}
 
   '@types/stack-utils@2.0.3':
     resolution: {integrity: sha512-9aEbYZ3TbYMznPdcdr3SmIrLXwC/AKZXQeCf9Pgao5CKb8CyHuEX5jzWPTkvregvhRJHcpRO6BFoGW9ycaOkYw==}
@@ -11916,9 +11922,7 @@ snapshots:
       metro-runtime: 0.83.1
     transitivePeerDependencies:
       - '@babel/core'
-      - bufferutil
       - supports-color
-      - utf-8-validate
 
   '@react-native/normalize-colors@0.81.0': {}
 
@@ -12441,6 +12445,8 @@ snapshots:
   '@types/resolve@1.20.6': {}
 
   '@types/rss@0.0.32': {}
+
+  '@types/spotify-api@0.0.25': {}
 
   '@types/stack-utils@2.0.3': {}
 
