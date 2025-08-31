@@ -32,7 +32,8 @@ export const generateStaticParams = (): Array<{ locale: string }> => {
 }
 
 export const generateMetadata = async (props: PageProps): Promise<Metadata> => {
-  const { locale } = await props.params
+  const { params } = props
+  const { locale } = await params
   const slug = ''
 
   return {
@@ -47,7 +48,8 @@ export const generateMetadata = async (props: PageProps): Promise<Metadata> => {
 }
 
 const Page = async (props: PageProps) => {
-  const { locale } = await props.params
+  const { params } = props
+  const { locale } = await params
   setRequestLocale(locale)
   const t = await getTranslations('metadata')
 
@@ -78,6 +80,7 @@ const Page = async (props: PageProps) => {
 
   return (
     <>
+      {/* eslint-disable-next-line @eslint-react/dom/no-dangerously-set-innerhtml -- safe */}
       <script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Hero />
       <SelectedProjects />

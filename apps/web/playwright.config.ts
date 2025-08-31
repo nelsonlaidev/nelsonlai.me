@@ -1,3 +1,5 @@
+import process from 'node:process'
+
 import { defineConfig, devices } from '@playwright/test'
 
 const CI = !!process.env.CI

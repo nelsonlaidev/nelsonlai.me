@@ -22,9 +22,9 @@ export const generateStaticParams = (): Array<{ locale: string }> => {
 }
 
 export const generateMetadata = async (props: PageProps, parent: ResolvingMetadata): Promise<Metadata> => {
-  const { locale } = await props.params
-  const previousOpenGraph = (await parent).openGraph ?? {}
-  const previousTwitter = (await parent).twitter ?? {}
+  const { params } = props
+  const { locale } = await params
+  const { openGraph = {}, twitter = {} } = await parent
   const t = await getTranslations({ locale, namespace: 'uses' })
   const title = t('title')
   const description = t('description')
@@ -43,13 +43,13 @@ export const generateMetadata = async (props: PageProps, parent: ResolvingMetada
       }
     },
     openGraph: {
-      ...previousOpenGraph,
+      ...openGraph,
       url,
       title,
       description
     },
     twitter: {
-      ...previousTwitter,
+      ...twitter,
       title,
       description
     }
@@ -57,7 +57,8 @@ export const generateMetadata = async (props: PageProps, parent: ResolvingMetada
 }
 
 const Page = async (props: PageProps) => {
-  const { locale } = await props.params
+  const { params } = props
+  const { locale } = await params
   setRequestLocale(locale)
 
   const t = await getTranslations()
@@ -87,6 +88,7 @@ const Page = async (props: PageProps) => {
 
   return (
     <>
+      {/* eslint-disable-next-line @eslint-react/dom/no-dangerously-set-innerhtml -- safe */}
       <script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <PageTitle title={title} description={description} />
       <Mdx code={code} />

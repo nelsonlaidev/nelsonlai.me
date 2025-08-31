@@ -13,8 +13,8 @@ type LayoutProps = {
 }
 
 const Layout = async (props: LayoutProps) => {
-  const { children } = props
-  const { locale } = await props.params
+  const { children, params } = props
+  const { locale } = await params
   const session = await getSession()
 
   if (!session || session.user.role !== 'admin') {

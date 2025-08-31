@@ -35,7 +35,8 @@ export const generateStaticParams = (): Array<{ slug: string; locale: string }> 
 }
 
 export const generateMetadata = async (props: PageProps, parent: ResolvingMetadata): Promise<Metadata> => {
-  const { slug, locale } = await props.params
+  const { params } = props
+  const { slug, locale } = await params
 
   const post = allPosts.find((p) => p.slug === slug && p.locale === locale)
 
@@ -45,8 +46,7 @@ export const generateMetadata = async (props: PageProps, parent: ResolvingMetada
 
   const ISOPublishedTime = new Date(date).toISOString()
   const ISOModifiedTime = new Date(modifiedTime).toISOString()
-  const previousTwitter = (await parent).twitter ?? {}
-  const previousOpenGraph = (await parent).openGraph ?? {}
+  const { openGraph = {}, twitter = {} } = await parent
   const fullSlug = `/blog/${slug}`
   const url = getLocalizedPath({ slug: fullSlug, locale, absolute: false })
 
@@ -67,7 +67,7 @@ export const generateMetadata = async (props: PageProps, parent: ResolvingMetada
       }
     },
     openGraph: {
-      ...previousOpenGraph,
+      ...openGraph,
       url,
       type: 'article',
       title: title,
@@ -86,7 +86,7 @@ export const generateMetadata = async (props: PageProps, parent: ResolvingMetada
       ]
     },
     twitter: {
-      ...previousTwitter,
+      ...twitter,
       title: title,
       description: summary,
       images: [
@@ -102,7 +102,8 @@ export const generateMetadata = async (props: PageProps, parent: ResolvingMetada
 }
 
 const Page = async (props: PageProps) => {
-  const { slug, locale } = await props.params
+  const { params } = props
+  const { slug, locale } = await params
   setRequestLocale(locale)
 
   const post = allPosts.find((p) => p.slug === slug && p.locale === locale)
@@ -138,6 +139,7 @@ const Page = async (props: PageProps) => {
 
   return (
     <>
+      {/* eslint-disable-next-line @eslint-react/dom/no-dangerously-set-innerhtml -- safe */}
       <script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
       <Header post={post} />

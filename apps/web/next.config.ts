@@ -2,6 +2,8 @@ import type { NextConfig } from 'next'
 
 import '@repo/env'
 
+import process from 'node:process'
+
 import { withContentCollections } from '@content-collections/next'
 import bundleAnalyzer from '@next/bundle-analyzer'
 import createNextIntlPlugin from 'next-intl/plugin'

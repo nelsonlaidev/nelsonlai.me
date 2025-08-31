@@ -1,5 +1,6 @@
 import fs from 'node:fs'
 import path from 'node:path'
+import process from 'node:process'
 
 import { db, eq, posts } from '@repo/db'
 import { getErrorMessage } from '@repo/utils'
@@ -9,15 +10,11 @@ import { NextResponse } from 'next/server'
 
 import { getBaseUrl } from '@/utils/get-base-url'
 
-type OGRouteProps = {
-  params: Promise<{
-    id: string
-  }>
-}
+export const GET = async (_: Request, props: RouteContext<'/og/[id]'>) => {
+  const { params } = props
+  const { id } = await params
 
-export const GET = async (_: Request, props: OGRouteProps) => {
   try {
-    const { id } = await props.params
     const postMetadata = allPosts.find((p) => p.slug === id)
 
     if (!postMetadata) {
