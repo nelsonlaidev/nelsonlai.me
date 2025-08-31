@@ -57,8 +57,8 @@ const handleKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>, command:
   if (event.key === 'Enter') {
     const currentLine = value.slice(0, Math.max(0, selectionStart)).split('\n').pop()
 
-    const unorderedListNoContent = currentLine?.match(/^(\s*)([*-])\s$/)
-    const orderedListNoContent = currentLine?.match(/^(\d+)\.\s$/)
+    const unorderedListNoContent = currentLine?.match(/^\s*[*-]\s$/)
+    const orderedListNoContent = currentLine?.match(/^\d+\.\s$/)
 
     if (!!unorderedListNoContent || !!orderedListNoContent) {
       event.preventDefault()
