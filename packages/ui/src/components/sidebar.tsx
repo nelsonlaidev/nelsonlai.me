@@ -70,6 +70,7 @@ const SidebarProvider = (props: SidebarProviderProps) => {
       }
 
       // This sets the cookie to keep the sidebar state.
+      // eslint-disable-next-line unicorn/no-document-cookie -- safe, valid
       document.cookie = `${SIDEBAR_COOKIE_NAME}=${openState}; path=/; max-age=${SIDEBAR_COOKIE_MAX_AGE}`
     },
     [setOpenProp, open]
@@ -77,7 +78,11 @@ const SidebarProvider = (props: SidebarProviderProps) => {
 
   // Helper to toggle the sidebar.
   const toggleSidebar = useCallback(() => {
-    isMobile ? setOpenMobile((o) => !o) : setOpen((o) => !o)
+    if (isMobile) {
+      setOpenMobile((o) => !o)
+    } else {
+      setOpen((o) => !o)
+    }
   }, [isMobile, setOpen, setOpenMobile])
 
   // Adds a keyboard shortcut to toggle the sidebar.
@@ -643,6 +648,8 @@ type SidebarMenuSkeletonProps = React.ComponentProps<'div'> & {
 const SidebarMenuSkeleton = (props: SidebarMenuSkeletonProps) => {
   const { className, showIcon = false, ...rest } = props
   // Random width between 50 to 90%.
+
+  // eslint-disable-next-line sonarjs/pseudo-random -- safe
   const width = `${Math.floor(Math.random() * 40) + 50}%`
 
   return (
