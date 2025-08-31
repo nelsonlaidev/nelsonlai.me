@@ -1,14 +1,15 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useState } from 'react'
 
 export const useIsMounted = () => {
-  const isMounted = useRef(false)
+  const [isMounted, setIsMounted] = useState(false)
 
   useEffect(() => {
-    isMounted.current = true
+    // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect -- valid
+    setIsMounted(true)
     return () => {
-      isMounted.current = false
+      setIsMounted(false)
     }
   }, [])
 
-  return isMounted.current
+  return isMounted
 }
