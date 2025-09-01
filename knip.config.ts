@@ -20,7 +20,11 @@ const config: KnipConfig = {
   ],
   workspaces: {
     'apps/web': {
-      entry: ['content-collections.ts', 'src/i18n/request.ts', 'src/e2e/**/*.setup.ts', 'src/e2e/**/*.teardown.ts']
+      entry: ['content-collections.ts', 'src/i18n/request.ts', 'src/e2e/**/*.setup.ts', 'src/e2e/**/*.teardown.ts'],
+      ignoreDependencies: [
+        // Used in spotify.route.ts
+        '@types/spotify-api'
+      ]
     },
     'packages/db': {
       entry: ['src/seed.ts', 'src/reset.ts']
