@@ -20,7 +20,7 @@
     "zod": "^3.25.51"
   },
   "devDependencies": {
-    "@nelsonlaidev/eslint-config": "https://pkg.pr.new/@nelsonlaidev/eslint-config@8203040",
+    "@nelsonlaidev/eslint-config": "https://pkg.pr.new/@nelsonlaidev/eslint-config@3eb274c",
     "@nelsonlaidev/typescript-config": "^0.0.2"
   }
 }
