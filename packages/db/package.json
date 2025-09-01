@@ -8,16 +8,17 @@
   "types": "./src/index.ts",
   "scripts": {
     "clean": "rm -rf .turbo",
-    "db:check": "drizzle-kit check",
-    "db:generate": "drizzle-kit generate",
-    "db:migrate": "drizzle-kit migrate",
-    "db:push": "drizzle-kit push",
-    "db:reset": "tsx ./src/reset.ts",
-    "db:seed": "tsx ./src/seed.ts",
-    "db:studio": "drizzle-kit studio",
+    "db:check": "pnpm with-env drizzle-kit check",
+    "db:generate": "pnpm with-env drizzle-kit generate",
+    "db:migrate": "pnpm with-env drizzle-kit migrate",
+    "db:push": "pnpm with-env drizzle-kit push",
+    "db:reset": "pnpm with-env tsx ./src/reset.ts",
+    "db:seed": "pnpm with-env tsx ./src/seed.ts",
+    "db:studio": "pnpm with-env drizzle-kit studio",
     "lint": "eslint . --max-warnings 0",
     "lint:fix": "eslint --fix .",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "with-env": "dotenvx run -f ../../.env.local --"
   },
   "lint-staged": {
     "*.ts": "eslint --fix"

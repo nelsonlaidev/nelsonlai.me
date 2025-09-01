@@ -2,6 +2,8 @@ import type { KnipConfig } from 'knip'
 
 const config: KnipConfig = {
   ignoreDependencies: [
+    // Knip can't detect it since we use `pnpm with-env` in front of it
+    'tsx',
     // PostCSS is already installed under Next.js
     'postcss'
   ],
@@ -12,6 +14,9 @@ const config: KnipConfig = {
         // Used in spotify.route.ts
         '@types/spotify-api'
       ]
+    },
+    'packages/db': {
+      entry: ['src/reset.ts', 'src/seed.ts']
     },
     'packages/emails': {
       // For tailwindcss intellisense
