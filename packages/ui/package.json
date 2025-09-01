@@ -47,7 +47,7 @@
     "sonner": "^2.0.5"
   },
   "devDependencies": {
-    "@nelsonlaidev/eslint-config": "https://pkg.pr.new/@nelsonlaidev/eslint-config@3eb274c",
+    "@nelsonlaidev/eslint-config": "https://pkg.pr.new/@nelsonlaidev/eslint-config@6e3e58f",
     "@nelsonlaidev/typescript-config": "^0.0.2",
     "@repo/utils": "workspace:*",
     "@tailwindcss/postcss": "^4.1.8",

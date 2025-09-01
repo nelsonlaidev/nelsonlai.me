@@ -86,7 +86,7 @@
     "@content-collections/core": "^0.9.0",
     "@content-collections/mdx": "^0.2.2",
     "@content-collections/next": "^0.2.6",
-    "@nelsonlaidev/eslint-config": "https://pkg.pr.new/@nelsonlaidev/eslint-config@3eb274c",
+    "@nelsonlaidev/eslint-config": "https://pkg.pr.new/@nelsonlaidev/eslint-config@6e3e58f",
     "@nelsonlaidev/typescript-config": "^0.0.2",
     "@next/bundle-analyzer": "^15.3.3",
     "@repo/kv": "workspace:*",
