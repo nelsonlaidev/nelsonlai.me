@@ -37,7 +37,7 @@ const StacksCard = () => {
         <ZapIcon className='size-[18px]' />
         <h2 className='text-sm'>{t('homepage.about-me.stacks')}</h2>
       </div>
-      <Marquee gap='20px' className='py-4' fade={true} pauseOnHover={true}>
+      <Marquee gap='20px' className='py-4' fade pauseOnHover>
         <SiHtml5 className='size-10' />
         <SiCss className='size-10' />
         <SiJavascript className='size-10' />
@@ -50,7 +50,7 @@ const StacksCard = () => {
         <SiPostgresql className='size-10' />
         <SiRadixui className='size-10' />
       </Marquee>
-      <Marquee gap='20px' className='py-4' reverse={true} fade={true} pauseOnHover={true}>
+      <Marquee gap='20px' className='py-4' reverse fade pauseOnHover>
         <SiPrisma className='size-10' />
         <SiMysql className='size-10' />
         <SiFirebase className='size-10' />

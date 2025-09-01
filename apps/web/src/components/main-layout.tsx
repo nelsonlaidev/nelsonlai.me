@@ -24,7 +24,7 @@ const MainLayout = (props: MainLayoutProps) => {
         src='/images/gradient-background-top.png'
         alt=''
         role='presentation'
-        priority={true}
+        priority
       />
       <Image
         width={1512}
@@ -33,7 +33,7 @@ const MainLayout = (props: MainLayoutProps) => {
         src='/images/gradient-background-bottom.png'
         alt=''
         role='presentation'
-        priority={true}
+        priority
       />
     </>
   )

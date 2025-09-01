@@ -62,7 +62,7 @@ const CommentReply = () => {
           placeholder={t('blog.comments.reply-to-comment')}
           disabled={disabled}
           // eslint-disable-next-line jsx-a11y/no-autofocus -- autofocus is necessary because user is replying to a comment
-          autoFocus={true}
+          autoFocus
           data-testid='comment-textarea-reply'
         />
         {isAuthenticated ? null : <UnauthorizedOverlay />}

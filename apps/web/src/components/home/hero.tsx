@@ -73,7 +73,7 @@ const Hero = () => {
               transition={{ ease: 'easeOut' }}
               className='flex gap-2'
             >
-              <motion.div layout={true} key='title-middle-left' className='leading-[30px] sm:leading-[45px]'>
+              <motion.div layout key='title-middle-left' className='leading-[30px] sm:leading-[45px]'>
                 {t('homepage.hero.title-middle-left')}
               </motion.div>
               <div className='relative overflow-hidden'>
@@ -84,7 +84,7 @@ const Hero = () => {
                     initial='enter'
                     animate='center'
                     exit='exit'
-                    layout={true}
+                    layout
                     transition={{
                       type: 'tween',
                       duration: 0.3
@@ -95,7 +95,7 @@ const Hero = () => {
                   </motion.div>
                 </AnimatePresence>
               </div>
-              <motion.div layout={true} key='title-middle-right' className='leading-[30px] sm:leading-[45px]'>
+              <motion.div layout key='title-middle-right' className='leading-[30px] sm:leading-[45px]'>
                 {t('homepage.hero.title-middle-right')}
               </motion.div>
             </motion.div>

@@ -15,13 +15,7 @@ const Providers = (props: ProvidesProps) => {
 
   return (
     <ORPCQueryProvider>
-      <ThemeProvider
-        attribute='class'
-        defaultTheme='system'
-        enableSystem={true}
-        enableColorScheme={true}
-        disableTransitionOnChange={true}
-      >
+      <ThemeProvider attribute='class' defaultTheme='system' enableSystem enableColorScheme disableTransitionOnChange>
         <TooltipProvider>
           {children}
           <Toaster
@@ -29,7 +23,7 @@ const Providers = (props: ProvidesProps) => {
               duration: 2500
             }}
             visibleToasts={5}
-            expand={true}
+            expand
           />
         </TooltipProvider>
       </ThemeProvider>

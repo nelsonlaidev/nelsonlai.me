@@ -15,7 +15,7 @@ const ThemeSwitcher = () => {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild={true}>
+      <DropdownMenuTrigger asChild>
         <Button
           variant='ghost'
           className='size-9 p-0'

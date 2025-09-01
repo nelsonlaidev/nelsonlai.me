@@ -36,7 +36,7 @@ const DeleteButton = (props: DeleteButtonProps) => {
   return (
     <div className='mt-4 flex justify-end'>
       <AlertDialog>
-        <AlertDialogTrigger asChild={true}>
+        <AlertDialogTrigger asChild>
           <Button
             variant='destructive'
             disabled={isDeleting}

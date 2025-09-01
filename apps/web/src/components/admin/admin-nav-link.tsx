@@ -16,7 +16,7 @@ const AdminNavLink = (props: AdminNavLinkProps) => {
 
   return (
     <SidebarMenuItem>
-      <SidebarMenuButton isActive={isActive} asChild={true}>
+      <SidebarMenuButton isActive={isActive} asChild>
         <Link href={url}>
           <Icon />
           <span>{t(`admin.nav.${titleKey}`)}</span>

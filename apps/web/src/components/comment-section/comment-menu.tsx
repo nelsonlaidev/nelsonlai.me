@@ -51,7 +51,7 @@ const CommentMenu = () => {
   return (
     <AlertDialog>
       <DropdownMenu>
-        <DropdownMenuTrigger asChild={true}>
+        <DropdownMenuTrigger asChild>
           <Button
             variant='ghost'
             size='icon'
@@ -73,7 +73,7 @@ const CommentMenu = () => {
           >
             {t('blog.comments.copy-link')}
           </DropdownMenuItem>
-          <AlertDialogTrigger asChild={true}>
+          <AlertDialogTrigger asChild>
             {isAuthor && (
               <DropdownMenuItem
                 disabled={isDeleting}
