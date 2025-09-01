@@ -90,14 +90,14 @@ const CommentMenu = () => {
       <AlertDialogContent data-testid='comment-dialog'>
         <AlertDialogHeader>
           <AlertDialogTitle>{t('blog.comments.delete-a-comment')}</AlertDialogTitle>
-          <AlertDialogDescription>
-            {t('blog.comments.confirm-delete-comment')}
-          </AlertDialogDescription>
+          <AlertDialogDescription>{t('blog.comments.confirm-delete-comment')}</AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>{t('common.cancel')}</AlertDialogCancel>
           <AlertDialogAction
-            onClick={() => deleteComment({ id })}
+            onClick={() => {
+              deleteComment({ id })
+            }}
             className={buttonVariants({ variant: 'destructive' })}
             data-testid='comment-dialog-delete-button'
           >

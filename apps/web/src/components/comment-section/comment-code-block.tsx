@@ -56,15 +56,10 @@ const CommentCodeBlock = (props: CommentCodeBlockProps) => {
   const codeHtml = /<code\b[^>]*>([\s\S]*?)<\/code>/.exec(highlightedHtml)?.[1]
 
   return (
-    <CodeBlock
-      data-lang={lang}
-      title={title}
-      className='shiki'
-      figureClassName='my-2'
-      scrollAreaClassName='h-120'
-    >
+    <CodeBlock data-lang={lang} title={title} className='shiki' figureClassName='my-2' scrollAreaClassName='h-120'>
       {isHighlighted && codeHtml ? (
         <code
+          // eslint-disable-next-line @eslint-react/dom/no-dangerously-set-innerhtml -- safe
           dangerouslySetInnerHTML={{
             __html: codeHtml
           }}

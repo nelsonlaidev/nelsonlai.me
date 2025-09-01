@@ -1,3 +1,5 @@
+import { Buffer } from 'node:buffer'
+
 import { env } from '@repo/env'
 
 import { publicProcedure } from '../root'
@@ -10,6 +12,13 @@ const REFRESH_TOKEN = env.SPOTIFY_REFRESH_TOKEN
 const BASIC = Buffer.from(`${CLIENT_ID}:${CLIENT_SECRET}`).toString('base64')
 const NOW_PLAYING_ENDPOINT = 'https://api.spotify.com/v1/me/player/currently-playing'
 const TOKEN_ENDPOINT = 'https://accounts.spotify.com/api/token'
+
+const EMPTY_RESPONSE = {
+  isPlaying: false,
+  songUrl: null,
+  name: null,
+  artist: null
+} as const
 
 const getAccessToken = async () => {
   if (!REFRESH_TOKEN) return null
@@ -33,12 +42,7 @@ const getAccessToken = async () => {
 
 export const spotifyStats = publicProcedure.output(spotifyStatsSchema).handler(async () => {
   if (!CLIENT_ID || !CLIENT_SECRET || !REFRESH_TOKEN) {
-    return {
-      isPlaying: false,
-      songUrl: null,
-      name: null,
-      artist: null
-    }
+    return EMPTY_RESPONSE
   }
 
   const accessToken = await getAccessToken()
@@ -50,20 +54,22 @@ export const spotifyStats = publicProcedure.output(spotifyStatsSchema).handler(a
   })
 
   if (response.status === 204) {
-    return {
-      isPlaying: false,
-      songUrl: null,
-      name: null,
-      artist: null
-    }
+    return EMPTY_RESPONSE
   }
 
-  const song = await response.json()
+  const song: SpotifyApi.CurrentlyPlayingResponse = await response.json()
+
+  // If the song is not playing or is not a track, return an empty response
+  if (song.item === null || song.item.type !== 'track') {
+    return EMPTY_RESPONSE
+  }
+
+  const artists = song.item.artists.map((artist) => artist.name).join(', ')
 
   return {
-    isPlaying: song.is_playing as boolean,
-    songUrl: song.item.external_urls.spotify as string,
-    name: song.item.name as string,
-    artist: song.item.artists.map((artist: { name: string }) => artist.name).join(', ') as string
+    isPlaying: song.is_playing,
+    songUrl: song.item.external_urls.spotify,
+    name: song.item.name,
+    artist: artists
   }
 })

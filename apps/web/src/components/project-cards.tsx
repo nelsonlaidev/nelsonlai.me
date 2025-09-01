@@ -27,7 +27,7 @@ const ProjectCard = (props: ProjectCardProps) => {
   const { name, description, techstack, slug } = props
 
   return (
-    <Link href={`/projects/${slug}`} className='shadow-feature-card group rounded-xl px-2 py-4'>
+    <Link href={`/projects/${slug}`} className='group rounded-xl px-2 py-4 shadow-feature-card'>
       <BlurImage
         src={`/images/projects/${slug}/cover.png`}
         width={1280}
@@ -44,10 +44,7 @@ const ProjectCard = (props: ProjectCardProps) => {
         <div className='mt-4 flex flex-wrap gap-2'>
           {techstack.map((label) => {
             return (
-              <div
-                key={label}
-                className='rounded-full border bg-zinc-50 px-3 py-2 text-xs leading-4 dark:bg-zinc-900'
-              >
+              <div key={label} className='rounded-full border bg-zinc-50 px-3 py-2 text-xs leading-4 dark:bg-zinc-900'>
                 {label}
               </div>
             )

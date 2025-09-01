@@ -20,11 +20,10 @@ const config: KnipConfig = {
   ],
   workspaces: {
     'apps/web': {
-      entry: [
-        'content-collections.ts',
-        'src/i18n/request.ts',
-        'src/e2e/**/*.setup.ts',
-        'src/e2e/**/*.teardown.ts'
+      entry: ['content-collections.ts', 'src/i18n/request.ts', 'src/e2e/**/*.setup.ts', 'src/e2e/**/*.teardown.ts'],
+      ignoreDependencies: [
+        // Used in spotify.route.ts
+        '@types/spotify-api'
       ]
     },
     'packages/db': {
@@ -36,10 +35,6 @@ const config: KnipConfig = {
         '@typescript-eslint/utils'
       ]
     },
-    'packages/ui': {
-      // Optional peer dependencies
-      ignoreDependencies: ['nuqs']
-    },
     'packages/emails': {
       // For tailwindcss intellisense
       ignoreDependencies: ['tailwindcss'],
@@ -48,8 +43,7 @@ const config: KnipConfig = {
   },
   // Credit to https://github.com/webpro-nl/knip/issues/1008#issuecomment-2756559038
   compilers: {
-    css: (text: string) =>
-      [...text.matchAll(/(?<=@)(import|plugin)[^;]+/g)].join('\n').replace('plugin', 'import')
+    css: (text: string) => [...text.matchAll(/(?<=@)(?:import|plugin)[^;]+/g)].join('\n').replace('plugin', 'import')
   }
 }
 

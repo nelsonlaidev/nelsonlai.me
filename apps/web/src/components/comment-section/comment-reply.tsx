@@ -52,9 +52,13 @@ const CommentReply = () => {
     <form onSubmit={submitCommentReply}>
       <div className='relative'>
         <CommentEditor
-          onChange={(e) => setContent(e.target.value)}
+          onChange={(e) => {
+            setContent(e.target.value)
+          }}
           onModEnter={submitCommentReply}
-          onEscape={() => setIsReplying(false)}
+          onEscape={() => {
+            setIsReplying(false)
+          }}
           placeholder={t('blog.comments.reply-to-comment')}
           disabled={disabled}
           // eslint-disable-next-line jsx-a11y/no-autofocus -- autofocus is necessary because user is replying to a comment
@@ -77,7 +81,9 @@ const CommentReply = () => {
         <Button
           variant='secondary'
           className='h-8 px-2 text-xs font-medium'
-          onClick={() => setIsReplying(false)}
+          onClick={() => {
+            setIsReplying(false)
+          }}
         >
           {t('common.cancel')}
         </Button>

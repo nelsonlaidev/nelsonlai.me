@@ -49,7 +49,9 @@ const CommentActions = () => {
       <div className='flex gap-1'>
         <Button
           variant='secondary'
-          onClick={() => handleVoteComment(true)}
+          onClick={() => {
+            handleVoteComment(true)
+          }}
           className={voteVariants({
             active: comment.liked === true
           })}
@@ -61,7 +63,9 @@ const CommentActions = () => {
         </Button>
         <Button
           variant='secondary'
-          onClick={() => handleVoteComment(false)}
+          onClick={() => {
+            handleVoteComment(false)
+          }}
           className={voteVariants({
             active: comment.liked === false
           })}
@@ -74,8 +78,10 @@ const CommentActions = () => {
         {comment.parentId ? null : (
           <Button
             variant='secondary'
-            className='text-muted-foreground h-8 gap-1.5 px-2 text-xs font-medium'
-            onClick={() => setIsReplying(true)}
+            className='h-8 gap-1.5 px-2 text-xs font-medium text-muted-foreground'
+            onClick={() => {
+              setIsReplying(true)
+            }}
             data-testid='comment-reply-button'
           >
             <MessageSquareIcon />
@@ -88,7 +94,9 @@ const CommentActions = () => {
           variant='ghost'
           size='sm'
           className='mt-4 h-8 gap-1.5 px-2 text-xs font-medium'
-          onClick={() => setIsOpenReplies(!isOpenReplies)}
+          onClick={() => {
+            setIsOpenReplies(!isOpenReplies)
+          }}
           data-testid='comment-replies-expand-button'
         >
           <ChevronDownIcon

@@ -17,12 +17,9 @@ const main = async () => {
   }
 
   if (!env.DATABASE_URL.includes('localhost')) {
-    const nonLocalConfirmed = await consola.prompt(
-      'Non-local database detected. Are you sure you want to continue?',
-      {
-        type: 'confirm'
-      }
-    )
+    const nonLocalConfirmed = await consola.prompt('Non-local database detected. Are you sure you want to continue?', {
+      type: 'confirm'
+    })
 
     if (!nonLocalConfirmed) {
       consola.info('Aborting...')
@@ -62,12 +59,11 @@ const main = async () => {
     await execa('pnpm', ['db:seed'], { stdio: 'inherit' })
 
     consola.success('Database reset successfully!')
-
-    // eslint-disable-next-line unicorn/no-process-exit -- required here to exit the process immediately
-    process.exit(0)
   } catch (error) {
     consola.error('Error resetting database:', error)
+  } finally {
+    await db.$client.end()
   }
 }
 
-main()
+await main()

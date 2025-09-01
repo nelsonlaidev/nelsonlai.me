@@ -29,8 +29,8 @@
     "postgres": "^3.4.7"
   },
   "devDependencies": {
-    "@repo/eslint-config": "workspace:*",
-    "@repo/typescript-config": "workspace:*",
+    "@nelsonlaidev/eslint-config": "https://pkg.pr.new/@nelsonlaidev/eslint-config@6e3e58f",
+    "@nelsonlaidev/typescript-config": "^0.0.2",
     "@types/node": "^22.15.29",
     "consola": "^3.4.2",
     "drizzle-kit": "^0.31.1",

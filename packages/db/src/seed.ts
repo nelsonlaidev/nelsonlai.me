@@ -16,12 +16,11 @@ const main = async () => {
     }
 
     consola.success('Data inserted successfully!')
-
-    // eslint-disable-next-line unicorn/no-process-exit -- required here to exit the process immediately
-    process.exit(0)
   } catch (error) {
     consola.error('Error inserting data:\n', error)
+  } finally {
+    await db.$client.end()
   }
 }
 
-main()
+await main()

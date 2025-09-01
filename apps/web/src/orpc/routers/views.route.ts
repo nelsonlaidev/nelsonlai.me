@@ -15,10 +15,7 @@ export const countView = publicProcedure
       return cached
     }
 
-    const [post] = await context.db
-      .select({ views: posts.views })
-      .from(posts)
-      .where(eq(posts.slug, input.slug))
+    const [post] = await context.db.select({ views: posts.views }).from(posts).where(eq(posts.slug, input.slug))
 
     if (!post) {
       throw new ORPCError('NOT_FOUND', {

@@ -1,12 +1,4 @@
-import {
-  SiCss,
-  SiHtml5,
-  SiJavascript,
-  SiMarkdown,
-  SiMdx,
-  SiReact,
-  SiTypescript
-} from '@icons-pack/react-simple-icons'
+import { SiCss, SiHtml5, SiJavascript, SiMarkdown, SiMdx, SiReact, SiTypescript } from '@icons-pack/react-simple-icons'
 import { FileIcon, TerminalIcon } from 'lucide-react'
 
 type Icon = {

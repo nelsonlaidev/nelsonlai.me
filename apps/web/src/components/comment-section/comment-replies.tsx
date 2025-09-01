@@ -18,18 +18,17 @@ const CommentReplies = () => {
   const [params] = useCommentParams()
   const t = useTranslations()
 
-  const { isSuccess, isLoading, isError, data, fetchNextPage, hasNextPage, isFetchingNextPage } =
-    usePostComments(
-      (pageParam) => ({
-        slug,
-        sort: 'oldest',
-        parentId: comment.id,
-        type: 'replies',
-        highlightedCommentId: params.reply ?? undefined,
-        cursor: pageParam
-      }),
-      isOpenReplies
-    )
+  const { isSuccess, isLoading, isError, data, fetchNextPage, hasNextPage, isFetchingNextPage } = usePostComments(
+    (pageParam) => ({
+      slug,
+      sort: 'oldest',
+      parentId: comment.id,
+      type: 'replies',
+      highlightedCommentId: params.reply ?? undefined,
+      cursor: pageParam
+    }),
+    isOpenReplies
+  )
 
   const { ref, inView } = useInView()
 
@@ -46,13 +45,11 @@ const CommentReplies = () => {
       {isOpenReplies && (
         <div className='space-y-8 pl-7'>
           {isSuccess &&
-            data.pages.map((page) =>
-              page.comments.map((reply) => <Comment key={reply.id} comment={reply} />)
-            )}
+            data.pages.map((page) => page.comments.map((reply) => <Comment key={reply.id} comment={reply} />))}
           {(isLoading || isFetchingNextPage) && <CommentLoader />}
           {isError && (
             <div className='flex min-h-20 items-center justify-center'>
-              <p className='text-muted-foreground text-sm'>{t('error.failed-to-load-replies')}</p>
+              <p className='text-sm text-muted-foreground'>{t('error.failed-to-load-replies')}</p>
             </div>
           )}
           <span ref={ref} className='invisible' />

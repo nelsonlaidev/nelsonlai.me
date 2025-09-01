@@ -1,11 +1,4 @@
-import {
-  Table as UITable,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow
-} from '@repo/ui/components/table'
+import { Table as UITable, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@repo/ui/components/table'
 
 type TableProps = {
   headers: string[]

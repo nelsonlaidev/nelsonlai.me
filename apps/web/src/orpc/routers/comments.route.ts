@@ -29,9 +29,7 @@ export const listComments = publicProcedure
 
     const getCursorFilter = () => {
       if (!input.cursor) return
-      return input.sort === 'newest'
-        ? lt(comments.createdAt, input.cursor)
-        : gt(comments.createdAt, input.cursor)
+      return input.sort === 'newest' ? lt(comments.createdAt, input.cursor) : gt(comments.createdAt, input.cursor)
     }
 
     const query = await context.db.query.comments.findMany({
@@ -256,12 +254,7 @@ export const countComments = publicProcedure
         value: count()
       })
       .from(comments)
-      .where(
-        and(
-          eq(comments.postId, input.slug),
-          input.withReplies ? undefined : isNull(comments.parentId)
-        )
-      )
+      .where(and(eq(comments.postId, input.slug), input.withReplies ? undefined : isNull(comments.parentId)))
 
     return {
       count: result?.value ?? 0

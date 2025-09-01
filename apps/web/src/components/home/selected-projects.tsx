@@ -32,9 +32,7 @@ const SelectedProjects = () => {
   const isInView = useInView(projectsRef, { once: true, margin: '-100px' })
   const t = useTranslations()
   const locale = useLocale()
-  const filteredProjects = allProjects.filter(
-    (project) => project.selected && project.locale === locale
-  )
+  const filteredProjects = allProjects.filter((project) => project.selected && project.locale === locale)
 
   return (
     <motion.div
@@ -104,11 +102,7 @@ const Card = (props: CardProps) => {
   const t = useTranslations()
 
   return (
-    <Link
-      key={slug}
-      href={`/projects/${slug}`}
-      className='shadow-feature-card group relative rounded-xl p-2'
-    >
+    <Link key={slug} href={`/projects/${slug}`} className='group relative rounded-xl p-2 shadow-feature-card'>
       <div className='flex items-center justify-between p-4'>
         <div className='flex items-center gap-3'>
           <LightbulbIcon className='size-[18px]' />
@@ -125,7 +119,7 @@ const Card = (props: CardProps) => {
       />
       <div className='absolute bottom-6 left-7 flex flex-col transition-[left] ease-out group-hover:left-[30px]'>
         <h3 className='text-2xl font-semibold text-white'>{name}</h3>
-        <p className='dark:text-muted-foreground mt-2 text-zinc-100'>{description}</p>
+        <p className='mt-2 text-zinc-100 dark:text-muted-foreground'>{description}</p>
       </div>
     </Link>
   )

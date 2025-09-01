@@ -18,13 +18,7 @@ import { Fragment, useCallback, useEffect, useState } from 'react'
 
 import { useCopyToClipboard } from '@/hooks/use-copy-to-clipboard'
 import { signOut, useSession } from '@/lib/auth-client'
-import {
-  SITE_FACEBOOK_URL,
-  SITE_GITHUB_URL,
-  SITE_INSTAGRAM_URL,
-  SITE_X_URL,
-  SITE_YOUTUBE_URL
-} from '@/lib/constants'
+import { SITE_FACEBOOK_URL, SITE_GITHUB_URL, SITE_INSTAGRAM_URL, SITE_X_URL, SITE_YOUTUBE_URL } from '@/lib/constants'
 import { useDialogsStore } from '@/stores/dialogs.store'
 
 type Groups = Array<{
@@ -54,7 +48,9 @@ const CommandMenu = () => {
 
     document.addEventListener('keydown', down)
 
-    return () => document.removeEventListener('keydown', down)
+    return () => {
+      document.removeEventListener('keydown', down)
+    }
   }, [])
 
   const openLink = useCallback((url: string) => {
@@ -109,7 +105,9 @@ const CommandMenu = () => {
         {
           title: t('command-menu.actions.source-code'),
           icon: <CodeIcon />,
-          onSelect: () => openLink('https://github.com/nelsonlaidev/nelsonlai.me')
+          onSelect: () => {
+            openLink('https://github.com/nelsonlaidev/nelsonlai.me')
+          }
         }
       ]
     },
@@ -119,27 +117,37 @@ const CommandMenu = () => {
         {
           title: 'GitHub',
           icon: <SiGithub />,
-          onSelect: () => openLink(SITE_GITHUB_URL)
+          onSelect: () => {
+            openLink(SITE_GITHUB_URL)
+          }
         },
         {
           title: 'Facebook',
           icon: <SiFacebook />,
-          onSelect: () => openLink(SITE_FACEBOOK_URL)
+          onSelect: () => {
+            openLink(SITE_FACEBOOK_URL)
+          }
         },
         {
           title: 'Instagram',
           icon: <SiInstagram />,
-          onSelect: () => openLink(SITE_INSTAGRAM_URL)
+          onSelect: () => {
+            openLink(SITE_INSTAGRAM_URL)
+          }
         },
         {
           title: 'X',
           icon: <SiX />,
-          onSelect: () => openLink(SITE_X_URL)
+          onSelect: () => {
+            openLink(SITE_X_URL)
+          }
         },
         {
           title: 'YouTube',
           icon: <SiYoutube />,
-          onSelect: () => openLink(SITE_YOUTUBE_URL)
+          onSelect: () => {
+            openLink(SITE_YOUTUBE_URL)
+          }
         }
       ]
     }
@@ -150,7 +158,9 @@ const CommandMenu = () => {
       <Button
         variant='ghost'
         className='size-9 p-0'
-        onClick={() => setIsOpen(true)}
+        onClick={() => {
+          setIsOpen(true)
+        }}
         aria-label={t('command-menu.open-menu')}
         data-testid='command-menu-button'
       >

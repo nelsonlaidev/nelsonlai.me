@@ -20,7 +20,7 @@ const MainLayout = (props: MainLayoutProps) => {
       <Image
         width={1512}
         height={550}
-        className='absolute left-1/2 top-0 -z-10 -translate-x-1/2'
+        className='absolute top-0 left-1/2 -z-10 -translate-x-1/2'
         src='/images/gradient-background-top.png'
         alt=''
         role='presentation'

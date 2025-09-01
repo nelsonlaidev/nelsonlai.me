@@ -24,13 +24,10 @@ export const generateStaticParams = (): Array<{ locale: string }> => {
   return i18n.locales.map((locale) => ({ locale }))
 }
 
-export const generateMetadata = async (
-  props: PageProps,
-  parent: ResolvingMetadata
-): Promise<Metadata> => {
-  const { locale } = await props.params
-  const previousOpenGraph = (await parent).openGraph ?? {}
-  const previousTwitter = (await parent).twitter ?? {}
+export const generateMetadata = async (props: PageProps, parent: ResolvingMetadata): Promise<Metadata> => {
+  const { params } = props
+  const { locale } = await params
+  const { openGraph = {}, twitter = {} } = await parent
   const t = await getTranslations({ locale, namespace: 'guestbook' })
   const title = t('title')
   const description = t('description')
@@ -43,20 +40,18 @@ export const generateMetadata = async (
     alternates: {
       canonical: url,
       languages: {
-        ...Object.fromEntries(
-          i18n.locales.map((l) => [l, getLocalizedPath({ slug, locale: l, absolute: false })])
-        ),
+        ...Object.fromEntries(i18n.locales.map((l) => [l, getLocalizedPath({ slug, locale: l, absolute: false })])),
         'x-default': getLocalizedPath({ slug, locale: i18n.defaultLocale, absolute: false })
       }
     },
     openGraph: {
-      ...previousOpenGraph,
+      ...openGraph,
       url,
       title,
       description
     },
     twitter: {
-      ...previousTwitter,
+      ...twitter,
       title,
       description
     }
@@ -64,7 +59,8 @@ export const generateMetadata = async (
 }
 
 const Page = async (props: PageProps) => {
-  const { locale } = await props.params
+  const { params } = props
+  const { locale } = await params
   setRequestLocale(locale)
   const session = await getSession()
   const t = await getTranslations()
@@ -87,10 +83,8 @@ const Page = async (props: PageProps) => {
 
   return (
     <>
-      <script
-        type='application/ld+json'
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      {/* eslint-disable-next-line @eslint-react/dom/no-dangerously-set-innerhtml -- safe */}
+      <script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <PageTitle title={title} description={description} />
       <div className='mx-auto max-w-xl space-y-10'>
         <Pinned />

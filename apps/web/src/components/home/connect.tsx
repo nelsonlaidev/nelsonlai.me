@@ -9,7 +9,7 @@ const Connect = () => {
   const t = useTranslations()
 
   return (
-    <div className='shadow-feature-card flex flex-col gap-6 rounded-xl p-4 lg:p-6'>
+    <div className='flex flex-col gap-6 rounded-xl p-4 shadow-feature-card lg:p-6'>
       <div className='flex items-center gap-2'>
         <LinkIcon className='size-[18px]' />
         <h2 className='text-sm'>{t('homepage.about-me.connect')}</h2>
@@ -24,7 +24,7 @@ const Connect = () => {
             <Link
               key={href}
               href={href}
-              className='text-muted-foreground hover:text-foreground flex w-fit items-center gap-3 transition-colors'
+              className='flex w-fit items-center gap-3 text-muted-foreground transition-colors hover:text-foreground'
             >
               <Icon className='size-[18px]' />
               <h3>{title}</h3>

@@ -29,14 +29,15 @@ const CommentList = () => {
     }))
   )
 
-  const { isSuccess, isLoading, isError, data, fetchNextPage, hasNextPage, isFetchingNextPage } =
-    usePostComments((pageParam) => ({
+  const { isSuccess, isLoading, isError, data, fetchNextPage, hasNextPage, isFetchingNextPage } = usePostComments(
+    (pageParam) => ({
       slug,
       sort,
       type: 'comments',
       highlightedCommentId: params.comment ?? undefined,
       cursor: pageParam
-    }))
+    })
+  )
 
   const { ref, inView } = useInView()
 
@@ -63,18 +64,16 @@ const CommentList = () => {
       <CommentHeader />
       <div className='space-y-8 py-2' data-testid='comments-list'>
         {isSuccess &&
-          data.pages.map((page) =>
-            page.comments.map((comment) => <Comment key={comment.id} comment={comment} />)
-          )}
+          data.pages.map((page) => page.comments.map((comment) => <Comment key={comment.id} comment={comment} />))}
         {(isLoading || isFetchingNextPage) && <CommentLoader />}
         {isError && (
           <div className='flex min-h-20 items-center justify-center'>
-            <p className='text-muted-foreground text-sm'>{t('error.failed-to-load-comments')}</p>
+            <p className='text-sm text-muted-foreground'>{t('error.failed-to-load-comments')}</p>
           </div>
         )}
         {noComments && (
           <div className='flex min-h-20 items-center justify-center'>
-            <p className='text-muted-foreground text-sm'>{t('blog.comments.no-comments')}</p>
+            <p className='text-sm text-muted-foreground'>{t('blog.comments.no-comments')}</p>
           </div>
         )}
         <span ref={ref} className='invisible' />

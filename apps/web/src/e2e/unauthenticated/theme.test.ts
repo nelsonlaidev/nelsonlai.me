@@ -22,11 +22,7 @@ const createThemeTest = (theme: 'light' | 'dark') => {
   })
 }
 
-const createSystemThemeTest = (
-  path: string,
-  preferredColorScheme: 'light' | 'dark',
-  expectedTheme: string
-) => {
+const createSystemThemeTest = (path: string, preferredColorScheme: 'light' | 'dark', expectedTheme: string) => {
   test(`should render ${expectedTheme} theme if preferred-colorscheme is ${preferredColorScheme}`, async ({
     browser,
     baseURL

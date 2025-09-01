@@ -1,5 +1,5 @@
 {
   "exclude": ["node_modules", "apps/**", "packages/**"],
-  "extends": "@repo/typescript-config/base.json",
+  "extends": "@nelsonlaidev/typescript-config/base.json",
   "include": ["**/*.ts", "prettier.config.js"]
 }

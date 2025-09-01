@@ -53,9 +53,7 @@
     margin-bottom: 16px;
   }
 
-  :is(
-    :where(h1, h2, h3, h4, h5, h6, th):not(:where([class~='not-prose'], [class~='not-prose'] *))
-  ) {
+  :is(:where(h1, h2, h3, h4, h5, h6, th):not(:where([class~='not-prose'], [class~='not-prose'] *))) {
     & a {
       text-decoration: none;
       font-weight: inherit;

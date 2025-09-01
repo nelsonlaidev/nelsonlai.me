@@ -20,8 +20,8 @@
     "tailwind-merge": "^3.3.0"
   },
   "devDependencies": {
-    "@repo/eslint-config": "workspace:*",
-    "@repo/typescript-config": "workspace:*",
+    "@nelsonlaidev/eslint-config": "https://pkg.pr.new/@nelsonlaidev/eslint-config@6e3e58f",
+    "@nelsonlaidev/typescript-config": "^0.0.2",
     "@types/node": "^22.15.29"
   }
 }

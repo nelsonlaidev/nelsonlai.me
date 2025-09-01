@@ -1,11 +1,6 @@
 import { StandardRPCJsonSerializer } from '@orpc/client/standard'
 import { toast } from '@repo/ui/components/sonner'
-import {
-  defaultShouldDehydrateQuery,
-  MutationCache,
-  QueryCache,
-  QueryClient
-} from '@tanstack/react-query'
+import { defaultShouldDehydrateQuery, MutationCache, QueryCache, QueryClient } from '@tanstack/react-query'
 
 const serializer = new StandardRPCJsonSerializer()
 
@@ -16,8 +11,7 @@ export const makeQueryClient = () => {
         staleTime: 60 * 1000
       },
       dehydrate: {
-        shouldDehydrateQuery: (query) =>
-          defaultShouldDehydrateQuery(query) || query.state.status === 'pending',
+        shouldDehydrateQuery: (query) => defaultShouldDehydrateQuery(query) || query.state.status === 'pending',
         serializeData: (data) => {
           const [json, meta] = serializer.serialize(data)
           return { json, meta }

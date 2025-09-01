@@ -97,8 +97,7 @@ export const createMessage = protectedProcedure
             }
           ],
           username: 'Blog',
-          avatar_url:
-            'https://cdn.discordapp.com/avatars/1123845082672537751/8af603a10f1d2f86ebc922ede339cd3a.webp',
+          avatar_url: 'https://cdn.discordapp.com/avatars/1123845082672537751/8af603a10f1d2f86ebc922ede339cd3a.webp',
           attachments: []
         })
       })

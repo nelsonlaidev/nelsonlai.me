@@ -29,21 +29,27 @@ const ThemeSwitcher = () => {
       <DropdownMenuContent align='end'>
         <DropdownMenuItem
           className='gap-2'
-          onClick={() => setTheme('light')}
+          onClick={() => {
+            setTheme('light')
+          }}
           data-testid='theme-light-button'
         >
           <SunIcon className='size-[18px]' /> {t('theme-toggle.options.light')}
         </DropdownMenuItem>
         <DropdownMenuItem
           className='gap-2'
-          onClick={() => setTheme('dark')}
+          onClick={() => {
+            setTheme('dark')
+          }}
           data-testid='theme-dark-button'
         >
           <MoonIcon className='size-[18px]' /> {t('theme-toggle.options.dark')}
         </DropdownMenuItem>
         <DropdownMenuItem
           className='gap-2'
-          onClick={() => setTheme('system')}
+          onClick={() => {
+            setTheme('system')
+          }}
           data-testid='theme-system-button'
         >
           <MonitorIcon className='size-[18px]' /> {t('theme-toggle.options.system')}

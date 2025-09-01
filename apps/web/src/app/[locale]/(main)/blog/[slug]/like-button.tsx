@@ -35,7 +35,7 @@ const LikeButton = (props: LikeButtonProps) => {
     const targetWidth = boundingBox?.width ?? 0
 
     const targetCenterX = targetX + targetWidth / 2
-    const confetti = (await import('canvas-confetti')).default
+    const { default: confetti } = await import('canvas-confetti')
 
     await confetti({
       zIndex: 999,

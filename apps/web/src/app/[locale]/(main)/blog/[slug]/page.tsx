@@ -34,11 +34,9 @@ export const generateStaticParams = (): Array<{ slug: string; locale: string }> 
   }))
 }
 
-export const generateMetadata = async (
-  props: PageProps,
-  parent: ResolvingMetadata
-): Promise<Metadata> => {
-  const { slug, locale } = await props.params
+export const generateMetadata = async (props: PageProps, parent: ResolvingMetadata): Promise<Metadata> => {
+  const { params } = props
+  const { slug, locale } = await params
 
   const post = allPosts.find((p) => p.slug === slug && p.locale === locale)
 
@@ -48,8 +46,7 @@ export const generateMetadata = async (
 
   const ISOPublishedTime = new Date(date).toISOString()
   const ISOModifiedTime = new Date(modifiedTime).toISOString()
-  const previousTwitter = (await parent).twitter ?? {}
-  const previousOpenGraph = (await parent).openGraph ?? {}
+  const { openGraph = {}, twitter = {} } = await parent
   const fullSlug = `/blog/${slug}`
   const url = getLocalizedPath({ slug: fullSlug, locale, absolute: false })
 
@@ -60,10 +57,7 @@ export const generateMetadata = async (
       canonical: url,
       languages: {
         ...Object.fromEntries(
-          i18n.locales.map((l) => [
-            l,
-            getLocalizedPath({ slug: fullSlug, locale: l, absolute: false })
-          ])
+          i18n.locales.map((l) => [l, getLocalizedPath({ slug: fullSlug, locale: l, absolute: false })])
         ),
         'x-default': getLocalizedPath({
           slug: fullSlug,
@@ -73,7 +67,7 @@ export const generateMetadata = async (
       }
     },
     openGraph: {
-      ...previousOpenGraph,
+      ...openGraph,
       url,
       type: 'article',
       title: title,
@@ -92,7 +86,7 @@ export const generateMetadata = async (
       ]
     },
     twitter: {
-      ...previousTwitter,
+      ...twitter,
       title: title,
       description: summary,
       images: [
@@ -108,7 +102,8 @@ export const generateMetadata = async (
 }
 
 const Page = async (props: PageProps) => {
-  const { slug, locale } = await props.params
+  const { params } = props
+  const { slug, locale } = await params
   setRequestLocale(locale)
 
   const post = allPosts.find((p) => p.slug === slug && p.locale === locale)
@@ -144,10 +139,8 @@ const Page = async (props: PageProps) => {
 
   return (
     <>
-      <script
-        type='application/ld+json'
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      {/* eslint-disable-next-line @eslint-react/dom/no-dangerously-set-innerhtml -- safe */}
+      <script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
       <Header post={post} />
 
@@ -155,7 +148,7 @@ const Page = async (props: PageProps) => {
         <article className='w-full lg:w-[670px]'>
           <Mdx code={code} />
         </article>
-        <aside className='lg:min-w-[270px] lg:max-w-[270px]'>
+        <aside className='lg:max-w-[270px] lg:min-w-[270px]'>
           <div className='sticky top-24'>
             {toc.length > 0 && <TableOfContents toc={toc} />}
             <LikeButton slug={slug} />

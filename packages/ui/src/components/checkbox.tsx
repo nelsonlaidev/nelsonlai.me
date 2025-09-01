@@ -11,12 +11,12 @@ const Checkbox = (props: CheckboxProps) => {
     <CheckboxPrimitive.Root
       data-slot='checkbox'
       className={cn(
-        'border-input shadow-xs peer size-4 shrink-0 rounded-[4px] border outline-none transition-shadow',
-        'dark:bg-input/30 dark:data-[state=checked]:bg-primary dark:aria-invalid:ring-destructive/40',
-        'focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]',
-        'aria-invalid:ring-destructive/20 aria-invalid:border-destructive',
+        'peer size-4 shrink-0 rounded-[4px] border border-input shadow-xs transition-shadow outline-none',
+        'dark:bg-input/30 dark:aria-invalid:ring-destructive/40 dark:data-[state=checked]:bg-primary',
+        'focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50',
+        'aria-invalid:border-destructive aria-invalid:ring-destructive/20',
         'disabled:cursor-not-allowed disabled:opacity-50',
-        'data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground data-[state=checked]:border-primary',
+        'data-[state=checked]:border-primary data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground',
         className
       )}
       {...rest}

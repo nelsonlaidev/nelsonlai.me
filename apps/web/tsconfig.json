@@ -6,11 +6,9 @@
       "@/*": ["./src/*"],
       "~/*": ["./public/*"],
       "content-collections": ["./.content-collections/generated"]
-    },
-    "jsx": "preserve",
-    "plugins": [{ "name": "next" }]
+    }
   },
   "exclude": ["node_modules"],
-  "extends": "@repo/typescript-config/base.json",
+  "extends": "@nelsonlaidev/typescript-config/nextjs.json",
   "include": ["**/*.ts", "**/*.tsx", "next-env.d.ts", ".next/types/**/*.ts", "postcss.config.mjs"]
 }

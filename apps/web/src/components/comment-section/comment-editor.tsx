@@ -57,8 +57,8 @@ const handleKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>, command:
   if (event.key === 'Enter') {
     const currentLine = value.slice(0, Math.max(0, selectionStart)).split('\n').pop()
 
-    const unorderedListNoContent = currentLine?.match(/^(\s*)([*-])\s$/)
-    const orderedListNoContent = currentLine?.match(/^(\d+)\.\s$/)
+    const unorderedListNoContent = currentLine?.match(/^\s*[*-]\s$/)
+    const orderedListNoContent = currentLine?.match(/^\d+\.\s$/)
 
     if (!!unorderedListNoContent || !!orderedListNoContent) {
       event.preventDefault()
@@ -91,10 +91,7 @@ const handleKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>, command:
   }
 }
 
-const decorateText = (
-  textarea: HTMLTextAreaElement | null,
-  type: 'bold' | 'italic' | 'strikethrough'
-) => {
+const decorateText = (textarea: HTMLTextAreaElement | null, type: 'bold' | 'italic' | 'strikethrough') => {
   if (!textarea) return
 
   const { selectionStart, selectionEnd, value } = textarea
@@ -129,8 +126,8 @@ const CommentEditor = (props: CommentEditorProps) => {
   return (
     <div
       className={cn(
-        'border-input dark:bg-input/30 rounded-md border bg-transparent pb-1 transition-[color,box-shadow]',
-        'focus-within:border-ring focus-within:ring-ring/50 focus-within:ring-[3px]'
+        'rounded-md border border-input bg-transparent pb-1 transition-[color,box-shadow] dark:bg-input/30',
+        'focus-within:border-ring focus-within:ring-[3px] focus-within:ring-ring/50'
       )}
     >
       <Textarea
@@ -153,7 +150,9 @@ const CommentEditor = (props: CommentEditorProps) => {
           variant='ghost'
           size='icon'
           className='size-7'
-          onClick={() => decorateText(textareaRef.current, 'bold')}
+          onClick={() => {
+            decorateText(textareaRef.current, 'bold')
+          }}
         >
           <BoldIcon />
         </Button>
@@ -162,7 +161,9 @@ const CommentEditor = (props: CommentEditorProps) => {
           variant='ghost'
           size='icon'
           className='size-7'
-          onClick={() => decorateText(textareaRef.current, 'strikethrough')}
+          onClick={() => {
+            decorateText(textareaRef.current, 'strikethrough')
+          }}
         >
           <StrikethroughIcon />
         </Button>
@@ -171,7 +172,9 @@ const CommentEditor = (props: CommentEditorProps) => {
           variant='ghost'
           size='icon'
           className='size-7'
-          onClick={() => decorateText(textareaRef.current, 'italic')}
+          onClick={() => {
+            decorateText(textareaRef.current, 'italic')
+          }}
         >
           <ItalicIcon />
         </Button>

@@ -21,8 +21,8 @@
     "consola": "^3.4.2"
   },
   "devDependencies": {
-    "@repo/env": "workspace:*",
-    "@repo/eslint-config": "workspace:*",
-    "@repo/typescript-config": "workspace:*"
+    "@nelsonlaidev/eslint-config": "https://pkg.pr.new/@nelsonlaidev/eslint-config@6e3e58f",
+    "@nelsonlaidev/typescript-config": "^0.0.2",
+    "@repo/env": "workspace:*"
   }
 }

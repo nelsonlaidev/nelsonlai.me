@@ -5,7 +5,7 @@ import NextLink from 'next/link'
 const linkVariants = cva({
   variants: {
     variant: {
-      muted: 'text-muted-foreground hover:text-foreground transition-colors'
+      muted: 'text-muted-foreground transition-colors hover:text-foreground'
     }
   }
 })

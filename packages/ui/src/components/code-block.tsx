@@ -17,16 +17,7 @@ type CodeBlockProps = {
 } & React.ComponentProps<'pre'>
 
 const CodeBlock = (props: CodeBlockProps) => {
-  const {
-    children,
-    className,
-    title,
-    'data-lang': lang,
-    figureClassName,
-    scrollAreaClassName,
-    ref,
-    ...rest
-  } = props
+  const { children, className, title, 'data-lang': lang, figureClassName, scrollAreaClassName, ref, ...rest } = props
 
   const textInput = useRef<HTMLPreElement>(null)
   const Icon = getIconByLanguage(lang ?? '')
@@ -38,20 +29,20 @@ const CodeBlock = (props: CodeBlockProps) => {
   return (
     <figure
       className={cn(
-        'not-prose bg-secondary/50 group relative my-6 overflow-hidden rounded-lg border text-sm',
+        'not-prose group relative my-6 overflow-hidden rounded-lg border bg-secondary/50 text-sm',
         figureClassName
       )}
     >
       {title ? (
-        <div className='bg-muted/50 flex flex-row items-center gap-2 border-b px-4 py-1.5'>
+        <div className='flex flex-row items-center gap-2 border-b bg-muted/50 px-4 py-1.5'>
           <div className='text-muted-foreground'>
             <Icon className='size-3.5' />
           </div>
-          <figcaption className='text-muted-foreground flex-1 truncate'>{title}</figcaption>
+          <figcaption className='flex-1 truncate text-muted-foreground'>{title}</figcaption>
           <CopyButton className='-me-2' onCopy={onCopy} />
         </div>
       ) : (
-        <CopyButton className='absolute right-2 top-2 z-10' onCopy={onCopy} />
+        <CopyButton className='absolute top-2 right-2 z-10' onCopy={onCopy} />
       )}
 
       <ScrollArea className={scrollAreaClassName}>
@@ -73,9 +64,13 @@ const CopyButton = (props: CopyButtonProps) => {
   const [isCopied, setIsCopied] = useState(false)
 
   useEffect(() => {
-    const copyResetTimeoutId = setTimeout(() => setIsCopied(false), 2000)
+    const copyResetTimeoutId = setTimeout(() => {
+      setIsCopied(false)
+    }, 2000)
 
-    return () => clearTimeout(copyResetTimeoutId)
+    return () => {
+      clearTimeout(copyResetTimeoutId)
+    }
   }, [isCopied])
 
   return (

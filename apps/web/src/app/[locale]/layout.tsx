@@ -32,7 +32,8 @@ export const generateStaticParams = (): Array<{ locale: string }> => {
 }
 
 export const generateMetadata = async (props: LayoutProps): Promise<Metadata> => {
-  const { locale } = await props.params
+  const { params } = props
+  const { locale } = await params
   const t = await getTranslations({ locale, namespace: 'metadata' })
 
   return {
@@ -141,8 +142,8 @@ const fontMono = Geist_Mono({
 })
 
 const Layout = async (props: LayoutProps) => {
-  const { children } = props
-  const { locale } = await props.params
+  const { children, params } = props
+  const { locale } = await params
 
   if (!hasLocale(routing.locales, locale)) {
     notFound()
@@ -151,11 +152,7 @@ const Layout = async (props: LayoutProps) => {
   setRequestLocale(locale)
 
   return (
-    <html
-      lang={locale}
-      className={cn(fontSans.variable, fontMono.variable)}
-      suppressHydrationWarning
-    >
+    <html lang={locale} className={cn(fontSans.variable, fontMono.variable)} suppressHydrationWarning>
       <body className='relative flex min-h-screen flex-col'>
         <NuqsAdapter>
           <Providers>

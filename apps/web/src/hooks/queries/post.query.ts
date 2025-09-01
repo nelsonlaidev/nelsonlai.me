@@ -1,10 +1,4 @@
-import {
-  keepPreviousData,
-  useInfiniteQuery,
-  useMutation,
-  useQuery,
-  useQueryClient
-} from '@tanstack/react-query'
+import { keepPreviousData, useInfiniteQuery, useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 
 import { type Inputs, orpc, type Outputs } from '@/orpc/client'
 
@@ -100,10 +94,7 @@ export const useVotePostComment = (input: Inputs['posts']['comments']['list']) =
   )
 }
 
-export const useCreatePostComment = (
-  input: Inputs['posts']['comments']['list'],
-  onSuccess?: () => void
-) => {
+export const useCreatePostComment = (input: Inputs['posts']['comments']['list'], onSuccess?: () => void) => {
   const queryClient = useQueryClient()
 
   return useMutation(
@@ -118,10 +109,7 @@ export const useCreatePostComment = (
   )
 }
 
-export const useDeletePostComment = (
-  input: Inputs['posts']['comments']['list'],
-  onSuccess?: () => void
-) => {
+export const useDeletePostComment = (input: Inputs['posts']['comments']['list'], onSuccess?: () => void) => {
   const queryClient = useQueryClient()
 
   return useMutation(

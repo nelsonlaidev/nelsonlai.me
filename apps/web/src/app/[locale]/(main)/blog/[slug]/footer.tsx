@@ -26,9 +26,7 @@ const Footer = (props: FooterProps) => {
       <Link href={editURL} className={linkVariants({ variant: 'muted' })}>
         {t('blog.footer.edit-on-github')}
       </Link>
-      <div className='text-muted-foreground'>
-        {t('blog.footer.last-updated', { date: formattedDate })}
-      </div>
+      <div className='text-muted-foreground'>{t('blog.footer.last-updated', { date: formattedDate })}</div>
     </div>
   )
 }

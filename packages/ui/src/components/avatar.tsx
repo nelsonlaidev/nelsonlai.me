@@ -21,11 +21,7 @@ const AvatarImage = (props: AvatarImageProps) => {
   const { className, ...rest } = props
 
   return (
-    <AvatarPrimitive.Image
-      data-slot='avatar-image'
-      className={cn('aspect-square size-full', className)}
-      {...rest}
-    />
+    <AvatarPrimitive.Image data-slot='avatar-image' className={cn('aspect-square size-full', className)} {...rest} />
   )
 }
 
@@ -37,7 +33,7 @@ const AvatarFallback = (props: AvatarFallbackProps) => {
   return (
     <AvatarPrimitive.Fallback
       data-slot='avatar-fallback'
-      className={cn('bg-muted flex size-full items-center justify-center rounded-full', className)}
+      className={cn('flex size-full items-center justify-center rounded-full bg-muted', className)}
       {...rest}
     />
   )

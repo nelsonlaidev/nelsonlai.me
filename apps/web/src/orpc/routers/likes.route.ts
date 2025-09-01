@@ -23,10 +23,7 @@ export const countLike = publicProcedure
 
     const [[post], [user]] = await Promise.all([
       context.db.select({ likes: posts.likes }).from(posts).where(eq(posts.slug, input.slug)),
-      context.db
-        .select({ likes: likesSessions.likes })
-        .from(likesSessions)
-        .where(eq(likesSessions.id, sessionId))
+      context.db.select({ likes: likesSessions.likes }).from(likesSessions).where(eq(likesSessions.id, sessionId))
     ])
 
     if (!post) {

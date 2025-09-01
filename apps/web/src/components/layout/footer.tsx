@@ -16,7 +16,7 @@ const Footer = () => {
   const t = useTranslations()
 
   return (
-    <footer className='bg-background/30 shadow-xs relative mx-auto mb-6 flex w-full max-w-5xl flex-col rounded-2xl p-8 saturate-100 backdrop-blur-[10px]'>
+    <footer className='relative mx-auto mb-6 flex w-full max-w-5xl flex-col rounded-2xl bg-background/30 p-8 shadow-xs saturate-100 backdrop-blur-[10px]'>
       <NowPlaying />
       <div className='mt-12 grid grid-cols-2 sm:grid-cols-3'>
         {FOOTER_LINKS.map((list) => (
@@ -39,11 +39,11 @@ const Footer = () => {
           href='https://git.new/nelsonlai-me'
           className='flex items-center justify-center overflow-hidden rounded-md border'
         >
-          <div className='bg-muted flex h-8 items-center gap-2 border-r px-2'>
+          <div className='flex h-8 items-center gap-2 border-r bg-muted px-2'>
             <StarIcon className='size-4' />
             <span className='font-medium'>Star</span>
           </div>
-          <div className='bg-background flex h-8 items-center px-3'>
+          <div className='flex h-8 items-center bg-background px-3'>
             {isSuccess &&
               Intl.NumberFormat('en', {
                 notation: 'compact',

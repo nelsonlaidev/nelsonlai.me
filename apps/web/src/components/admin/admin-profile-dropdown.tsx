@@ -25,7 +25,12 @@ const AdminProfileDropdown = () => {
 
   if (!session) {
     return (
-      <Button size='sm' onClick={() => setIsSignInOpen(true)}>
+      <Button
+        size='sm'
+        onClick={() => {
+          setIsSignInOpen(true)
+        }}
+      >
         {t('common.sign-in')}
       </Button>
     )
@@ -48,7 +53,7 @@ const AdminProfileDropdown = () => {
         <DropdownMenuLabel>
           <div className='flex flex-col gap-1'>
             <p className='text-sm'>{name}</p>
-            <p className='text-muted-foreground text-xs'>{email}</p>
+            <p className='text-xs text-muted-foreground'>{email}</p>
           </div>
         </DropdownMenuLabel>
       </DropdownMenuContent>

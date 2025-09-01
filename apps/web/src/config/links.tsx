@@ -1,27 +1,7 @@
-import {
-  type IconType,
-  SiFacebook,
-  SiGithub,
-  SiInstagram,
-  SiX,
-  SiYoutube
-} from '@icons-pack/react-simple-icons'
-import {
-  BarChartIcon,
-  FlameIcon,
-  MessageCircleIcon,
-  MonitorIcon,
-  PencilIcon,
-  UserCircleIcon
-} from 'lucide-react'
+import { type IconType, SiFacebook, SiGithub, SiInstagram, SiX, SiYoutube } from '@icons-pack/react-simple-icons'
+import { BarChartIcon, FlameIcon, MessageCircleIcon, MonitorIcon, PencilIcon, UserCircleIcon } from 'lucide-react'
 
-import {
-  SITE_FACEBOOK_URL,
-  SITE_GITHUB_URL,
-  SITE_INSTAGRAM_URL,
-  SITE_X_URL,
-  SITE_YOUTUBE_URL
-} from '@/lib/constants'
+import { SITE_FACEBOOK_URL, SITE_GITHUB_URL, SITE_INSTAGRAM_URL, SITE_X_URL, SITE_YOUTUBE_URL } from '@/lib/constants'
 
 type SocialLinks = Array<{
   href: string

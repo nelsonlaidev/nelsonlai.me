@@ -28,11 +28,9 @@ export const generateStaticParams = (): Array<{ slug: string; locale: string }> 
   }))
 }
 
-export const generateMetadata = async (
-  props: PageProps,
-  parent: ResolvingMetadata
-): Promise<Metadata> => {
-  const { slug, locale } = await props.params
+export const generateMetadata = async (props: PageProps, parent: ResolvingMetadata): Promise<Metadata> => {
+  const { params } = props
+  const { slug, locale } = await params
 
   const project = allProjects.find((p) => p.slug === slug && p.locale === locale)
 
@@ -41,8 +39,7 @@ export const generateMetadata = async (
   }
 
   const { name, description } = project
-  const previousTwitter = (await parent).twitter ?? {}
-  const previousOpenGraph = (await parent).openGraph ?? {}
+  const { openGraph = {}, twitter = {} } = await parent
   const fullSlug = `/projects/${slug}`
   const url = getLocalizedPath({ slug: fullSlug, locale, absolute: false })
 
@@ -53,10 +50,7 @@ export const generateMetadata = async (
       canonical: url,
       languages: {
         ...Object.fromEntries(
-          i18n.locales.map((l) => [
-            l,
-            getLocalizedPath({ slug: fullSlug, locale: l, absolute: false })
-          ])
+          i18n.locales.map((l) => [l, getLocalizedPath({ slug: fullSlug, locale: l, absolute: false })])
         ),
         'x-default': getLocalizedPath({
           slug: fullSlug,
@@ -66,7 +60,7 @@ export const generateMetadata = async (
       }
     },
     openGraph: {
-      ...previousOpenGraph,
+      ...openGraph,
       url,
       title: name,
       description: description,
@@ -81,7 +75,7 @@ export const generateMetadata = async (
       ]
     },
     twitter: {
-      ...previousTwitter,
+      ...twitter,
       title: name,
       description: description,
       images: [
@@ -97,7 +91,8 @@ export const generateMetadata = async (
 }
 
 const Page = async (props: PageProps) => {
-  const { slug, locale } = await props.params
+  const { params } = props
+  const { slug, locale } = await params
   setRequestLocale(locale)
 
   const project = allProjects.find((p) => p.slug === slug && p.locale === locale)
@@ -127,10 +122,8 @@ const Page = async (props: PageProps) => {
 
   return (
     <>
-      <script
-        type='application/ld+json'
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      {/* eslint-disable-next-line @eslint-react/dom/no-dangerously-set-innerhtml -- safe */}
+      <script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <div className='mx-auto max-w-3xl'>
         <Header {...project} />
         <BlurImage

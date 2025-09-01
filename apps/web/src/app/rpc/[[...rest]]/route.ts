@@ -8,7 +8,11 @@ import { createORPCContext } from '@/orpc/context'
 import { router } from '@/orpc/routers'
 
 const handler = new RPCHandler(router, {
-  interceptors: [onError((error) => console.error(error))],
+  interceptors: [
+    onError((error) => {
+      console.error(error)
+    })
+  ],
   plugins: [new BatchHandlerPlugin()]
 })
 

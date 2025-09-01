@@ -23,8 +23,8 @@
     "*.ts": "eslint --fix"
   },
   "devDependencies": {
-    "@repo/eslint-config": "workspace:*",
-    "@repo/typescript-config": "workspace:*",
+    "@nelsonlaidev/eslint-config": "https://pkg.pr.new/@nelsonlaidev/eslint-config@6e3e58f",
+    "@nelsonlaidev/typescript-config": "^0.0.2",
     "@types/react": "^19.1.6",
     "next": "^15.3.3",
     "next-intl": "^4.1.0"

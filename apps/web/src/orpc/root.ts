@@ -33,12 +33,10 @@ const authMiddleware = base.middleware(async ({ context, next }) => {
 
 export const publicProcedure = base.use(rateLimitMiddleware)
 export const protectedProcedure = publicProcedure.use(authMiddleware)
-export const adminProcedure = protectedProcedure
-  .use(authMiddleware)
-  .use(async ({ context, next }) => {
-    if (context.session.user.role !== 'admin') {
-      throw new ORPCError('FORBIDDEN')
-    }
+export const adminProcedure = protectedProcedure.use(authMiddleware).use(async ({ context, next }) => {
+  if (context.session.user.role !== 'admin') {
+    throw new ORPCError('FORBIDDEN')
+  }
 
-    return next({ context })
-  })
+  return next({ context })
+})

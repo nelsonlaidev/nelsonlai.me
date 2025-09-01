@@ -19,9 +19,7 @@ const FilteredPosts = (props: FilteredPostsProps) => {
   const [searchValue, setSearchValue] = useState('')
   const t = useTranslations()
 
-  const filteredPosts = posts.filter((post) =>
-    post.title.toLowerCase().includes(searchValue.toLowerCase())
-  )
+  const filteredPosts = posts.filter((post) => post.title.toLowerCase().includes(searchValue.toLowerCase()))
 
   return (
     <>
@@ -38,13 +36,11 @@ const FilteredPosts = (props: FilteredPostsProps) => {
           id='search'
         />
         <Label htmlFor='search'>
-          <SearchIcon className='absolute left-4 top-1/2 size-4 -translate-y-1/2' />
+          <SearchIcon className='absolute top-1/2 left-4 size-4 -translate-y-1/2' />
         </Label>
       </div>
       {filteredPosts.length === 0 && (
-        <div className='my-24 text-center text-xl'>
-          {t('component.filtered-posts.no-posts-found')}
-        </div>
+        <div className='my-24 text-center text-xl'>{t('component.filtered-posts.no-posts-found')}</div>
       )}
       <PostCards posts={filteredPosts} />
     </>
