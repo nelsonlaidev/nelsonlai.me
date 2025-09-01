@@ -21,8 +21,8 @@ importers:
         specifier: https://pkg.pr.new/@nelsonlaidev/eslint-config@8203040
         version: https://pkg.pr.new/@nelsonlaidev/eslint-config@8203040(eslint@9.34.0(jiti@2.5.1))(prettier@3.6.2)(tailwindcss@4.1.12)(ts-api-utils@2.1.0(typescript@5.9.2))(typescript@5.9.2)(vitest@3.2.4)
       '@nelsonlaidev/prettier-config':
-        specifier: ^0.0.2
-        version: 0.0.2(prettier-plugin-packagejson@2.5.19(prettier@3.6.2))(prettier@3.6.2)
+        specifier: https://pkg.pr.new/@nelsonlaidev/prettier-config@8203040
+        version: https://pkg.pr.new/@nelsonlaidev/prettier-config@8203040(prettier-plugin-packagejson@2.5.19(prettier@3.6.2))(prettier@3.6.2)
       '@nelsonlaidev/typescript-config':
         specifier: ^0.0.2
         version: 0.0.2
@@ -2233,8 +2233,9 @@ packages:
     peerDependencies:
       eslint: '>=9.0.0'
 
-  '@nelsonlaidev/prettier-config@0.0.2':
-    resolution: {integrity: sha512-LfxkX0InkkzSidfO1b88DLgh+l6Tun3/qZvq3rQVLMKtRL8wuwh/55/ptFJhj+8PAxpqrcgUsFFAEecHw4P9vw==}
+  '@nelsonlaidev/prettier-config@https://pkg.pr.new/@nelsonlaidev/prettier-config@8203040':
+    resolution: {tarball: https://pkg.pr.new/@nelsonlaidev/prettier-config@8203040}
+    version: 0.0.2
     peerDependencies:
       prettier: '>=3.6.0'
       prettier-plugin-packagejson: '>=2.5.0'
@@ -10818,7 +10819,7 @@ snapshots:
       - typescript
       - vitest
 
-  '@nelsonlaidev/prettier-config@0.0.2(prettier-plugin-packagejson@2.5.19(prettier@3.6.2))(prettier@3.6.2)':
+  '@nelsonlaidev/prettier-config@https://pkg.pr.new/@nelsonlaidev/prettier-config@8203040(prettier-plugin-packagejson@2.5.19(prettier@3.6.2))(prettier@3.6.2)':
     dependencies:
       prettier: 3.6.2
       prettier-plugin-packagejson: 2.5.19(prettier@3.6.2)
@@ -11914,9 +11915,7 @@ snapshots:
       metro-runtime: 0.83.1
     transitivePeerDependencies:
       - '@babel/core'
-      - bufferutil
       - supports-color
-      - utf-8-validate
 
   '@react-native/normalize-colors@0.81.0': {}
 

@@ -51,7 +51,7 @@
     "@commitlint/config-conventional": "^19.8.1",
     "@cspell/dict-redis": "^1.0.5",
     "@nelsonlaidev/eslint-config": "https://pkg.pr.new/@nelsonlaidev/eslint-config@8203040",
-    "@nelsonlaidev/prettier-config": "^0.0.2",
+    "@nelsonlaidev/prettier-config": "https://pkg.pr.new/@nelsonlaidev/prettier-config@8203040",
     "@nelsonlaidev/typescript-config": "^0.0.2",
     "@playwright/test": "^1.52.0",
     "@types/node": "^22.15.29",
