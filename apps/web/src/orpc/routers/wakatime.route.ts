@@ -12,7 +12,7 @@ export const wakatimeStats = publicProcedure.output(wakatimeStatsSchema).handler
     }
   }
 
-  const res = await fetch('https://wakatime.com/api/v1/users/current/all_time_since_today', {
+  const response = await fetch('https://wakatime.com/api/v1/users/current/all_time_since_today', {
     headers: {
       Authorization: `Basic ${Buffer.from(env.WAKATIME_API_KEY).toString('base64')}`
     }
@@ -20,7 +20,7 @@ export const wakatimeStats = publicProcedure.output(wakatimeStatsSchema).handler
 
   const {
     data: { total_seconds }
-  } = await res.json()
+  } = await response.json()
 
   return {
     hours: Math.round(total_seconds / 60 / 60)
