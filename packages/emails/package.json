@@ -22,7 +22,7 @@
     "react-email": "^4.0.16"
   },
   "devDependencies": {
-    "@nelsonlaidev/eslint-config": "https://pkg.pr.new/@nelsonlaidev/eslint-config@6e3e58f",
+    "@nelsonlaidev/eslint-config": "^1.0.0",
     "@nelsonlaidev/typescript-config": "^0.0.2",
     "@types/node": "^22.15.29",
     "@types/react": "^19.1.6",
