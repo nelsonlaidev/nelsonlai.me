@@ -1,0 +1,88 @@
+$schema: https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json
+version: '0.2'
+enableGlobDot: true
+useGitignore: true
+ignorePaths:
+  - .git
+  - pnpm-lock.yaml
+dictionaries:
+  - npm
+  - fullstack
+  - redis
+import:
+  - '@cspell/dict-redis/cspell-ext.json'
+words:
+  - aceternity
+  - airpods
+  - anishde
+  - antec
+  - argb
+  - asus
+  - bentogrids
+  - bradlc
+  - cleanshot
+  - cmdk
+  - cobe
+  - customizer
+  - dbaeumer
+  - delba
+  - dotenvx
+  - fuma
+  - fumadocs
+  - ghostty
+  - googleusercontent
+  - hiett
+  - iina
+  - innerhtml
+  - jahir
+  - joshwcomeau
+  - karabiner
+  - keka
+  - keychron
+  - keystyle
+  - leerob
+  - linktree
+  - lokalise
+  - macbook
+  - maximeheckel
+  - motrix
+  - nelsonlai
+  - nelsonlaidev
+  - nelsonlaime
+  - nerdfish
+  - nextdotjs
+  - nikolovlazar
+  - nlcj
+  - nodedotjs
+  - nosniff
+  - nums
+  - nuqs
+  - octocat
+  - oliveira
+  - orbstack
+  - orpc
+  - paralleldrive
+  - planetscale
+  - plpgsql
+  - radixui
+  - reactquery
+  - rmiz
+  - ryzen
+  - sameorigin
+  - samuelkraft
+  - shadcn
+  - shiki
+  - shikijs
+  - simulately
+  - sonarjs
+  - techstack
+  - theodorusclarence
+  - tsvector
+  - turbopack
+  - umami
+  - unifiedjs
+  - unzoom
+  - vocs
+  - waka
+  - wakatime
+  - zenorocha

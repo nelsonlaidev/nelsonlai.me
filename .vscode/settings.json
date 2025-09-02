@@ -1,6 +1,7 @@
 {
   "cSpell.diagnosticLevel": "Warning",
   "cSpell.enabled": true,
+  "cSpell.ignorePaths": ["node_modules", ".git"],
 
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit",
