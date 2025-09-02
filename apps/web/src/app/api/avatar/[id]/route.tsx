@@ -30,11 +30,11 @@ const generateGradient = (id: string) => {
   }
 }
 
-export const GET = async (req: Request, context: RouteContext<'/api/avatar/[id]'>) => {
+export const GET = async (request: Request, context: RouteContext<'/api/avatar/[id]'>) => {
   const { params } = context
   const { id } = await params
 
-  const { searchParams } = new URL(req.url)
+  const { searchParams } = new URL(request.url)
   const size = searchParams.get('size') ?? '40'
 
   try {

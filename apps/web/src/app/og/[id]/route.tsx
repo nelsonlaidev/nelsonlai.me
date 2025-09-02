@@ -9,7 +9,7 @@ import { NextResponse } from 'next/server'
 
 import { getBaseUrl } from '@/utils/get-base-url'
 
-export const GET = async (_: Request, props: RouteContext<'/og/[id]'>) => {
+export const GET = async (_request: Request, props: RouteContext<'/og/[id]'>) => {
   const { params } = props
   const { id } = await params
 

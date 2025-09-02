@@ -11,10 +11,10 @@ export const youtubeStats = publicProcedure.output(youtubeStatsSchema).handler(a
     }
   }
 
-  const res = await fetch(
+  const response = await fetch(
     `https://www.googleapis.com/youtube/v3/channels?id=UC2hMWOaOlk9vrkvFVaGmn0Q&part=statistics&key=${env.GOOGLE_API_KEY}`
   )
-  const data = await res.json()
+  const data = await response.json()
 
   const channel = data.items[0]
   const statistics = channel.statistics

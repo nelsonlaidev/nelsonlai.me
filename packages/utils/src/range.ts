@@ -1,1 +1,1 @@
-export const range = (length: number): number[] => Array.from({ length }, (_, i) => i)
+export const range = (length: number): number[] => Array.from({ length }, (_element, i) => i)
