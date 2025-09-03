@@ -10,10 +10,10 @@ export const viewsStats = publicProcedure.output(viewsStatsSchema).handler(async
     })
     .from(posts)
 
-  const value = result?.value ? Number(result.value) : 0
+  const views = result?.value ? Number(result.value) : 0
 
   return {
-    views: value
+    views
   }
 })
 
