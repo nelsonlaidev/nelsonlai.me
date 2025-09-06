@@ -96,8 +96,8 @@ export const generateMetadata = async (props: LayoutProps): Promise<Metadata> =>
       ]
     },
     icons: {
-      icon: '/favicons/favicon.svg',
-      shortcut: '/favicons/favicon.svg',
+      icon: '/favicons/favicon.ico',
+      shortcut: '/favicons/favicon.ico',
       apple: [
         {
           url: '/favicons/apple-touch-icon.png',
@@ -106,6 +106,12 @@ export const generateMetadata = async (props: LayoutProps): Promise<Metadata> =>
         }
       ],
       other: [
+        {
+          rel: 'icon',
+          type: 'image/svg+xml',
+          url: '/favicons/favicon.svg',
+          sizes: 'any'
+        },
         {
           rel: 'icon',
           type: 'image/png',
