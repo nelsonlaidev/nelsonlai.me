@@ -119,8 +119,8 @@ const GetInTouch = () => {
             </p>
             <p className='text-zinc-800 dark:text-zinc-300'>{t('homepage.get-in-touch.description')}</p>
             <div className='my-8'>
-              <a href='mailto:me@nelsonlai.me' className='rounded-full bg-email-button px-4 py-2 text-sm text-white'>
-                me@nelsonlai.me
+              <a href='mailto:me@nelsonlai.dev' className='rounded-full bg-email-button px-4 py-2 text-sm text-white'>
+                me@nelsonlai.dev
               </a>
             </div>
           </div>

@@ -146,7 +146,7 @@ export const createComment = protectedProcedure
         // Notify the author of the blog post via email
         if (!input.parentId && user.role === 'user') {
           await resend.emails.send({
-            from: 'Nelson Lai <me@nelsonlai.me>',
+            from: 'Nelson Lai <me@nelsonlai.dev>',
             to: env.AUTHOR_EMAIL,
             subject: 'New comment on your blog post',
             react: CommentEmailTemplate({
@@ -170,7 +170,7 @@ export const createComment = protectedProcedure
 
           if (parentComment && parentComment.user.email !== user.email) {
             await resend.emails.send({
-              from: 'Nelson Lai <me@nelsonlai.me>',
+              from: 'Nelson Lai <me@nelsonlai.dev>',
               to: parentComment.user.email,
               subject: 'New reply to your comment',
               react: ReplyEmailTemplate({

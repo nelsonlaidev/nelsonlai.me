@@ -2,7 +2,7 @@
   "name": "nelsonlai-me",
   "version": "0.0.0",
   "license": "MIT",
-  "author": "Nelson Lai <me@nelsonlai.me> (https://github.com/nelsonlaidev/)",
+  "author": "Nelson Lai <me@nelsonlai.dev> (https://github.com/nelsonlaidev/)",
   "type": "module",
   "scripts": {
     "build": "turbo build",
