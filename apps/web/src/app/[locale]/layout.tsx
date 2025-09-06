@@ -96,13 +96,16 @@ export const generateMetadata = async (props: LayoutProps): Promise<Metadata> =>
       ]
     },
     icons: {
-      icon: '/favicons/favicon.ico',
-      shortcut: '/favicons/favicon.ico',
+      icon: {
+        rel: 'icon',
+        type: 'image/x-icon',
+        url: '/favicons/favicon.ico'
+      },
       apple: [
         {
+          type: 'image/png',
           url: '/favicons/apple-touch-icon.png',
-          sizes: '180x180',
-          type: 'image/png'
+          sizes: '180x180'
         }
       ],
       other: [
@@ -115,14 +118,14 @@ export const generateMetadata = async (props: LayoutProps): Promise<Metadata> =>
         {
           rel: 'icon',
           type: 'image/png',
-          sizes: '16x16',
-          url: '/favicons/favicon-16x16.png'
+          url: '/favicons/favicon-16x16.png',
+          sizes: '16x16'
         },
         {
           rel: 'icon',
           type: 'image/png',
-          sizes: '32x32',
-          url: '/favicons/favicon-32x32.png'
+          url: '/favicons/favicon-32x32.png',
+          sizes: '32x32'
         }
       ]
     }
