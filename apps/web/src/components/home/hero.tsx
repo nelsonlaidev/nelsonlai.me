@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from 'motion/react'
 import { useEffect, useState } from 'react'
 
 import BlurImage from '@/components/blur-image'
+import { MY_NAME } from '@/lib/constants'
 
 const TEXTS = [
   {
@@ -129,7 +130,7 @@ const Hero = () => {
             className='rounded-full'
             width={112}
             height={112}
-            alt='Nelson Lai'
+            alt={MY_NAME}
             lazy={false}
           />
           <div className='absolute inset-0 -z-10 bg-linear-to-tl from-purple-700 to-orange-700 opacity-50 blur-2xl' />

@@ -9,10 +9,10 @@ import { notFound } from 'next/navigation'
 import Mdx from '@/components/mdx'
 import PageTitle from '@/components/page-title'
 import {
+  MY_NAME,
   SITE_FACEBOOK_URL,
   SITE_GITHUB_URL,
   SITE_INSTAGRAM_URL,
-  SITE_NAME,
   SITE_X_URL,
   SITE_YOUTUBE_URL
 } from '@/lib/constants'
@@ -83,7 +83,7 @@ const Page = async (props: PageProps) => {
     url,
     mainEntity: {
       '@type': 'Person',
-      name: SITE_NAME,
+      name: MY_NAME,
       description: t('metadata.site-description'),
       url: getBaseUrl(),
       sameAs: [SITE_FACEBOOK_URL, SITE_INSTAGRAM_URL, SITE_X_URL, SITE_GITHUB_URL, SITE_YOUTUBE_URL]

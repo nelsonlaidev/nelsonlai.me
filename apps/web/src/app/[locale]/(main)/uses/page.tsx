@@ -8,6 +8,7 @@ import { notFound } from 'next/navigation'
 
 import Mdx from '@/components/mdx'
 import PageTitle from '@/components/page-title'
+import { MY_NAME } from '@/lib/constants'
 import { getBaseUrl } from '@/utils/get-base-url'
 import { getLocalizedPath } from '@/utils/get-localized-path'
 
@@ -75,7 +76,7 @@ const Page = async (props: PageProps) => {
     url,
     isPartOf: {
       '@type': 'WebSite',
-      name: t('metadata.site-title'),
+      name: MY_NAME,
       url: getBaseUrl()
     }
   }

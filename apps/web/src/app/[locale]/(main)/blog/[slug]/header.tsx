@@ -11,6 +11,7 @@ import ImageZoom from '@/components/image-zoom'
 import Link from '@/components/link'
 import { useIncrementPostViewCount, usePostCommentCount, usePostViewCount } from '@/hooks/queries/post.query'
 import { useFormattedDate } from '@/hooks/use-formatted-date'
+import { MY_NAME } from '@/lib/constants'
 
 type HeaderProps = {
   post: Post
@@ -45,8 +46,8 @@ const Header = (props: HeaderProps) => {
           <div className='space-y-1 md:mx-auto'>
             <div className='text-muted-foreground'>{t('blog.header.written-by')}</div>
             <Link href='https://github.com/nelsonlaidev' className='flex items-center gap-2'>
-              <BlurImage src='/images/avatar.png' className='rounded-full' width={24} height={24} alt='Nelson Lai' />
-              Nelson Lai
+              <BlurImage src='/images/avatar.png' className='rounded-full' width={24} height={24} alt={MY_NAME} />
+              {MY_NAME}
             </Link>
           </div>
           <div className='space-y-1 md:mx-auto'>

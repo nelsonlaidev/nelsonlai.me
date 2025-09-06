@@ -10,11 +10,11 @@ import Hero from '@/components/home/hero'
 import LatestArticles from '@/components/home/latest-articles'
 import SelectedProjects from '@/components/home/selected-projects'
 import {
+  MY_NAME,
   SITE_FACEBOOK_URL,
   SITE_GITHUB_URL,
   SITE_INSTAGRAM_URL,
   SITE_KEYWORDS,
-  SITE_NAME,
   SITE_X_URL,
   SITE_YOUTUBE_URL
 } from '@/lib/constants'
@@ -58,12 +58,12 @@ const Page = async (props: PageProps) => {
   const jsonLd: WithContext<WebSite> = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    name: t('site-title'),
+    name: MY_NAME,
     description: t('site-description'),
     url,
     author: {
       '@type': 'Person',
-      name: SITE_NAME,
+      name: MY_NAME,
       url: getBaseUrl(),
       sameAs: [SITE_FACEBOOK_URL, SITE_INSTAGRAM_URL, SITE_X_URL, SITE_GITHUB_URL, SITE_YOUTUBE_URL]
     },

@@ -4,6 +4,7 @@ import { render, screen } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 
 import Hero from '@/components/home/hero'
+import { MY_NAME } from '@/lib/constants'
 
 describe('<Hero />', () => {
   it('should have a hero image', () => {
@@ -13,6 +14,6 @@ describe('<Hero />', () => {
       </NextIntlClientProvider>
     )
 
-    expect(screen.getByAltText('Nelson Lai')).toBeInTheDocument()
+    expect(screen.getByAltText(MY_NAME)).toBeInTheDocument()
   })
 })

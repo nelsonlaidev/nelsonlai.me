@@ -1,5 +1,4 @@
 {
-  "background_color": "#000000",
   "display": "standalone",
   "icons": [
     {
@@ -15,5 +14,6 @@
   ],
   "name": "Nelson Lai",
   "short_name": "Nelson Lai",
+  "background_color": "#000000",
   "theme_color": "#000000"
 }

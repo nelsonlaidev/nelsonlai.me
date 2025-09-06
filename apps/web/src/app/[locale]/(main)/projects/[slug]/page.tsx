@@ -8,7 +8,7 @@ import { notFound } from 'next/navigation'
 
 import BlurImage from '@/components/blur-image'
 import Mdx from '@/components/mdx'
-import { SITE_NAME } from '@/lib/constants'
+import { MY_NAME } from '@/lib/constants'
 import { getBaseUrl } from '@/utils/get-base-url'
 import { getLocalizedPath } from '@/utils/get-localized-path'
 
@@ -113,7 +113,7 @@ const Page = async (props: PageProps) => {
     applicationCategory: 'WebApplication',
     author: {
       '@type': 'Person',
-      name: SITE_NAME,
+      name: MY_NAME,
       url: getBaseUrl()
     },
     sameAs: [github],

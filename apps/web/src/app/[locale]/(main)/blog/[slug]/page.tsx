@@ -9,7 +9,7 @@ import { Suspense } from 'react'
 
 import CommentSection from '@/components/comment-section'
 import Mdx from '@/components/mdx'
-import { SITE_NAME } from '@/lib/constants'
+import { MY_NAME } from '@/lib/constants'
 import { getBaseUrl } from '@/utils/get-base-url'
 import { getLocalizedPath } from '@/utils/get-localized-path'
 
@@ -127,12 +127,12 @@ const Page = async (props: PageProps) => {
     image: `${getBaseUrl()}/og/${slug}`,
     author: {
       '@type': 'Person',
-      name: SITE_NAME,
+      name: MY_NAME,
       url: getBaseUrl()
     },
     publisher: {
       '@type': 'Person',
-      name: SITE_NAME,
+      name: MY_NAME,
       url: getBaseUrl()
     }
   }

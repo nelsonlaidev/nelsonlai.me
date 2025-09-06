@@ -15,7 +15,7 @@ import { NuqsAdapter } from 'nuqs/adapters/next/app'
 import Analytics from '@/components/analytics'
 import Hello from '@/components/hello'
 import SignInDialog from '@/components/sign-in-dialog'
-import { SITE_KEYWORDS, SITE_NAME } from '@/lib/constants'
+import { MY_NAME, SITE_KEYWORDS } from '@/lib/constants'
 import { getBaseUrl } from '@/utils/get-base-url'
 
 import Providers from '../providers'
@@ -39,8 +39,8 @@ export const generateMetadata = async (props: LayoutProps): Promise<Metadata> =>
   return {
     metadataBase: new URL(getBaseUrl()),
     title: {
-      default: t('site-title'),
-      template: `%s | ${t('site-title')}`
+      default: MY_NAME,
+      template: `%s | ${MY_NAME}`
     },
     description: t('site-description'),
     robots: {
@@ -55,13 +55,13 @@ export const generateMetadata = async (props: LayoutProps): Promise<Metadata> =>
       }
     },
     authors: {
-      name: 'Nelson Lai',
+      name: MY_NAME,
       url: getBaseUrl()
     },
     manifest: '/favicon/site.webmanifest',
     twitter: {
       card: 'summary_large_image',
-      title: SITE_NAME,
+      title: MY_NAME,
       description: t('site-description'),
       site: '@nelsonlaidev',
       siteId: '1152256803746377730',
@@ -77,12 +77,12 @@ export const generateMetadata = async (props: LayoutProps): Promise<Metadata> =>
       ]
     },
     keywords: SITE_KEYWORDS,
-    creator: 'Nelson Lai',
+    creator: MY_NAME,
     openGraph: {
       url: getBaseUrl(),
       type: 'website',
-      title: t('site-title'),
-      siteName: t('site-title'),
+      title: MY_NAME,
+      siteName: MY_NAME,
       description: t('site-description'),
       locale,
       images: [
