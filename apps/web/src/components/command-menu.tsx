@@ -106,7 +106,7 @@ const CommandMenu = () => {
           title: t('command-menu.actions.source-code'),
           icon: <CodeIcon />,
           onSelect: () => {
-            openLink('https://github.com/nelsonlaidev/nelsonlai.me')
+            openLink('https://github.com/nelsonlaidev/nelsonlai.dev')
           }
         }
       ]

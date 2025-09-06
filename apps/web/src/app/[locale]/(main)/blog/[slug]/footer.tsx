@@ -17,7 +17,7 @@ const Footer = (props: FooterProps) => {
   const t = useTranslations()
   const locale = useLocale()
 
-  const editURL = `https://github.com/nelsonlaidev/nelsonlai.me/blob/main/apps/web/src/content/blog/${locale}/${post.slug}.mdx?plain=1`
+  const editURL = `https://github.com/nelsonlaidev/nelsonlai.dev/blob/main/apps/web/src/content/blog/${locale}/${post.slug}.mdx?plain=1`
 
   const formattedDate = useFormattedDate(post.modifiedTime)
 

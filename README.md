@@ -1,5 +1,5 @@
 <div align="center">
-  <a href="https://nelsonlai.me">
+  <a href="https://nelsonlai.dev">
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="assets/dark-header.png">
       <img alt="Project Cover" src="assets/light-header.png">
@@ -7,12 +7,12 @@
   </a>
 
   <h1 align="center">
-    nelsonlai.me
+    nelsonlai.dev
   </h1>
 
   <img src="https://img.shields.io/badge/Next.js-000000.svg?style=for-the-badge&logo=Next.js&labelColor=000" alt="Framework" />
-  <img src="https://img.shields.io/github/languages/top/nelsonlaidev/nelsonlai.me?style=for-the-badge&labelColor=000" alt="Language" />
-  <img src="https://img.shields.io/github/license/nelsonlaidev/nelsonlai.me?style=for-the-badge&labelColor=000" alt="License" />
+  <img src="https://img.shields.io/github/languages/top/nelsonlaidev/nelsonlai.dev?style=for-the-badge&labelColor=000" alt="Language" />
+  <img src="https://img.shields.io/github/license/nelsonlaidev/nelsonlai.dev?style=for-the-badge&labelColor=000" alt="License" />
 </div>
 
 Welcome to the monorepo of my personal blog! This repository houses the code for my blog, where I share my thoughts, projects, and insights. Feel free to explore and get inspired.
@@ -104,13 +104,13 @@ To run this project locally, you need to set up the development environment.
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/nelsonlaidev/nelsonlai.me
+git clone https://github.com/nelsonlaidev/nelsonlai.dev
 ```
 
 2. Navigate to the project directory:
 
 ```bash
-cd nelsonlai.me
+cd nelsonlai.dev
 ```
 
 3. Install dependencies using pnpm:
