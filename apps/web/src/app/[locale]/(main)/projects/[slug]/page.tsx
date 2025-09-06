@@ -67,8 +67,8 @@ export const generateMetadata = async (props: PageProps, parent: ResolvingMetada
       images: [
         {
           url: `/images/projects/${slug}/cover.png`,
-          width: 1280,
-          height: 832,
+          width: 1200,
+          height: 630,
           alt: description,
           type: 'image/png'
         }
@@ -81,8 +81,8 @@ export const generateMetadata = async (props: PageProps, parent: ResolvingMetada
       images: [
         {
           url: `/images/projects/${slug}/cover.png`,
-          width: 1280,
-          height: 832,
+          width: 1200,
+          height: 630,
           alt: description
         }
       ]

@@ -30,8 +30,8 @@ const ProjectCard = (props: ProjectCardProps) => {
     <Link href={`/projects/${slug}`} className='group rounded-xl px-2 py-4 shadow-feature-card'>
       <BlurImage
         src={`/images/projects/${slug}/cover.png`}
-        width={1280}
-        height={832}
+        width={1200}
+        height={630}
         imageClassName='group-hover:scale-105'
         alt={name}
         className='rounded-lg'
