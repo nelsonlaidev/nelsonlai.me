@@ -46,7 +46,13 @@ const Header = (props: HeaderProps) => {
           <div className='space-y-1 md:mx-auto'>
             <div className='text-muted-foreground'>{t('blog.header.written-by')}</div>
             <Link href='https://github.com/nelsonlaidev' className='flex items-center gap-2'>
-              <BlurImage src='/images/avatar.png' className='rounded-full' width={24} height={24} alt={MY_NAME} />
+              <BlurImage
+                src='/images/avatar.png'
+                className='rounded-full'
+                width={24}
+                height={24}
+                alt={`${MY_NAME}'s Logo`}
+              />
               {MY_NAME}
             </Link>
           </div>

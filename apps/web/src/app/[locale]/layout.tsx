@@ -58,7 +58,7 @@ export const generateMetadata = async (props: LayoutProps): Promise<Metadata> =>
       name: MY_NAME,
       url: getBaseUrl()
     },
-    manifest: '/favicon/site.webmanifest',
+    manifest: '/favicons/site.webmanifest',
     twitter: {
       card: 'summary_large_image',
       title: MY_NAME,
@@ -96,11 +96,11 @@ export const generateMetadata = async (props: LayoutProps): Promise<Metadata> =>
       ]
     },
     icons: {
-      icon: '/favicon/favicon.svg',
-      shortcut: '/favicon/favicon.svg',
+      icon: '/favicons/favicon.svg',
+      shortcut: '/favicons/favicon.svg',
       apple: [
         {
-          url: '/favicon/apple-touch-icon.png',
+          url: '/favicons/apple-touch-icon.png',
           sizes: '180x180',
           type: 'image/png'
         }
@@ -110,13 +110,13 @@ export const generateMetadata = async (props: LayoutProps): Promise<Metadata> =>
           rel: 'icon',
           type: 'image/png',
           sizes: '16x16',
-          url: '/favicon/favicon-16x16.png'
+          url: '/favicons/favicon-16x16.png'
         },
         {
           rel: 'icon',
           type: 'image/png',
           sizes: '32x32',
-          url: '/favicon/favicon-32x32.png'
+          url: '/favicons/favicon-32x32.png'
         }
       ]
     }

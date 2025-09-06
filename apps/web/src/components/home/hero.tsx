@@ -130,7 +130,7 @@ const Hero = () => {
             className='rounded-full'
             width={112}
             height={112}
-            alt={MY_NAME}
+            alt={`${MY_NAME}'s Logo`}
             lazy={false}
           />
           <div className='absolute inset-0 -z-10 bg-linear-to-tl from-purple-700 to-orange-700 opacity-50 blur-2xl' />
