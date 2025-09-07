@@ -7,7 +7,10 @@ ignorePaths:
   - pnpm-lock.yaml
 dictionaries:
   - npm
+  - softwareTerms
   - fullstack
+  - html
+  - css
   - redis
 import:
   - '@cspell/dict-redis/cspell-ext.json'
@@ -27,7 +30,6 @@ words:
   - dbaeumer
   - delba
   - dotenvx
-  - favicons
   - fuma
   - fumadocs
   - ghostty
