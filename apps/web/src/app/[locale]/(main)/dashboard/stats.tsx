@@ -98,7 +98,7 @@ const Stats = () => {
     },
     {
       title: t('dashboard.stat.blog-total-views'),
-      link: 'https://nelsonlai.me',
+      link: 'https://nelsonlai.dev',
       value: viewsQuery.data?.views,
       icon: <PencilIcon className='size-6 text-[#ff0f7b]' />,
       linkText: 'Blog',
@@ -109,7 +109,7 @@ const Stats = () => {
     },
     {
       title: t('dashboard.stat.blog-total-likes'),
-      link: 'https://nelsonlai.me',
+      link: 'https://nelsonlai.dev',
       value: likesQuery.data?.likes,
       icon: <PencilIcon className='size-6 text-[#ff0f7b]' />,
       linkText: 'Blog',

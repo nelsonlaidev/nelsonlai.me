@@ -121,7 +121,7 @@ export const createComment = protectedProcedure
 
     const post = {
       title,
-      url: `https://nelsonlai.me/blog/${input.slug}`
+      url: `https://nelsonlai.dev/blog/${input.slug}`
     }
 
     const comment = await context.db.transaction(async (tx) => {

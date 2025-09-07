@@ -126,7 +126,7 @@ export const GET = async (_request: Request, props: RouteContext<'/og/[id]'>) =>
                 fontSize: 30
               }}
             >
-              nelsonlai.me
+              nelsonlai.dev
             </div>
           </div>
         </div>

@@ -125,7 +125,7 @@
   "dialog": {
     "sign-in": {
       "continue-with": "Continue with {provider}",
-      "description": "to continue to nelsonlai.me",
+      "description": "to continue to nelsonlai.dev",
       "last-used": "Last used"
     }
   },

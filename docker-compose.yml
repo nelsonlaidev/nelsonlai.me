@@ -3,38 +3,38 @@ version: '3'
 services:
   db:
     image: postgres:16-alpine
-    container_name: nelsonlaime-postgres
+    container_name: nelsonlaidev-postgres
     ports:
       - 5432:5432
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=nelsonlaime
+      - POSTGRES_DB=nelsonlaidev
     volumes:
       - db:/var/lib/postgresql/data
     networks:
-      - nelsonlaime-network
+      - nelsonlaidev-network
   redis:
     image: redis
-    container_name: nelsonlaime-redis
+    container_name: nelsonlaidev-redis
     ports:
       - 6379:6379
     volumes:
       - redis:/data
     networks:
-      - nelsonlaime-network
+      - nelsonlaidev-network
 
   serverless-redis-http:
     image: hiett/serverless-redis-http:latest
-    container_name: nelsonlaime-redis-http
+    container_name: nelsonlaidev-redis-http
     ports:
       - 8079:80
     environment:
       SRH_MODE: env
-      SRH_TOKEN: nelsonlaime
+      SRH_TOKEN: nelsonlaidev
       SRH_CONNECTION_STRING: redis://redis:6379
     networks:
-      - nelsonlaime-network
+      - nelsonlaidev-network
     depends_on:
       - redis
 
@@ -43,5 +43,5 @@ volumes:
   redis:
 
 networks:
-  nelsonlaime-network:
+  nelsonlaidev-network:
     driver: bridge

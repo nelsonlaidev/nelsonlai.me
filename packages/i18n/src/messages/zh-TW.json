@@ -125,7 +125,7 @@
   "dialog": {
     "sign-in": {
       "continue-with": "使用 {provider} 繼續",
-      "description": "以繼續使用 nelsonlai.me",
+      "description": "以繼續使用 nelsonlai.dev",
       "last-used": "上次使用"
     }
   },

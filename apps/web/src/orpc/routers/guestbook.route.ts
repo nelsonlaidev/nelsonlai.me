@@ -87,7 +87,7 @@ export const createMessage = protectedProcedure
             {
               title: 'New comment!',
               description: input.message,
-              url: 'https://nelsonlai.me/guestbook',
+              url: 'https://nelsonlai.dev/guestbook',
               color: '6609519',
               author: {
                 name: user.name,
