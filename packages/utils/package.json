@@ -22,6 +22,6 @@
   "devDependencies": {
     "@nelsonlaidev/eslint-config": "^1.0.0",
     "@nelsonlaidev/typescript-config": "^0.0.2",
-    "@types/node": "^22.15.29"
+    "@types/node": "^24.3.1"
   }
 }
