@@ -8,7 +8,8 @@ import { routing } from '@repo/i18n/routing'
 import { getTranslations, setRequestLocale } from '@repo/i18n/server'
 import { cn } from '@repo/utils'
 import { SpeedInsights } from '@vercel/speed-insights/next'
-import { Geist, Geist_Mono } from 'next/font/google'
+import { GeistMono } from 'geist/font/mono'
+import { GeistSans } from 'geist/font/sans'
 import { notFound } from 'next/navigation'
 import { NuqsAdapter } from 'nuqs/adapters/next/app'
 
@@ -139,17 +140,6 @@ export const viewport: Viewport = {
   ]
 }
 
-const fontSans = Geist({
-  subsets: ['latin'],
-  variable: '--font-sans'
-})
-
-const fontMono = Geist_Mono({
-  subsets: ['latin'],
-  variable: '--font-mono',
-  weight: '400'
-})
-
 const Layout = async (props: LayoutProps) => {
   const { children, params } = props
   const { locale } = await params
@@ -161,7 +151,7 @@ const Layout = async (props: LayoutProps) => {
   setRequestLocale(locale)
 
   return (
-    <html lang={locale} className={cn(fontSans.variable, fontMono.variable)} suppressHydrationWarning>
+    <html lang={locale} className={cn(GeistSans.variable, GeistMono.variable)} suppressHydrationWarning>
       <body className='relative flex min-h-screen flex-col'>
         <NuqsAdapter>
           <Providers>

@@ -2,9 +2,12 @@
 @import '@repo/ui/styles/preset.css';
 @import '@repo/ui/styles/shiki.css';
 @import '@repo/ui/styles/typography.css';
-@source '../../../../packages/ui/src/**/*.{js,jsx,ts,tsx}';
+@source '../../../../packages/ui/src/**/*.{ts,tsx}';
 
 @theme {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+
   --color-anchor: var(--anchor);
 
   --background-image-nav-link-indicator: var(--nav-link-indicator);
