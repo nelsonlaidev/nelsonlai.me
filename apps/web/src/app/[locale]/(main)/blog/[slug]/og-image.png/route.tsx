@@ -11,12 +11,13 @@ export const GET = async (_request: Request, props: RouteContext<'/[locale]/blog
   const { slug, locale } = await params
 
   try {
-    const ogImageFonts = await getOGImageFonts()
     const post = allPosts.find((p) => p.slug === slug && p.locale === locale)
 
     if (!post) {
       return NextResponse.json({ error: 'Post not found' }, { status: 404 })
     }
+
+    const ogImageFonts = await getOGImageFonts(post.title)
 
     return new ImageResponse(<OGImage title={post.title} url='/blog' />, {
       width: 1200,
