@@ -41,7 +41,7 @@ Welcome to the monorepo of my personal blog! This repository houses the code for
 ### Blog Features
 
 - Comment system
-- Like Functionality
+- Like functionality
 - Post view counter
 - Blog post search
 - RSS feed
@@ -89,8 +89,8 @@ Welcome to the monorepo of my personal blog! This repository houses the code for
 
 ### Prerequisites
 
-- Node, recommended `>=22` with [corepack](https://nodejs.org/api/corepack.html) enabled
-- pnpm, recommended `>=9`
+- Node.js (recommended version `>=22`) with [corepack](https://nodejs.org/api/corepack.html) enabled
+- pnpm (recommended version `>=9`)
 - Docker
 - [Visual Studio Code](https://code.visualstudio.com/) with [recommended extensions](.vscode/extensions.json)
 - Optionally [React Developer Tools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en)
@@ -168,11 +168,9 @@ The services will be available at the following URLs:
 
 ## Credits
 
-This project has been possible thanks to the wonderful open-source community. Special thanks to [Timothy](https://www.timlrx.com/) for the [Tailwind nextjs starter blog template](https://github.com/timlrx/tailwind-nextjs-starter-blog).
+This project has been made possible thanks to the wonderful open-source community. Special thanks to [Timothy](https://www.timlrx.com/) for the [Tailwind nextjs starter blog template](https://github.com/timlrx/tailwind-nextjs-starter-blog).
 
-This project also uses/adapts the following open-source projects.
-
-Without them, this project would not have been possible:
+This project also uses/adapts the following open-source projects:
 
 - Comment System - from [fuma-comment](https://github.com/fuma-nama/fuma-comment)
 - Rehype Plugins - from [fumadocs](https://github.com/fuma-nama/fumadocs)
@@ -180,7 +178,7 @@ Without them, this project would not have been possible:
 - ESLint config - from [@antfu/eslint-config](https://github.com/antfu/eslint-config)
 - Admin UI - from [shadcn-admin](https://github.com/satnaing/shadcn-admin)
 
-Referenced the following projects for inspiration:
+The following projects were referenced for inspiration:
 
 - [fumadocs](https://fumadocs.vercel.app/)
 - [leerob.io](https://leerob.io/)
@@ -201,7 +199,7 @@ Referenced the following projects for inspiration:
 - [hover.dev](https://www.hover.dev/)
 - [vocs.dev](https://vocs.dev/)
 
-and more but I can't remember them all
+and many others
 
 ## Author
 
@@ -214,3 +212,9 @@ If you find this project helpful, consider supporting me by [sponsoring the proj
 ## License
 
 This project is open source and available under the [MIT License](LICENSE).
+
+---
+
+<p align="center">
+Made with ❤️ in Hong Kong
+</p>
