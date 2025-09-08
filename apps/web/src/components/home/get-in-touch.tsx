@@ -5,7 +5,6 @@ import { motion, useAnimate, useInView } from 'motion/react'
 import { useEffect, useRef } from 'react'
 
 import BlurImage from '@/components/blur-image'
-import me from '~/images/me.png'
 
 const variants = {
   initial: {
@@ -62,9 +61,9 @@ const GetInTouch = () => {
         <div className='flex gap-12 max-md:flex-col'>
           <div className='relative size-64 max-md:mx-auto' ref={scope}>
             <BlurImage
-              src={me}
-              width={3975}
-              height={3975}
+              src='/images/avatar.png'
+              width={80}
+              height={80}
               className='absolute top-1/2 left-1/2 size-20 -translate-1/2 rounded-[20px]'
               alt={t('homepage.get-in-touch.image-alt')}
             />
