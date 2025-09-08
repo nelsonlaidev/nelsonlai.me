@@ -24,6 +24,7 @@
   "devDependencies": {
     "@nelsonlaidev/eslint-config": "^1.0.0",
     "@nelsonlaidev/typescript-config": "^0.0.2",
+    "@react-email/preview-server": "4.2.8",
     "@types/node": "^24.3.1",
     "@types/react": "^19.1.6",
     "tailwindcss": "^4.1.8"
