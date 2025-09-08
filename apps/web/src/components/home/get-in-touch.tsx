@@ -62,8 +62,8 @@ const GetInTouch = () => {
           <div className='relative size-64 max-md:mx-auto' ref={scope}>
             <BlurImage
               src='/images/avatar.png'
-              width={80}
-              height={80}
+              width={1024}
+              height={1024}
               className='absolute top-1/2 left-1/2 size-20 -translate-1/2 rounded-[20px]'
               alt={t('homepage.get-in-touch.image-alt')}
             />

@@ -128,8 +128,8 @@ const Hero = () => {
           <BlurImage
             src='/images/avatar.png'
             className='rounded-full'
-            width={112}
-            height={112}
+            width={1024}
+            height={1024}
             alt={`${MY_NAME}'s Logo`}
             lazy={false}
           />
