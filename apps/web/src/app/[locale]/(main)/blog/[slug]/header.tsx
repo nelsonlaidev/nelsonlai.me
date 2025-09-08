@@ -48,7 +48,7 @@ const Header = (props: HeaderProps) => {
             <Link href='https://github.com/nelsonlaidev' className='flex items-center gap-2'>
               <BlurImage
                 src='/images/avatar.png'
-                className='rounded-full'
+                className='size-6 rounded-full'
                 width={1024}
                 height={1024}
                 alt={`${MY_NAME}'s Logo`}
