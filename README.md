@@ -1,8 +1,8 @@
 <div align="center">
   <a href="https://nelsonlai.dev">
     <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="assets/dark-header.png">
-      <img alt="Project Cover" src="assets/light-header.png">
+      <source media="(prefers-color-scheme: dark)" srcset="apps/web/public/images/dark-header.png">
+      <img alt="Project Cover" src="apps/web/public/images/light-header.png">
     </picture>
   </a>
 
@@ -76,13 +76,13 @@ Welcome to the monorepo of my personal blog! This repository houses the code for
 #### Comment Notification
 
 <div align="center">
-  <img alt="Comment notification template" src="assets/comment-email-notification.png">
+  <img alt="Comment notification template" src="apps/web/public/images/comment-email-notification.png">
 </div>
 
 #### Reply Notification
 
 <div align="center">
-  <img alt="Reply notification template" src="assets/reply-email-notification.png">
+  <img alt="Reply notification template" src="apps/web/public/images/reply-email-notification.png">
 </div>
 
 ## Getting Started
