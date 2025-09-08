@@ -105,15 +105,14 @@ type CardProps = {
 
 const Card = (props: CardProps) => {
   const { post } = props
-  const { slug, title, summary, date } = post
-  const formattedDate = useFormattedDate(date)
+  const formattedDate = useFormattedDate(post.date)
   const t = useTranslations()
 
-  const viewsQuery = usePostViewCount({ slug })
-  const likesQuery = usePostLikeCount({ slug })
+  const viewsQuery = usePostViewCount({ slug: post.slug })
+  const likesQuery = usePostLikeCount({ slug: post.slug })
 
   return (
-    <Link href={`/blog/${slug}`} className='group relative rounded-xl p-2 shadow-feature-card'>
+    <Link href={`/blog/${post.slug}`} className='group relative rounded-xl p-2 shadow-feature-card'>
       <div className='flex items-center justify-between p-4'>
         <div className='flex items-center gap-3'>
           <PencilIcon className='size-[18px]' />
@@ -121,7 +120,13 @@ const Card = (props: CardProps) => {
         </div>
         <ArrowUpRightIcon className='size-[18px] opacity-0 transition-opacity group-hover:opacity-100' />
       </div>
-      <BlurImage width={1200} height={630} src={`/images/blog/${slug}/cover.png`} alt={title} className='rounded-lg' />
+      <BlurImage
+        width={1200}
+        height={630}
+        src={`/images/blog/${post.slug}/cover.png`}
+        alt={post.title}
+        className='rounded-lg'
+      />
       <div className='flex items-center justify-between gap-2 px-2 pt-4 text-sm text-zinc-500'>
         {formattedDate}
         <div className='flex gap-2'>
@@ -135,8 +140,8 @@ const Card = (props: CardProps) => {
         </div>
       </div>
       <div className='flex flex-col px-2 py-4 transition-transform ease-out group-hover:translate-x-0.5'>
-        <h3 className='text-2xl font-semibold'>{title}</h3>
-        <p className='mt-2 text-muted-foreground'>{summary}</p>
+        <h3 className='text-2xl font-semibold'>{post.title}</h3>
+        <p className='mt-2 text-muted-foreground'>{post.summary}</p>
       </div>
     </Link>
   )

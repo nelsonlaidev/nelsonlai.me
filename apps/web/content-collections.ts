@@ -2,6 +2,7 @@ import { type Context, defineCollection, defineConfig, type Meta } from '@conten
 import { compileMDX } from '@content-collections/mdx'
 import { z } from 'zod'
 
+import { OG_IMAGE_HEIGHT, OG_IMAGE_WIDTH } from '@/lib/constants'
 import { getTOC, rehypePlugins, remarkPlugins } from '@/mdx-plugins'
 
 type BaseDoc = {
@@ -25,7 +26,13 @@ const transform = async <D extends BaseDoc>(document: D, context: Context) => {
     code,
     locale,
     slug: path,
-    toc: await getTOC(document.content)
+    toc: await getTOC(document.content),
+    openGraph: {
+      path: `/blog/${path}/og-image.png`,
+      width: OG_IMAGE_WIDTH,
+      height: OG_IMAGE_HEIGHT,
+      type: 'image/png'
+    }
   }
 }
 

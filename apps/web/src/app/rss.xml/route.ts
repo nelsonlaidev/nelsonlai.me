@@ -22,13 +22,11 @@ export const GET = async () => {
   const posts = allPosts.filter((p) => p.locale === i18n.defaultLocale)
 
   for (const post of posts) {
-    const { title, summary, date, slug } = post
-
     feed.item({
-      title,
-      url: `${getBaseUrl()}/blog/${slug}`,
-      date,
-      description: summary,
+      title: post.title,
+      url: `${getBaseUrl()}/blog/${post.slug}`,
+      date: post.date,
+      description: post.summary,
       author: MY_NAME
     })
   }

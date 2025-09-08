@@ -42,17 +42,15 @@ export const generateMetadata = async (props: PageProps, parent: ResolvingMetada
 
   if (!post) return {}
 
-  const { date, modifiedTime, title, summary } = post
-
-  const ISOPublishedTime = new Date(date).toISOString()
-  const ISOModifiedTime = new Date(modifiedTime).toISOString()
+  const ISOPublishedTime = new Date(post.date).toISOString()
+  const ISOModifiedTime = new Date(post.modifiedTime).toISOString()
   const { openGraph = {}, twitter = {} } = await parent
   const fullSlug = `/blog/${slug}`
   const url = getLocalizedPath({ slug: fullSlug, locale, absolute: false })
 
   return {
-    title: title,
-    description: summary,
+    title: post.title,
+    description: post.summary,
     alternates: {
       canonical: url,
       languages: {
@@ -70,31 +68,31 @@ export const generateMetadata = async (props: PageProps, parent: ResolvingMetada
       ...openGraph,
       url,
       type: 'article',
-      title: title,
-      description: summary,
+      title: post.title,
+      description: post.summary,
       publishedTime: ISOPublishedTime,
       modifiedTime: ISOModifiedTime,
       authors: getBaseUrl(),
       images: [
         {
-          url: `/og/${slug}`,
-          width: 1200,
-          height: 630,
-          alt: title,
-          type: 'image/png'
+          url: post.openGraph.path,
+          width: post.openGraph.width,
+          height: post.openGraph.height,
+          alt: post.title,
+          type: post.openGraph.type
         }
       ]
     },
     twitter: {
       ...twitter,
-      title: title,
-      description: summary,
+      title: post.title,
+      description: post.summary,
       images: [
         {
-          url: `/og/${slug}`,
-          width: 1200,
-          height: 630,
-          alt: title
+          url: post.openGraph.path,
+          width: post.openGraph.width,
+          height: post.openGraph.height,
+          alt: post.title
         }
       ]
     }
@@ -113,18 +111,16 @@ const Page = async (props: PageProps) => {
     notFound()
   }
 
-  const { title, summary, date, modifiedTime, code, toc } = post
-
   const jsonLd: WithContext<Article> = {
     '@context': 'https://schema.org',
     '@type': 'Article',
-    headline: title,
-    name: title,
-    description: summary,
+    headline: post.title,
+    name: post.title,
+    description: post.summary,
     url,
-    datePublished: date,
-    dateModified: modifiedTime,
-    image: `${getBaseUrl()}/og/${slug}`,
+    datePublished: post.date,
+    dateModified: post.modifiedTime,
+    image: `${getBaseUrl()}${post.openGraph.path}`,
     author: {
       '@type': 'Person',
       name: MY_NAME,
@@ -146,18 +142,18 @@ const Page = async (props: PageProps) => {
 
       <div className='mt-8 flex flex-col justify-between lg:flex-row'>
         <article className='w-full lg:w-[670px]'>
-          <Mdx code={code} />
+          <Mdx code={post.code} />
         </article>
         <aside className='lg:max-w-[270px] lg:min-w-[270px]'>
           <div className='sticky top-24'>
-            {toc.length > 0 && <TableOfContents toc={toc} />}
+            {post.toc.length > 0 && <TableOfContents toc={post.toc} />}
             <LikeButton slug={slug} />
           </div>
         </aside>
       </div>
       <ProgressBar />
 
-      {toc.length > 0 && <MobileTableOfContents toc={toc} />}
+      {post.toc.length > 0 && <MobileTableOfContents toc={post.toc} />}
       <Footer post={post} />
 
       <Suspense>
