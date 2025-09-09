@@ -14,6 +14,6 @@ describe('<Hero />', () => {
       </NextIntlClientProvider>
     )
 
-    expect(screen.getByAltText(MY_NAME)).toBeInTheDocument()
+    expect(screen.getByAltText(`${MY_NAME}'s Logo`)).toBeInTheDocument()
   })
 })
