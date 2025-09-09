@@ -69,6 +69,13 @@ export const FOOTER_LINKS = [
       { href: SITE_GITHUB_URL, key: 'github' },
       { href: SITE_YOUTUBE_URL, key: 'youtube' }
     ]
+  },
+  {
+    id: 4,
+    links: [
+      { href: '/terms', key: 'terms' },
+      { href: '/privacy', key: 'privacy' }
+    ]
   }
 ] as const
 

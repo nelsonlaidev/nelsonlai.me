@@ -126,7 +126,8 @@
     "sign-in": {
       "continue-with": "使用 {provider} 继续",
       "description": "以继续使用 nelsonlai.dev",
-      "last-used": "上次使用"
+      "last-used": "上次使用",
+      "notice": "继续即表示您同意我们的 <terms>服务条款</terms> 和 <privacy>隐私权政策</privacy>"
     }
   },
   "error": {
@@ -229,7 +230,9 @@
     "skip-to-main-content": "跳至主要内容",
     "toggle-menu": "打开选单",
     "uses": "装备",
-    "youtube": "YouTube"
+    "youtube": "YouTube",
+    "terms": "服务条款",
+    "privacy": "隐私权政策"
   },
   "mdx": {
     "link-to-section": "连结至章节"
@@ -253,5 +256,13 @@
   "uses": {
     "description": "这是我目前用来玩游戏、程序设计、制作视频和日常使用的装备。",
     "title": "装备"
+  },
+  "privacy": {
+    "description": "此页面说明当您使用我们的网站时，我们如何处理您的数据并保护您的隐私。",
+    "title": "隐私权政策"
+  },
+  "terms": {
+    "description": "这些条款和条件概述了使用我们网站的规则和规定。",
+    "title": "服务条款"
   }
 }

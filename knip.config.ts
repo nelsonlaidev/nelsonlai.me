@@ -19,8 +19,12 @@ const config: KnipConfig = {
       entry: ['src/reset.ts', 'src/seed.ts']
     },
     'packages/emails': {
-      // For tailwindcss intellisense
-      ignoreDependencies: ['tailwindcss'],
+      ignoreDependencies: [
+        // For tailwindcss intellisense
+        'tailwindcss',
+        // Required by react email
+        '@react-email/preview-server'
+      ],
       ignore: ['src/styles.css']
     }
   },
