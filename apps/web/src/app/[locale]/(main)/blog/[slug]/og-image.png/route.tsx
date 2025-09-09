@@ -4,6 +4,7 @@ import { ImageResponse } from 'next/og'
 import { NextResponse } from 'next/server'
 
 import OGImage from '@/components/og-image'
+import { OG_IMAGE_HEIGHT, OG_IMAGE_WIDTH } from '@/lib/constants'
 import { getOGImageFonts } from '@/lib/fonts'
 
 export const GET = async (_request: Request, props: RouteContext<'/[locale]/blog/[slug]/og-image.png'>) => {
@@ -20,8 +21,8 @@ export const GET = async (_request: Request, props: RouteContext<'/[locale]/blog
     const ogImageFonts = await getOGImageFonts(post.title)
 
     return new ImageResponse(<OGImage title={post.title} url='/blog' />, {
-      width: 1200,
-      height: 630,
+      width: OG_IMAGE_WIDTH,
+      height: OG_IMAGE_HEIGHT,
       fonts: ogImageFonts
     })
   } catch (error) {

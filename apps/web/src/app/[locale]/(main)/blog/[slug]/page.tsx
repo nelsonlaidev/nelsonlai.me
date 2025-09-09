@@ -9,7 +9,7 @@ import { Suspense } from 'react'
 
 import CommentSection from '@/components/comment-section'
 import Mdx from '@/components/mdx'
-import { MY_NAME } from '@/lib/constants'
+import { MY_NAME, OG_IMAGE_HEIGHT, OG_IMAGE_TYPE, OG_IMAGE_WIDTH } from '@/lib/constants'
 import { getBaseUrl } from '@/utils/get-base-url'
 import { getLocalizedPath } from '@/utils/get-localized-path'
 
@@ -75,11 +75,11 @@ export const generateMetadata = async (props: PageProps, parent: ResolvingMetada
       authors: getBaseUrl(),
       images: [
         {
-          url: post.openGraph.path,
-          width: post.openGraph.width,
-          height: post.openGraph.height,
+          url: `/blog/${post.slug}/og-image.png`,
+          width: OG_IMAGE_WIDTH,
+          height: OG_IMAGE_HEIGHT,
           alt: post.title,
-          type: post.openGraph.type
+          type: OG_IMAGE_TYPE
         }
       ]
     },
@@ -89,9 +89,9 @@ export const generateMetadata = async (props: PageProps, parent: ResolvingMetada
       description: post.summary,
       images: [
         {
-          url: post.openGraph.path,
-          width: post.openGraph.width,
-          height: post.openGraph.height,
+          url: `/blog/${post.slug}/og-image.png`,
+          width: OG_IMAGE_WIDTH,
+          height: OG_IMAGE_HEIGHT,
           alt: post.title
         }
       ]
@@ -120,7 +120,7 @@ const Page = async (props: PageProps) => {
     url,
     datePublished: post.date,
     dateModified: post.modifiedTime,
-    image: `${getBaseUrl()}${post.openGraph.path}`,
+    image: `${getBaseUrl()}/blog/${post.slug}/og-image.png`,
     author: {
       '@type': 'Person',
       name: MY_NAME,
