@@ -15,3 +15,4 @@ export const SITE_YOUTUBE_URL = 'https://www.youtube.com/@nelsonlaidev'
 
 export const OG_IMAGE_WIDTH = 1200
 export const OG_IMAGE_HEIGHT = 630
+export const OG_IMAGE_TYPE = 'image/png'

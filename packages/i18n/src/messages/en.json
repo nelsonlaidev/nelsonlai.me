@@ -126,7 +126,8 @@
     "sign-in": {
       "continue-with": "Continue with {provider}",
       "description": "to continue to nelsonlai.dev",
-      "last-used": "Last used"
+      "last-used": "Last used",
+      "notice": "By continuing, you agree to our <terms>Terms of Service</terms> and <privacy>Privacy Policy</privacy>"
     }
   },
   "error": {
@@ -229,7 +230,9 @@
     "skip-to-main-content": "Skip to main content",
     "toggle-menu": "Toggle menu",
     "uses": "Uses",
-    "youtube": "YouTube"
+    "youtube": "YouTube",
+    "terms": "Terms of Service",
+    "privacy": "Privacy Policy"
   },
   "mdx": {
     "link-to-section": "Link to section"
@@ -253,5 +256,13 @@
   "uses": {
     "description": "This is the equipment I currently use for gaming, programming, making videos, and every day.",
     "title": "Uses"
+  },
+  "privacy": {
+    "description": "This page explains how we handle your data and protect your privacy when you use our website.",
+    "title": "Privacy Policy"
+  },
+  "terms": {
+    "description": "These terms and conditions outline the rules and regulations for the use our website.",
+    "title": "Terms of Service"
   }
 }

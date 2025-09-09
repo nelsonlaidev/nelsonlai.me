@@ -14,6 +14,8 @@ import { useShallow } from 'zustand/react/shallow'
 import { signIn } from '@/lib/auth-client'
 import { useDialogsStore } from '@/stores/dialogs.store'
 
+import Link from './link'
+
 type Provider = 'github' | 'google'
 
 const GoogleIcon = () => {
@@ -78,6 +80,12 @@ const SignInDialog = () => {
     })
   }
 
+  const closeDialog = () => {
+    if (!isPending) {
+      setIsSignInOpen(false)
+    }
+  }
+
   return (
     <Dialog
       open={isSignInDialogOpen}
@@ -85,7 +93,7 @@ const SignInDialog = () => {
         setIsSignInOpen(v)
       }}
     >
-      <DialogContent className='sm:max-w-[425px]'>
+      <DialogContent className='sm:max-w-120'>
         <DialogHeader>
           <DialogTitle className='text-left text-2xl'>{t('common.sign-in')}</DialogTitle>
           <DialogDescription className='text-left'>{t('dialog.sign-in.description')}</DialogDescription>
@@ -111,6 +119,20 @@ const SignInDialog = () => {
             {t('dialog.sign-in.continue-with', { provider: 'Google' })}
             {lastUsedProvider === 'google' && <LastUsed />}
           </Button>
+        </div>
+        <div className='text-center text-xs text-muted-foreground'>
+          {t.rich('dialog.sign-in.notice', {
+            terms: (chunks) => (
+              <Link href='/terms' className='text-foreground underline' onClick={closeDialog}>
+                {chunks}
+              </Link>
+            ),
+            privacy: (chunks) => (
+              <Link href='/privacy' className='text-foreground underline' onClick={closeDialog}>
+                {chunks}
+              </Link>
+            )
+          })}
         </div>
       </DialogContent>
     </Dialog>
