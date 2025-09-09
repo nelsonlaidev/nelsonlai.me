@@ -13,10 +13,6 @@ const withBundleAnalyzer = bundleAnalyzer({
 })
 
 const config: NextConfig = {
-  experimental: {
-    optimizePackageImports: ['shiki']
-  },
-
   productionBrowserSourceMaps: true,
 
   eslint: {
