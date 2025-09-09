@@ -174,10 +174,6 @@
   }
 
   body {
-    @apply bg-background text-foreground antialiased font-sans;
-  }
-
-  code {
-    @apply font-mono;
+    @apply bg-background text-foreground antialiased;
   }
 }
