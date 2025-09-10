@@ -14,13 +14,6 @@ import { getLocalizedPath } from '@/utils/get-localized-path'
 
 import Header from './header'
 
-type PageProps = {
-  params: Promise<{
-    slug: string
-    locale: string
-  }>
-}
-
 export const generateStaticParams = (): Array<{ slug: string; locale: string }> => {
   return allProjects.map((project) => ({
     slug: project.slug,
@@ -28,7 +21,10 @@ export const generateStaticParams = (): Array<{ slug: string; locale: string }> 
   }))
 }
 
-export const generateMetadata = async (props: PageProps, parent: ResolvingMetadata): Promise<Metadata> => {
+export const generateMetadata = async (
+  props: PageProps<'/[locale]/projects/[slug]'>,
+  parent: ResolvingMetadata
+): Promise<Metadata> => {
   const { params } = props
   const { slug, locale } = await params
 
@@ -90,7 +86,7 @@ export const generateMetadata = async (props: PageProps, parent: ResolvingMetada
   }
 }
 
-const Page = async (props: PageProps) => {
+const Page = async (props: PageProps<'/[locale]/projects/[slug]'>) => {
   const { params } = props
   const { slug, locale } = await params
   setRequestLocale(locale)

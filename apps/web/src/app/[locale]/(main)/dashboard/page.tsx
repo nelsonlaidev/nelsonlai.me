@@ -11,17 +11,14 @@ import { getLocalizedPath } from '@/utils/get-localized-path'
 
 import Stats from './stats'
 
-type PageProps = {
-  params: Promise<{
-    locale: string
-  }>
-}
-
 export const generateStaticParams = (): Array<{ locale: string }> => {
   return i18n.locales.map((locale) => ({ locale }))
 }
 
-export const generateMetadata = async (props: PageProps, parent: ResolvingMetadata): Promise<Metadata> => {
+export const generateMetadata = async (
+  props: PageProps<'/[locale]/dashboard'>,
+  parent: ResolvingMetadata
+): Promise<Metadata> => {
   const { params } = props
   const { locale } = await params
   const { openGraph = {}, twitter = {} } = await parent
@@ -55,7 +52,7 @@ export const generateMetadata = async (props: PageProps, parent: ResolvingMetada
   }
 }
 
-const Page = async (props: PageProps) => {
+const Page = async (props: PageProps<'/[locale]/dashboard'>) => {
   const { params } = props
   const { locale } = await params
   setRequestLocale(locale)

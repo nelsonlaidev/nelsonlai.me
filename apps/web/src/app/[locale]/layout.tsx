@@ -20,18 +20,11 @@ import { getBaseUrl } from '@/utils/get-base-url'
 
 import Providers from '../providers'
 
-type LayoutProps = {
-  children: React.ReactNode
-  params: Promise<{
-    locale: string
-  }>
-}
-
 export const generateStaticParams = (): Array<{ locale: string }> => {
   return i18n.locales.map((locale) => ({ locale }))
 }
 
-export const generateMetadata = async (props: LayoutProps): Promise<Metadata> => {
+export const generateMetadata = async (props: LayoutProps<'/[locale]'>): Promise<Metadata> => {
   const { params } = props
   const { locale } = await params
   const t = await getTranslations({ locale, namespace: 'metadata' })
@@ -149,7 +142,7 @@ const geistMono = Geist_Mono({
   subsets: ['latin']
 })
 
-const Layout = async (props: LayoutProps) => {
+const Layout = async (props: LayoutProps<'/[locale]'>) => {
   const { children, params } = props
   const { locale } = await params
 

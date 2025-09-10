@@ -21,17 +21,11 @@ import {
 import { getBaseUrl } from '@/utils/get-base-url'
 import { getLocalizedPath } from '@/utils/get-localized-path'
 
-type PageProps = {
-  params: Promise<{
-    locale: string
-  }>
-}
-
 export const generateStaticParams = (): Array<{ locale: string }> => {
   return i18n.locales.map((locale) => ({ locale }))
 }
 
-export const generateMetadata = async (props: PageProps): Promise<Metadata> => {
+export const generateMetadata = async (props: PageProps<'/[locale]'>): Promise<Metadata> => {
   const { params } = props
   const { locale } = await params
   const slug = ''
@@ -47,7 +41,7 @@ export const generateMetadata = async (props: PageProps): Promise<Metadata> => {
   }
 }
 
-const Page = async (props: PageProps) => {
+const Page = async (props: PageProps<'/[locale]'>) => {
   const { params } = props
   const { locale } = await params
   setRequestLocale(locale)

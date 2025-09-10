@@ -20,13 +20,6 @@ import MobileTableOfContents from './mobile-table-of-contents'
 import ProgressBar from './progress-bar'
 import TableOfContents from './table-of-contents'
 
-type PageProps = {
-  params: Promise<{
-    slug: string
-    locale: string
-  }>
-}
-
 export const generateStaticParams = (): Array<{ slug: string; locale: string }> => {
   return allPosts.map((post) => ({
     slug: post.slug,
@@ -34,7 +27,10 @@ export const generateStaticParams = (): Array<{ slug: string; locale: string }> 
   }))
 }
 
-export const generateMetadata = async (props: PageProps, parent: ResolvingMetadata): Promise<Metadata> => {
+export const generateMetadata = async (
+  props: PageProps<'/[locale]/blog/[slug]'>,
+  parent: ResolvingMetadata
+): Promise<Metadata> => {
   const { params } = props
   const { slug, locale } = await params
 
@@ -99,7 +95,7 @@ export const generateMetadata = async (props: PageProps, parent: ResolvingMetada
   }
 }
 
-const Page = async (props: PageProps) => {
+const Page = async (props: PageProps<'/[locale]/blog/[slug]'>) => {
   const { params } = props
   const { slug, locale } = await params
   setRequestLocale(locale)

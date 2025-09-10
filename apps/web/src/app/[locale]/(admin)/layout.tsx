@@ -5,14 +5,7 @@ import AdminHeader from '@/components/admin/admin-header'
 import AdminSidebar from '@/components/admin/admin-sidebar'
 import { getSession } from '@/lib/auth'
 
-type LayoutProps = {
-  params: Promise<{
-    locale: string
-  }>
-  children: React.ReactNode
-}
-
-const Layout = async (props: LayoutProps) => {
+const Layout = async (props: LayoutProps<'/[locale]'>) => {
   const { children, params } = props
   const { locale } = await params
   const session = await getSession()
