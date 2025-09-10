@@ -4,21 +4,18 @@ import { i18nMiddleware } from '@repo/i18n/middleware'
 
 const middleware = (request: NextRequest) => {
   const csp = `
-    default-src 'self';
-    script-src 'self' 'unsafe-inline' 'unsafe-eval' *.nelsonlai.dev vercel.live va.vercel-scripts.com unpkg.com;
+    default-src 'none';
+    script-src 'self' 'unsafe-inline' 'unsafe-eval' *.nelsonlai.dev vercel.live va.vercel-scripts.com;
     style-src 'self' 'unsafe-inline' vercel.live;
-    img-src * blob: data:;
-    font-src 'self' data: assets.vercel.com vercel.live;
+    img-src 'self' data: avatars.githubusercontent.com *.googleusercontent.com;
+    font-src 'self';
     object-src 'none';
-    base-uri 'self';
-    form-action 'self';
-    connect-src *;
+    base-uri 'none';
+    form-action 'none';
+    connect-src 'self';
     media-src 'self';
+    manifest-src 'self';
     frame-ancestors 'none';
-    frame-src vercel.live;
-    block-all-mixed-content;
-    upgrade-insecure-requests;
-    worker-src blob: 'self';
   `
 
   const response = i18nMiddleware(request)
