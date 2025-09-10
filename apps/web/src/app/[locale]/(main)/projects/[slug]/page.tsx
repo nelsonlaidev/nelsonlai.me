@@ -118,7 +118,7 @@ const Page = async (props: PageProps<'/[locale]/projects/[slug]'>) => {
 
   return (
     <>
-      {/* eslint-disable-next-line @eslint-react/dom/no-dangerously-set-innerhtml -- safe */}
+      {/* eslint-disable-next-line @eslint-react/dom/no-dangerously-set-innerhtml -- Safe */}
       <script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <div className='mx-auto max-w-3xl'>
         <Header {...project} />

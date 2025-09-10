@@ -18,7 +18,7 @@ export const createMessageInputSchema = z.object({
   })
 })
 
-// eslint-disable-next-line unicorn/prefer-export-from -- this is a schema
+// eslint-disable-next-line unicorn/prefer-export-from -- This is a schema
 export const guestbookInputSchema = infiniteQuerySchema
 
 export const guestbookSchema = z.object({

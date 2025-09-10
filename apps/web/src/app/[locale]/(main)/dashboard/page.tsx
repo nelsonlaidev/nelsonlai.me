@@ -76,7 +76,7 @@ const Page = async (props: PageProps<'/[locale]/dashboard'>) => {
 
   return (
     <>
-      {/* eslint-disable-next-line @eslint-react/dom/no-dangerously-set-innerhtml -- safe */}
+      {/* eslint-disable-next-line @eslint-react/dom/no-dangerously-set-innerhtml -- Safe */}
       <script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <PageTitle title={title} description={description} />
       <Stats />

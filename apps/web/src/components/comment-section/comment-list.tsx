@@ -54,7 +54,7 @@ const CommentList = () => {
     }).then((instance) => {
       setHighlighter(instance)
     })
-    // eslint-disable-next-line react-hooks/exhaustive-deps -- only run once
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- Only run once
   }, [])
 
   const noComments = isSuccess && data.pages[0]?.comments.length === 0

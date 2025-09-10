@@ -12,7 +12,7 @@ export const useIsMobile = () => {
     }
     mql.addEventListener('change', onChange)
 
-    // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect -- valid
+    // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect -- Valid
     setIsMobile(window.innerWidth < MOBILE_BREAKPOINT)
 
     return () => {
