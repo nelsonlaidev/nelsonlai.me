@@ -92,13 +92,9 @@
         "account_user_id_user_id_fk": {
           "name": "account_user_id_user_id_fk",
           "tableFrom": "account",
-          "columnsFrom": [
-            "user_id"
-          ],
+          "columnsFrom": ["user_id"],
           "tableTo": "user",
-          "columnsTo": [
-            "id"
-          ],
+          "columnsTo": ["id"],
           "onUpdate": "no action",
           "onDelete": "cascade"
         }
@@ -167,13 +163,9 @@
         "session_user_id_user_id_fk": {
           "name": "session_user_id_user_id_fk",
           "tableFrom": "session",
-          "columnsFrom": [
-            "user_id"
-          ],
+          "columnsFrom": ["user_id"],
           "tableTo": "user",
-          "columnsTo": [
-            "id"
-          ],
+          "columnsTo": ["id"],
           "onUpdate": "no action",
           "onDelete": "cascade"
         }
@@ -182,9 +174,7 @@
       "uniqueConstraints": {
         "session_token_unique": {
           "name": "session_token_unique",
-          "columns": [
-            "token"
-          ],
+          "columns": ["token"],
           "nullsNotDistinct": false
         }
       },
@@ -253,9 +243,7 @@
       "uniqueConstraints": {
         "user_email_unique": {
           "name": "user_email_unique",
-          "columns": [
-            "email"
-          ],
+          "columns": ["email"],
           "nullsNotDistinct": false
         }
       },
@@ -499,26 +487,18 @@
         "comment_user_id_user_id_fk": {
           "name": "comment_user_id_user_id_fk",
           "tableFrom": "comment",
-          "columnsFrom": [
-            "user_id"
-          ],
+          "columnsFrom": ["user_id"],
           "tableTo": "user",
-          "columnsTo": [
-            "id"
-          ],
+          "columnsTo": ["id"],
           "onUpdate": "no action",
           "onDelete": "no action"
         },
         "comment_post_id_post_slug_fk": {
           "name": "comment_post_id_post_slug_fk",
           "tableFrom": "comment",
-          "columnsFrom": [
-            "post_id"
-          ],
+          "columnsFrom": ["post_id"],
           "tableTo": "post",
-          "columnsTo": [
-            "slug"
-          ],
+          "columnsTo": ["slug"],
           "onUpdate": "no action",
           "onDelete": "no action"
         }
@@ -600,26 +580,18 @@
         "rate_user_id_user_id_fk": {
           "name": "rate_user_id_user_id_fk",
           "tableFrom": "rate",
-          "columnsFrom": [
-            "user_id"
-          ],
+          "columnsFrom": ["user_id"],
           "tableTo": "user",
-          "columnsTo": [
-            "id"
-          ],
+          "columnsTo": ["id"],
           "onUpdate": "no action",
           "onDelete": "no action"
         },
         "rate_comment_id_comment_id_fk": {
           "name": "rate_comment_id_comment_id_fk",
           "tableFrom": "rate",
-          "columnsFrom": [
-            "comment_id"
-          ],
+          "columnsFrom": ["comment_id"],
           "tableTo": "comment",
-          "columnsTo": [
-            "id"
-          ],
+          "columnsTo": ["id"],
           "onUpdate": "no action",
           "onDelete": "cascade"
         }
@@ -627,10 +599,7 @@
       "compositePrimaryKeys": {
         "rate_user_id_comment_id_pk": {
           "name": "rate_user_id_comment_id_pk",
-          "columns": [
-            "user_id",
-            "comment_id"
-          ]
+          "columns": ["user_id", "comment_id"]
         }
       },
       "uniqueConstraints": {},
@@ -711,13 +680,9 @@
         "guestbook_user_id_user_id_fk": {
           "name": "guestbook_user_id_user_id_fk",
           "tableFrom": "guestbook",
-          "columnsFrom": [
-            "user_id"
-          ],
+          "columnsFrom": ["user_id"],
           "tableTo": "user",
-          "columnsTo": [
-            "id"
-          ],
+          "columnsTo": ["id"],
           "onUpdate": "no action",
           "onDelete": "no action"
         }
@@ -822,10 +787,7 @@
     "public.role": {
       "name": "role",
       "schema": "public",
-      "values": [
-        "user",
-        "admin"
-      ]
+      "values": ["user", "admin"]
     }
   },
   "schemas": {},
