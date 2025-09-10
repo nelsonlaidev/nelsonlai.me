@@ -11,9 +11,9 @@ export const env = createEnv({
 
   server: {
     // Required
-    DATABASE_URL: z.string().url(),
+    DATABASE_URL: z.url(),
 
-    UPSTASH_REDIS_REST_URL: z.string().url(),
+    UPSTASH_REDIS_REST_URL: z.url(),
     UPSTASH_REDIS_REST_TOKEN: z.string().min(1),
 
     IP_ADDRESS_SALT: z.string().min(1),
@@ -34,20 +34,20 @@ export const env = createEnv({
     GITHUB_CLIENT_ID: z.string().min(1).optional(),
     GITHUB_CLIENT_SECRET: z.string().min(1).optional(),
 
-    DISCORD_WEBHOOK_URL: z.string().url().optional(),
+    DISCORD_WEBHOOK_URL: z.url().optional(),
 
     RESEND_API_KEY: z.string().min(1).optional(),
-    AUTHOR_EMAIL: z.string().email().optional()
+    AUTHOR_EMAIL: z.email().optional()
   },
   client: {
     // Required
-    NEXT_PUBLIC_SITE_URL: z.string().url(),
+    NEXT_PUBLIC_SITE_URL: z.url(),
     // Optional
     NEXT_PUBLIC_VERCEL_ENV: z.string().optional(),
     NEXT_PUBLIC_VERCEL_BRANCH_URL: z.string().optional(),
 
-    NEXT_PUBLIC_UMAMI_URL: z.string().url().optional(),
-    NEXT_PUBLIC_UMAMI_WEBSITE_ID: z.string().uuid().optional()
+    NEXT_PUBLIC_UMAMI_URL: z.url().optional(),
+    NEXT_PUBLIC_UMAMI_WEBSITE_ID: z.uuid().optional()
   },
   experimental__runtimeEnv: {
     NODE_ENV: process.env.NODE_ENV,
