@@ -1,5 +1,6 @@
 import type { NextRequest } from 'next/server'
 
+import { env } from '@repo/env'
 import { i18nMiddleware } from '@repo/i18n/middleware'
 
 const middleware = (request: NextRequest) => {
@@ -16,6 +17,7 @@ const middleware = (request: NextRequest) => {
     media-src 'self';
     manifest-src 'self';
     frame-ancestors 'none';
+    ${env.VERCEL_ENV === 'preview' ? 'frame-src vercel.live;' : ''}
   `
 
   const response = i18nMiddleware(request)
