@@ -1,15 +1,16 @@
-import type { Metadata, ResolvingMetadata } from 'next'
-import type { Article, WithContext } from 'schema-dts'
+import type { Metadata } from 'next'
+import type { BlogPosting, WithContext } from 'schema-dts'
 
-import { i18n } from '@repo/i18n/config'
 import { setRequestLocale } from '@repo/i18n/server'
 import { allPosts } from 'content-collections'
 import { notFound } from 'next/navigation'
 import { Suspense } from 'react'
 
 import CommentSection from '@/components/comment-section'
+import JsonLd from '@/components/json-ld'
 import Mdx from '@/components/mdx'
-import { MY_NAME, OG_IMAGE_HEIGHT, OG_IMAGE_TYPE, OG_IMAGE_WIDTH } from '@/lib/constants'
+import { MY_NAME } from '@/lib/constants'
+import { createMetadata } from '@/lib/metadata'
 import { getBaseUrl } from '@/utils/get-base-url'
 import { getLocalizedPath } from '@/utils/get-localized-path'
 
@@ -27,10 +28,7 @@ export const generateStaticParams = (): Array<{ slug: string; locale: string }> 
   }))
 }
 
-export const generateMetadata = async (
-  props: PageProps<'/[locale]/blog/[slug]'>,
-  parent: ResolvingMetadata
-): Promise<Metadata> => {
+export const generateMetadata = async (props: PageProps<'/[locale]/blog/[slug]'>): Promise<Metadata> => {
   const { params } = props
   const { slug, locale } = await params
 
@@ -38,61 +36,18 @@ export const generateMetadata = async (
 
   if (!post) return {}
 
-  const ISOPublishedTime = new Date(post.date).toISOString()
-  const ISOModifiedTime = new Date(post.modifiedTime).toISOString()
-  const { openGraph = {}, twitter = {} } = await parent
-  const fullSlug = `/blog/${slug}`
-  const url = getLocalizedPath({ slug: fullSlug, locale, absolute: false })
-
-  return {
+  return createMetadata({
+    pathname: `/blog/${slug}`,
     title: post.title,
     description: post.summary,
-    alternates: {
-      canonical: url,
-      languages: {
-        ...Object.fromEntries(
-          i18n.locales.map((l) => [l, getLocalizedPath({ slug: fullSlug, locale: l, absolute: false })])
-        ),
-        'x-default': getLocalizedPath({
-          slug: fullSlug,
-          locale: i18n.defaultLocale,
-          absolute: false
-        })
-      }
-    },
+    locale,
+    ogImagePathname: `/blog/${post.slug}/og-image.png`,
     openGraph: {
-      ...openGraph,
-      url,
       type: 'article',
-      title: post.title,
-      description: post.summary,
-      publishedTime: ISOPublishedTime,
-      modifiedTime: ISOModifiedTime,
-      authors: getBaseUrl(),
-      images: [
-        {
-          url: `/blog/${post.slug}/og-image.png`,
-          width: OG_IMAGE_WIDTH,
-          height: OG_IMAGE_HEIGHT,
-          alt: post.title,
-          type: OG_IMAGE_TYPE
-        }
-      ]
-    },
-    twitter: {
-      ...twitter,
-      title: post.title,
-      description: post.summary,
-      images: [
-        {
-          url: `/blog/${post.slug}/og-image.png`,
-          width: OG_IMAGE_WIDTH,
-          height: OG_IMAGE_HEIGHT,
-          alt: post.title
-        }
-      ]
+      publishedTime: post.date,
+      modifiedTime: post.modifiedTime
     }
-  }
+  })
 }
 
 const Page = async (props: PageProps<'/[locale]/blog/[slug]'>) => {
@@ -101,38 +56,41 @@ const Page = async (props: PageProps<'/[locale]/blog/[slug]'>) => {
   setRequestLocale(locale)
 
   const post = allPosts.find((p) => p.slug === slug && p.locale === locale)
-  const url = getLocalizedPath({ slug: `/blog/${slug}`, locale, absolute: true })
+  const url = getLocalizedPath({ locale, pathname: `/blog/${slug}` })
+  const baseUrl = getBaseUrl()
 
   if (!post) {
     notFound()
   }
 
-  const jsonLd: WithContext<Article> = {
+  const jsonLd: WithContext<BlogPosting> = {
     '@context': 'https://schema.org',
-    '@type': 'Article',
+    '@type': 'BlogPosting',
     headline: post.title,
-    name: post.title,
     description: post.summary,
-    url,
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': url
+    },
+    image: `${baseUrl}/blog/${post.slug}/og-image.png`,
     datePublished: post.date,
     dateModified: post.modifiedTime,
-    image: `${getBaseUrl()}/blog/${post.slug}/og-image.png`,
     author: {
       '@type': 'Person',
       name: MY_NAME,
-      url: getBaseUrl()
+      url: baseUrl
     },
     publisher: {
       '@type': 'Person',
       name: MY_NAME,
-      url: getBaseUrl()
-    }
+      url: baseUrl
+    },
+    inLanguage: locale
   }
 
   return (
     <>
-      {/* eslint-disable-next-line @eslint-react/dom/no-dangerously-set-innerhtml -- Safe */}
-      <script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <JsonLd json={jsonLd} />
 
       <Header post={post} />
 

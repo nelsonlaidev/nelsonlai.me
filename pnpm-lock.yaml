@@ -86,6 +86,9 @@ importers:
 
   apps/web:
     dependencies:
+      '@fastify/deepmerge':
+        specifier: ^3.1.0
+        version: 3.1.0
       '@hookform/resolvers':
         specifier: ^5.0.1
         version: 5.2.1(react-hook-form@7.62.0(react@19.1.1))
@@ -2024,6 +2027,9 @@ packages:
 
   '@fal-works/esbuild-plugin-global-externals@2.1.2':
     resolution: {integrity: sha512-cEee/Z+I12mZcFJshKcCqC8tuX5hG3s+d+9nZ3LabqKF1vKdF41B92pJVCBggjAGORAeOzyyDDKrZwIkLffeOQ==}
+
+  '@fastify/deepmerge@3.1.0':
+    resolution: {integrity: sha512-lCVONBQINyNhM6LLezB6+2afusgEYR4G8xenMsfe+AT+iZ7Ca6upM5Ha8UkZuYSnuMw3GWl/BiPXnLMi/gSxuQ==}
 
   '@floating-ui/core@1.7.3':
     resolution: {integrity: sha512-sGnvb5dmrJaKEZ+LDIpguvdX3bDlEllmv4/ClQ9awcmCZrlx5jQyyMWFM5kBI+EyNOCDDiKk8il0zeuX3Zlg/w==}
@@ -11514,6 +11520,8 @@ snapshots:
 
   '@fal-works/esbuild-plugin-global-externals@2.1.2': {}
 
+  '@fastify/deepmerge@3.1.0': {}
+
   '@floating-ui/core@1.7.3':
     dependencies:
       '@floating-ui/utils': 0.2.10
@@ -13316,7 +13324,7 @@ snapshots:
       json5: 2.2.3
       log-symbols: 4.1.0
       module-punycode: punycode@2.3.1
-      next: 15.4.1(@babel/core@7.26.10)(@playwright/test@1.55.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      next: 15.4.1(@babel/core@7.26.10)(@playwright/test@1.55.0)(react-dom@19.0.0(react@19.1.1))(react@19.0.0)
       node-html-parser: 7.0.1
       ora: 5.4.1
       pretty-bytes: 6.1.1
@@ -13510,9 +13518,7 @@ snapshots:
       metro-runtime: 0.83.1
     transitivePeerDependencies:
       - '@babel/core'
-      - bufferutil
       - supports-color
-      - utf-8-validate
 
   '@react-native/normalize-colors@0.81.0': {}
 
@@ -18559,7 +18565,7 @@ snapshots:
       react: 19.1.1
       react-dom: 19.1.1(react@19.1.1)
 
-  next@15.4.1(@babel/core@7.26.10)(@playwright/test@1.55.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
+  next@15.4.1(@babel/core@7.26.10)(@playwright/test@1.55.0)(react-dom@19.0.0(react@19.1.1))(react@19.0.0):
     dependencies:
       '@next/env': 15.4.1
       '@swc/helpers': 0.5.15

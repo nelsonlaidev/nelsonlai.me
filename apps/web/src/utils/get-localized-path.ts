@@ -3,21 +3,15 @@ import { i18n } from '@repo/i18n/config'
 import { getBaseUrl } from './get-base-url'
 
 type LocalizedDocument = {
-  slug: string
   locale: string
-  absolute: boolean
+  pathname?: string
 }
 
 export const getLocalizedPath = (doc: LocalizedDocument) => {
-  const { slug, locale, absolute } = doc
+  const { locale, pathname = '' } = doc
+  const baseUrl = getBaseUrl()
 
-  let localePath: string
+  const localePath = locale === i18n.defaultLocale ? baseUrl : `${baseUrl}/${locale}`
 
-  if (locale === i18n.defaultLocale) {
-    localePath = absolute ? getBaseUrl() : '/'
-  } else {
-    localePath = absolute ? `${getBaseUrl()}/${locale}` : `/${locale}`
-  }
-
-  return `${localePath}${slug}`
+  return `${localePath}${pathname}`
 }
