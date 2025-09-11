@@ -35,7 +35,6 @@ export const generateMetadata = async (props: PageProps<'/[locale]/about'>): Pro
     description: t('description'),
     locale,
     ogImagePathname: '/about/og-image.png',
-
     openGraph: {
       type: 'profile'
     }
