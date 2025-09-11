@@ -6,16 +6,12 @@ import { getTranslations, setRequestLocale } from '@repo/i18n/server'
 
 import JsonLd from '@/components/json-ld'
 import PageTitle from '@/components/page-title'
-import { getSession } from '@/lib/auth'
 import { MY_NAME } from '@/lib/constants'
 import { createMetadata } from '@/lib/metadata'
 import { getBaseUrl } from '@/utils/get-base-url'
 import { getLocalizedPath } from '@/utils/get-localized-path'
 
-import MessageBox from './message-box'
-import Messages from './messages'
-import Pinned from './pinned'
-import SignIn from './sign-in'
+import Guestbook from './guestbook'
 
 export const generateStaticParams = (): Array<{ locale: string }> => {
   return i18n.locales.map((locale) => ({ locale }))
@@ -41,7 +37,6 @@ const Page = async (props: PageProps<'/[locale]/guestbook'>) => {
   const { params } = props
   const { locale } = await params
   setRequestLocale(locale)
-  const session = await getSession()
   const t = await getTranslations()
   const title = t('guestbook.title')
   const description = t('guestbook.description')
@@ -65,11 +60,7 @@ const Page = async (props: PageProps<'/[locale]/guestbook'>) => {
     <>
       <JsonLd json={jsonLd} />
       <PageTitle title={title} description={description} />
-      <div className='mx-auto max-w-xl space-y-10'>
-        <Pinned />
-        {session ? <MessageBox user={session.user} /> : <SignIn />}
-        <Messages />
-      </div>
+      <Guestbook />
     </>
   )
 }
