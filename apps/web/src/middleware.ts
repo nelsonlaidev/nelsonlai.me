@@ -1,24 +1,25 @@
 import type { NextRequest } from 'next/server'
 
+import { env } from '@repo/env'
 import { i18nMiddleware } from '@repo/i18n/middleware'
+
+const IS_PREVIEW = env.VERCEL_ENV === 'preview'
 
 const middleware = (request: NextRequest) => {
   const csp = `
-    default-src 'self';
-    script-src 'self' 'unsafe-inline' 'unsafe-eval' *.nelsonlai.dev vercel.live va.vercel-scripts.com unpkg.com;
-    style-src 'self' 'unsafe-inline' vercel.live;
-    img-src * blob: data:;
-    font-src 'self' data: assets.vercel.com vercel.live;
+    default-src 'none';
+    script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.nelsonlai.dev https://va.vercel-scripts.com ${IS_PREVIEW ? 'https://vercel.live' : ''};
+    style-src 'self' 'unsafe-inline' ${IS_PREVIEW ? 'https://vercel.live' : ''};
+    img-src 'self' data: https://avatars.githubusercontent.com https://*.googleusercontent.com ${IS_PREVIEW ? 'https://vercel.live https://vercel.com blob:' : ''};
+    font-src 'self' ${IS_PREVIEW ? 'https://vercel.live https://assets.vercel.com' : ''};
     object-src 'none';
-    base-uri 'self';
-    form-action 'self';
-    connect-src *;
+    base-uri 'none';
+    form-action 'none';
+    connect-src 'self' ${IS_PREVIEW ? 'https://vercel.live wss://ws-us3.pusher.com' : ''};
     media-src 'self';
+    manifest-src 'self';
     frame-ancestors 'none';
-    frame-src vercel.live;
-    block-all-mixed-content;
-    upgrade-insecure-requests;
-    worker-src blob: 'self';
+    ${IS_PREVIEW ? 'frame-src https://vercel.live;' : ''}
   `
 
   const response = i18nMiddleware(request)
