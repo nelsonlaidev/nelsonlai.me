@@ -15,7 +15,7 @@ const middleware = (request: NextRequest) => {
     object-src 'none';
     base-uri 'none';
     form-action 'none';
-    connect-src 'self' ${IS_PREVIEW ? 'https://vercel.live wss://ws-us3.pusher.com' : ''};
+    connect-src 'self' https://*.nelsonlai.dev ${IS_PREVIEW ? 'https://vercel.live wss://ws-us3.pusher.com' : ''};
     media-src 'self';
     manifest-src 'self';
     frame-ancestors 'none';
