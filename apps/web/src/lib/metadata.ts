@@ -33,7 +33,7 @@ export const createMetadata = (options: Options): Metadata => {
       title: resolvedTitle,
       description,
       creator: MY_NAME,
-      manifest: `${baseUrl}/favicons/site.webmanifest`,
+      manifest: `${baseUrl}/site.webmanifest`,
       alternates: {
         canonical: currentUrl,
         languages: {
@@ -82,12 +82,12 @@ export const createMetadata = (options: Options): Metadata => {
         icon: {
           rel: 'icon',
           type: 'image/x-icon',
-          url: `${baseUrl}/favicons/favicon.ico`
+          url: `${baseUrl}/favicon.ico`
         },
         apple: [
           {
             type: 'image/png',
-            url: `${baseUrl}/favicons/apple-touch-icon.png`,
+            url: `${baseUrl}/apple-touch-icon.png`,
             sizes: '180x180'
           }
         ],
@@ -95,19 +95,19 @@ export const createMetadata = (options: Options): Metadata => {
           {
             rel: 'icon',
             type: 'image/svg+xml',
-            url: `${baseUrl}/favicons/favicon.svg`,
+            url: `${baseUrl}/favicon.svg`,
             sizes: 'any'
           },
           {
             rel: 'icon',
             type: 'image/png',
-            url: `${baseUrl}/favicons/favicon-16x16.png`,
+            url: `${baseUrl}/favicon-16x16.png`,
             sizes: '16x16'
           },
           {
             rel: 'icon',
             type: 'image/png',
-            url: `${baseUrl}/favicons/favicon-32x32.png`,
+            url: `${baseUrl}/favicon-32x32.png`,
             sizes: '32x32'
           }
         ]
