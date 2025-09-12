@@ -1,6 +1,6 @@
 {
   "about": {
-    "description": "👋 嗨！我是 Nelson Lai，一个热爱网页开发的学生。",
+    "description": "嗨！我是 Nelson Lai，一位热爱网页开发的学生，使用 HTML、CSS 和 JavaScript 创作创新项目。探索我的作品集、技能与开发历程，一起探索数字世界吧！",
     "title": "关于"
   },
   "admin": {
@@ -63,7 +63,7 @@
       "toggle-italic": "切换斜体",
       "toggle-strikethrough": "切换删除线"
     },
-    "description": "我的个人网站和博客，分享我对各种主题的想法，包括教学、笔记和个人经验。作为一名来自香港的全栈工程师，我在 2020 年 12 月开始把学习网页开发当成一种兴趣。我使用 Next.js 建立网站，GitHub 用作源代码托管，Vercel 用作部署。探索我的网站，了解更多关于我的旅程，并发现一些启发我的网页开发资源。",
+    "description": "欢迎来到我的网站和博客！作为香港的全端工程师，我从 2020 年 12 月起自学网页开发，分享教学、笔记与生活点滴。探索我的旅程！",
     "footer": {
       "edit-on-github": "在 GitHub 上编辑",
       "last-updated": "最后更新日期：{date}"
@@ -241,7 +241,7 @@
     "site-description": "Nelson Lai 是一位居住于香港的全栈工程师。他使用 React、Node.js 和现代技术构建高效且优雅的网站。"
   },
   "projects": {
-    "description": "我的项目清单。所有东西都是用 ❤️ 制作",
+    "description": "我的项目集，每个都倾注了心血制作。",
     "title": "项目",
     "visit-website": "前往网站"
   },

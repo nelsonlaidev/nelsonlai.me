@@ -1,4 +1,4 @@
-import type { Metadata, ResolvingMetadata } from 'next'
+import type { Metadata } from 'next'
 
 import { i18n } from '@repo/i18n/config'
 import { getTranslations, setRequestLocale } from '@repo/i18n/server'
@@ -7,66 +7,26 @@ import { notFound } from 'next/navigation'
 
 import Mdx from '@/components/mdx'
 import PageTitle from '@/components/page-title'
-import { OG_IMAGE_HEIGHT, OG_IMAGE_TYPE, OG_IMAGE_WIDTH } from '@/lib/constants'
-import { getLocalizedPath } from '@/utils/get-localized-path'
+import { createMetadata } from '@/lib/metadata'
 
 export const generateStaticParams = (): Array<Awaited<PageProps<'/[locale]/terms'>['params']>> => {
   return i18n.locales.map((locale) => ({ locale }))
 }
 
-export const generateMetadata = async (
-  props: PageProps<'/[locale]/terms'>,
-  parent: ResolvingMetadata
-): Promise<Metadata> => {
+export const generateMetadata = async (props: PageProps<'/[locale]/terms'>): Promise<Metadata> => {
   const { params } = props
   const { locale } = await params
-  const { openGraph = {}, twitter = {} } = await parent
   const t = await getTranslations({ locale, namespace: 'terms' })
   const title = t('title')
   const description = t('description')
 
-  const slug = '/terms'
-  const url = getLocalizedPath({ slug, locale, absolute: false })
-
-  return {
+  return createMetadata({
+    pathname: '/terms',
     title,
     description,
-    alternates: {
-      canonical: url,
-      languages: {
-        ...Object.fromEntries(i18n.locales.map((l) => [l, getLocalizedPath({ slug, locale: l, absolute: false })])),
-        'x-default': getLocalizedPath({ slug, locale: i18n.defaultLocale, absolute: false })
-      }
-    },
-    openGraph: {
-      ...openGraph,
-      url,
-      title,
-      description,
-      images: [
-        {
-          url: '/terms/og-image.png',
-          width: OG_IMAGE_WIDTH,
-          height: OG_IMAGE_HEIGHT,
-          alt: title,
-          type: OG_IMAGE_TYPE
-        }
-      ]
-    },
-    twitter: {
-      ...twitter,
-      title,
-      description,
-      images: [
-        {
-          url: '/terms/og-image.png',
-          width: OG_IMAGE_WIDTH,
-          height: OG_IMAGE_HEIGHT,
-          alt: title
-        }
-      ]
-    }
-  }
+    locale,
+    ogImagePathname: '/terms/og-image.png'
+  })
 }
 
 const Page = async (props: PageProps<'/[locale]/terms'>) => {

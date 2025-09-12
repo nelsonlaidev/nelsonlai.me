@@ -1,14 +1,15 @@
-import type { Metadata, ResolvingMetadata } from 'next'
-import type { SoftwareApplication, WithContext } from 'schema-dts'
+import type { Metadata } from 'next'
+import type { SoftwareSourceCode, WithContext } from 'schema-dts'
 
-import { i18n } from '@repo/i18n/config'
 import { setRequestLocale } from '@repo/i18n/server'
 import { allProjects } from 'content-collections'
 import { notFound } from 'next/navigation'
 
 import BlurImage from '@/components/blur-image'
+import JsonLd from '@/components/json-ld'
 import Mdx from '@/components/mdx'
 import { MY_NAME } from '@/lib/constants'
+import { createMetadata } from '@/lib/metadata'
 import { getBaseUrl } from '@/utils/get-base-url'
 import { getLocalizedPath } from '@/utils/get-localized-path'
 
@@ -21,10 +22,7 @@ export const generateStaticParams = (): Array<{ slug: string; locale: string }> 
   }))
 }
 
-export const generateMetadata = async (
-  props: PageProps<'/[locale]/projects/[slug]'>,
-  parent: ResolvingMetadata
-): Promise<Metadata> => {
+export const generateMetadata = async (props: PageProps<'/[locale]/projects/[slug]'>): Promise<Metadata> => {
   const { params } = props
   const { slug, locale } = await params
 
@@ -35,55 +33,14 @@ export const generateMetadata = async (
   }
 
   const { name, description } = project
-  const { openGraph = {}, twitter = {} } = await parent
-  const fullSlug = `/projects/${slug}`
-  const url = getLocalizedPath({ slug: fullSlug, locale, absolute: false })
 
-  return {
+  return createMetadata({
+    pathname: `/projects/${slug}`,
     title: name,
-    description: description,
-    alternates: {
-      canonical: url,
-      languages: {
-        ...Object.fromEntries(
-          i18n.locales.map((l) => [l, getLocalizedPath({ slug: fullSlug, locale: l, absolute: false })])
-        ),
-        'x-default': getLocalizedPath({
-          slug: fullSlug,
-          locale: i18n.defaultLocale,
-          absolute: false
-        })
-      }
-    },
-    openGraph: {
-      ...openGraph,
-      url,
-      title: name,
-      description: description,
-      images: [
-        {
-          url: `/images/projects/${slug}/cover.png`,
-          width: 1200,
-          height: 630,
-          alt: description,
-          type: 'image/png'
-        }
-      ]
-    },
-    twitter: {
-      ...twitter,
-      title: name,
-      description: description,
-      images: [
-        {
-          url: `/images/projects/${slug}/cover.png`,
-          width: 1200,
-          height: 630,
-          alt: description
-        }
-      ]
-    }
-  }
+    description,
+    locale,
+    ogImagePathname: `/images/projects/${slug}/cover.png`
+  })
 }
 
 const Page = async (props: PageProps<'/[locale]/projects/[slug]'>) => {
@@ -92,34 +49,37 @@ const Page = async (props: PageProps<'/[locale]/projects/[slug]'>) => {
   setRequestLocale(locale)
 
   const project = allProjects.find((p) => p.slug === slug && p.locale === locale)
-  const url = getLocalizedPath({ slug: `/projects/${slug}`, locale, absolute: true })
+  const url = getLocalizedPath({ locale, pathname: `/projects/${slug}` })
 
   if (!project) {
     notFound()
   }
 
-  const { name, code, description, github } = project
+  const { name, code, description, github, dateCreated } = project
+  const baseUrl = getBaseUrl()
 
-  const jsonLd: WithContext<SoftwareApplication> = {
+  const jsonLd: WithContext<SoftwareSourceCode> = {
     '@context': 'https://schema.org',
-    '@type': 'SoftwareApplication',
+    '@type': 'SoftwareSourceCode',
     name,
     description,
     url,
-    applicationCategory: 'WebApplication',
+    codeRepository: github,
+    license: 'https://opensource.org/licenses/MIT',
+    programmingLanguage: 'TypeScript',
+    dateCreated,
     author: {
       '@type': 'Person',
       name: MY_NAME,
-      url: getBaseUrl()
+      url: baseUrl
     },
-    sameAs: [github],
-    screenshot: `${getBaseUrl()}/images/projects/${slug}/cover.png`
+    thumbnailUrl: `${baseUrl}/images/projects/${slug}/cover.png`,
+    inLanguage: locale
   }
 
   return (
     <>
-      {/* eslint-disable-next-line @eslint-react/dom/no-dangerously-set-innerhtml -- Safe */}
-      <script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <JsonLd json={jsonLd} />
       <div className='mx-auto max-w-3xl'>
         <Header {...project} />
         <BlurImage

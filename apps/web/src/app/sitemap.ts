@@ -6,7 +6,7 @@ import { allPages, allPosts, allProjects } from 'content-collections'
 import { getLocalizedPath } from '@/utils/get-localized-path'
 
 const sitemap = (): MetadataRoute.Sitemap => {
-  const routes = [
+  const pathnames = [
     '',
     '/blog',
     '/guestbook',
@@ -18,8 +18,8 @@ const sitemap = (): MetadataRoute.Sitemap => {
   ]
 
   return supportedLanguages.flatMap((locale) => {
-    return routes.map((route) => ({
-      url: getLocalizedPath({ slug: route, locale: locale.code, absolute: true }),
+    return pathnames.map((pathname) => ({
+      url: getLocalizedPath({ locale: locale.code, pathname }),
       lastModified: new Date()
     }))
   })

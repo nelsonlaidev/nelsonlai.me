@@ -1,6 +1,6 @@
 {
   "about": {
-    "description": "👋 Hi there! I am Nelson Lai, a student who loves web development.",
+    "description": "Hi! I'm Nelson Lai, a passionate web development student creating innovative projects with HTML, CSS, and JavaScript. Explore my portfolio, skills, and journey in building user-friendly apps. Let's connect!",
     "title": "About"
   },
   "admin": {
@@ -63,7 +63,7 @@
       "toggle-italic": "Toggle italic",
       "toggle-strikethrough": "Toggle strikethrough"
     },
-    "description": "My personal website and blog where I share my thoughts on various topics including tutorials, notes, and personal experiences. As a full-stack engineer from Hong Kong, I started learning web development as a hobby in December 2020. I use Next.js for building websites, GitHub for code hosting, and Vercel for deployment. Explore my site to learn more about my Journey and discover some of the web development resources that have inspired me.",
+    "description": "Discover my website and blog, where I share tutorials, notes, and experiences as a full-stack engineer based in Hong Kong. I began web dev as a hobby in Dec 2020. Explore my journey!",
     "footer": {
       "edit-on-github": "Edit on GitHub",
       "last-updated": "Last updated: {date}"
@@ -241,7 +241,7 @@
     "site-description": "Nelson Lai is a full stack engineer based in Hong Kong. He builds performant and elegant websites using React, Node.js, and modern technologies."
   },
   "projects": {
-    "description": "The list of my projects. Everything was made with ❤️.",
+    "description": "A collection of my projects, crafted with dedication.",
     "title": "Projects",
     "visit-website": "Visit Website"
   },

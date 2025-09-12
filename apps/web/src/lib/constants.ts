@@ -5,7 +5,6 @@ export const IS_SERVER = typeof window === 'undefined'
 export const GITHUB_USERNAME = 'nelsonlaidev'
 
 export const MY_NAME = 'Nelson Lai'
-export const SITE_KEYWORDS = [MY_NAME, 'Next.js', 'React', 'TypeScript', 'Node.js']
 
 export const SITE_GITHUB_URL = 'https://github.com/nelsonlaidev'
 export const SITE_FACEBOOK_URL = 'https://www.facebook.com/nelsonlaidev'

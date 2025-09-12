@@ -24,6 +24,7 @@
     "*.{mjs,ts,tsx}": "eslint --fix"
   },
   "dependencies": {
+    "@fastify/deepmerge": "^3.1.0",
     "@hookform/resolvers": "^5.0.1",
     "@icons-pack/react-simple-icons": "^13.0.0",
     "@number-flow/react": "^0.5.9",

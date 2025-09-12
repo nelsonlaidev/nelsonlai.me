@@ -9,15 +9,16 @@ import GetInTouch from '@/components/home/get-in-touch'
 import Hero from '@/components/home/hero'
 import LatestArticles from '@/components/home/latest-articles'
 import SelectedProjects from '@/components/home/selected-projects'
+import JsonLd from '@/components/json-ld'
 import {
   MY_NAME,
   SITE_FACEBOOK_URL,
   SITE_GITHUB_URL,
   SITE_INSTAGRAM_URL,
-  SITE_KEYWORDS,
   SITE_X_URL,
   SITE_YOUTUBE_URL
 } from '@/lib/constants'
+import { createMetadata } from '@/lib/metadata'
 import { getBaseUrl } from '@/utils/get-base-url'
 import { getLocalizedPath } from '@/utils/get-localized-path'
 
@@ -28,17 +29,15 @@ export const generateStaticParams = (): Array<{ locale: string }> => {
 export const generateMetadata = async (props: PageProps<'/[locale]'>): Promise<Metadata> => {
   const { params } = props
   const { locale } = await params
-  const slug = ''
+  const t = await getTranslations({ locale, namespace: 'metadata' })
+  const description = t('site-description')
 
-  return {
-    alternates: {
-      canonical: getLocalizedPath({ slug, locale, absolute: false }),
-      languages: {
-        ...Object.fromEntries(i18n.locales.map((l) => [l, getLocalizedPath({ slug, locale: l, absolute: false })])),
-        'x-default': getLocalizedPath({ slug, locale: i18n.defaultLocale, absolute: false })
-      }
-    }
-  }
+  return createMetadata({
+    root: true,
+    title: MY_NAME,
+    description,
+    locale
+  })
 }
 
 const Page = async (props: PageProps<'/[locale]'>) => {
@@ -47,35 +46,30 @@ const Page = async (props: PageProps<'/[locale]'>) => {
   setRequestLocale(locale)
   const t = await getTranslations('metadata')
 
-  const url = getLocalizedPath({ slug: '', locale, absolute: true })
+  const url = getLocalizedPath({ locale })
 
   const jsonLd: WithContext<WebSite> = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
+    '@id': url,
     name: MY_NAME,
     description: t('site-description'),
     url,
-    author: {
+    publisher: {
       '@type': 'Person',
       name: MY_NAME,
       url: getBaseUrl(),
       sameAs: [SITE_FACEBOOK_URL, SITE_INSTAGRAM_URL, SITE_X_URL, SITE_GITHUB_URL, SITE_YOUTUBE_URL]
     },
-    mainEntityOfPage: {
-      '@type': 'WebPage',
-      '@id': getBaseUrl()
-    },
-    inLanguage: locale,
     copyrightYear: new Date().getFullYear(),
-    keywords: SITE_KEYWORDS,
-    dateCreated: '2020-12-05',
-    dateModified: new Date().toISOString()
+    dateCreated: '2022-02-01T00:00:00Z',
+    dateModified: new Date().toISOString(),
+    inLanguage: locale
   }
 
   return (
     <>
-      {/* eslint-disable-next-line @eslint-react/dom/no-dangerously-set-innerhtml -- Safe */}
-      <script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <JsonLd json={jsonLd} />
       <Hero />
       <SelectedProjects />
       <AboutMe />

@@ -8,7 +8,6 @@ import { cache } from 'react'
 const getFontPath = (fontName: string) => path.join(process.cwd(), 'public', 'fonts', fontName)
 
 const getRegularFont = cache(async () => {
-  console.log(process.cwd())
   const response = await fs.readFile(getFontPath('Geist-Regular.otf'))
   const font = Uint8Array.from(response).buffer
 
