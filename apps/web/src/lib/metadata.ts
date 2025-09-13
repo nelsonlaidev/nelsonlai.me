@@ -11,7 +11,7 @@ import { MY_NAME, OG_IMAGE_HEIGHT, OG_IMAGE_TYPE, OG_IMAGE_WIDTH } from './const
 type Options = {
   root?: boolean
   pathname?: string
-  ogImagePathname?: string
+  ogImagePathname: string
   title: string
   description: string
   locale: string
@@ -22,9 +22,7 @@ export const createMetadata = (options: Options): Metadata => {
   const baseUrl = getBaseUrl()
 
   const resolvedTitle = root ? title : `${title} | ${MY_NAME}`
-  const resolvedOGImageUrl = ogImagePathname
-    ? getLocalizedPath({ locale, pathname: ogImagePathname })
-    : `${baseUrl}/images/og-image.png`
+  const resolvedOGImageUrl = getLocalizedPath({ locale, pathname: ogImagePathname })
 
   const currentUrl = getLocalizedPath({ locale, pathname })
 

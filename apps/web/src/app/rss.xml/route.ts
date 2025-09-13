@@ -16,7 +16,7 @@ export const GET = async () => {
     site_url: getBaseUrl(),
     feed_url: `${getBaseUrl()}/rss.xml`,
     language: 'en-US',
-    image_url: `${getBaseUrl()}/images/og-image.png`
+    image_url: `${getBaseUrl()}/og-image.png`
   })
 
   const posts = allPosts.filter((p) => p.locale === i18n.defaultLocale)
