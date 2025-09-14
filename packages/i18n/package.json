@@ -24,10 +24,10 @@
   },
   "devDependencies": {
     "@nelsonlaidev/eslint-config": "^1.0.0",
-    "@nelsonlaidev/typescript-config": "^0.0.2",
-    "@types/react": "^19.1.6",
-    "next": "^15.5.2",
-    "next-intl": "^4.1.0"
+    "@nelsonlaidev/typescript-config": "^0.0.3",
+    "@types/react": "^19.1.13",
+    "next": "^15.5.3",
+    "next-intl": "^4.3.8"
   },
   "peerDependencies": {
     "next": "^15",
