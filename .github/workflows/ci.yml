@@ -1,9 +1,14 @@
 name: CI
 
 on:
-  pull_request:
+  push:
     branches:
       - main
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.number || github.sha }}
+  cancel-in-progress: true
 
 env:
   TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
