@@ -2,10 +2,10 @@ $schema: https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell
 version: '0.2'
 useGitignore: true
 files:
-  - '**'
-  - .*
-  - .**/*
-  - '!.git/**'
+  - '**' # include all files
+  - '.*' # include dot files
+  - '.*/**' # include dot files in sub-directories
+  - '!.git/**' # exclude .git directory
 ignorePaths:
   - pnpm-lock.yaml
 dictionaries:
@@ -24,6 +24,7 @@ words:
   - antec
   - argb
   - asus
+  - autorun
   - bentogrids
   - bradlc
   - cleanshot
@@ -48,6 +49,8 @@ words:
   - keychron
   - keystyle
   - leerob
+  - lhci
+  - lighthouseci
   - linktree
   - lokalise
   - macbook

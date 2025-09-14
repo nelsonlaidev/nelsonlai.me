@@ -151,3 +151,31 @@ jobs:
           name: playwright-report
           path: apps/web/playwright-report/
           retention-days: 30
+
+  lhci:
+    name: Lighthouse CI
+    runs-on: ubuntu-latest
+    needs: [e2e]
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v4
+
+      - name: Setup
+        uses: ./.github/actions/setup
+
+      - name: Run services
+        run: docker compose up -d
+
+      - name: Migrate database
+        run: pnpm db:migrate
+
+      - name: Seed database
+        run: pnpm db:seed
+
+      - name: Build web
+        run: pnpm --filter web build
+
+      - name: Run Lighthouse CI
+        run: pnpm dlx @lhci/cli autorun
+        env:
+          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}

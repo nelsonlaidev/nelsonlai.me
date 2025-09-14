@@ -1,0 +1,22 @@
+ci:
+  collect:
+    startServerCommand: pnpm --filter web start
+    url:
+      - http://localhost:3000
+      - http://localhost:3000/blog
+      - http://localhost:3000/projects
+      - http://localhost:3000/about
+
+  assert:
+    preset: lighthouse:all
+    assertions:
+      - categories: ['performance', 'accessibility', 'best-practices', 'seo', 'pwa']
+        thresholds:
+          performance: 1
+          accessibility: 1
+          'best-practices': 1
+          seo: 1
+          pwa: 1
+
+  upload:
+    target: 'temporary-public-storage'
