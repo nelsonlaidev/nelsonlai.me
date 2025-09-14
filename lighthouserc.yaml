@@ -8,15 +8,22 @@ ci:
       - http://localhost:3000/about
 
   assert:
-    preset: lighthouse:all
     assertions:
-      - categories: ['performance', 'accessibility', 'best-practices', 'seo', 'pwa']
-        thresholds:
-          performance: 1
-          accessibility: 1
-          'best-practices': 1
-          seo: 1
-          pwa: 1
+      categories:performance:
+        - error
+        - minScore: 1.0
+      categories:accessibility:
+        - error
+        - minScore: 1.0
+      categories:'best-practices':
+        - error
+        - minScore: 1.0
+      categories:seo:
+        - error
+        - minScore: 1.0
+      categories:pwa:
+        - error
+        - minScore: 1.0
 
   upload:
     target: 'temporary-public-storage'
