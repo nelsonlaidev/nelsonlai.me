@@ -130,7 +130,7 @@ jobs:
         uses: ./.github/actions/setup
 
       - name: Setup Playwright
-        run: pnpm playwright install --with-deps
+        run: pnpm playwright install --with-deps chromium --only-shell
 
       - name: Run services
         run: docker compose up -d
