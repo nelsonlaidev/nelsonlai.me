@@ -116,6 +116,8 @@ const Card = (props: CardProps) => {
         src={`/images/projects/${slug}/cover.png`}
         alt={description}
         className='rounded-lg'
+        lazy={false}
+        fetchPriority='high'
       />
       <div className='absolute bottom-6 left-7 flex flex-col transition-[left] ease-out group-hover:left-[30px]'>
         <h3 className='text-2xl font-semibold text-white'>{name}</h3>
