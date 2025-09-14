@@ -16,13 +16,13 @@
     "*.ts": "eslint --fix"
   },
   "dependencies": {
-    "@upstash/ratelimit": "^2.0.5",
-    "@upstash/redis": "^1.35.0",
+    "@upstash/ratelimit": "^2.0.6",
+    "@upstash/redis": "^1.35.3",
     "consola": "^3.4.2"
   },
   "devDependencies": {
     "@nelsonlaidev/eslint-config": "^1.0.0",
-    "@nelsonlaidev/typescript-config": "^0.0.2",
+    "@nelsonlaidev/typescript-config": "^0.0.3",
     "@repo/env": "workspace:*"
   }
 }
