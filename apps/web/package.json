@@ -5,9 +5,9 @@
   "author": "Nelson Lai <me@nelsonlai.dev> (https://github.com/nelsonlaidev/)",
   "type": "module",
   "scripts": {
+    "analyze": "cross-env ANALYZE=true pnpm with-env next build",
     "build": "pnpm with-env next build --turbo",
     "build:mdx": "content-collections build",
-    "bundle-analyzer": "cross-env ANALYZE=true pnpm build",
     "clean": "rm -rf .next .turbo .content-collections test-results playwright-report",
     "dev": "pnpm with-env next dev --turbopack -p 3000",
     "lint": "eslint . --max-warnings 0",
