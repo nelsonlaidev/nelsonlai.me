@@ -4,7 +4,7 @@ import path from 'node:path'
 import { test as setup } from '@playwright/test'
 import { db, posts } from '@repo/db'
 
-import { TEST_POSTS } from '../data/test-posts'
+import { TEST_POSTS } from '../fixtures/posts'
 
 const createTestPost = (title: string) => `\
 ---

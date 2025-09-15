@@ -1,47 +1,80 @@
+import crypto from 'node:crypto'
+import fs from 'node:fs/promises'
 import path from 'node:path'
 
-import { expect, test as setup } from '@playwright/test'
+import { test as setup } from '@playwright/test'
+import { accounts, db, sessions, users } from '@repo/db'
+import { env } from '@repo/env'
+import dayjs from 'dayjs'
 
-const storagePath = path.resolve(import.meta.dirname, '../.auth/user.json')
+import { TEST_UNIQUE_ID, TEST_USER } from '../fixtures/auth'
 
-setup('authenticate', async ({ page }) => {
-  // Avoid going to the actual GitHub login page
-  await page.route('**/github.com/login/oauth/authorize**', async (route) => {
-    const state = new URL(route.request().url()).searchParams.get('state')
+const authStoragePath = path.join(import.meta.dirname, '../.auth/user.json')
 
-    if (!state) {
-      throw new Error('Missing state parameter')
-    }
+setup('setup auth', async () => {
+  const expiresAt = dayjs().add(7, 'day').toDate()
+  const now = new Date()
 
-    await route.fulfill({
-      status: 302,
-      headers: {
-        location: `http://localhost:3000/api/auth/callback/github?code=mock_github_code&state=${state}`
-      }
-    })
+  await db.transaction(async (tx) => {
+    await tx
+      .insert(users)
+      .values({
+        id: TEST_UNIQUE_ID,
+        name: TEST_USER.name,
+        email: TEST_USER.email,
+        emailVerified: false,
+        image: TEST_USER.image,
+        createdAt: now,
+        updatedAt: now
+      })
+      .onConflictDoNothing({ target: users.id })
+
+    await tx
+      .insert(accounts)
+      .values({
+        id: TEST_UNIQUE_ID,
+        accountId: TEST_USER.accountId,
+        providerId: 'github',
+        userId: TEST_UNIQUE_ID,
+        accessToken: 'gho_000',
+        scope: 'read:user,user:email',
+        createdAt: now,
+        updatedAt: now
+      })
+      .onConflictDoNothing({ target: accounts.id })
+
+    await tx
+      .insert(sessions)
+      .values({
+        id: TEST_UNIQUE_ID,
+        token: TEST_USER.sessionToken,
+        userId: TEST_UNIQUE_ID,
+        expiresAt,
+        createdAt: now,
+        updatedAt: now
+      })
+      .onConflictDoUpdate({
+        target: sessions.token,
+        set: { expiresAt }
+      })
   })
 
-  await page.goto('/')
+  const signature = crypto.createHmac('sha256', env.BETTER_AUTH_SECRET).update(TEST_USER.sessionToken).digest('base64') // 直接輸出 base64（等同於 btoa）
+  const signedValue = `${TEST_USER.sessionToken}.${signature}`
 
-  await page.getByTestId('command-menu-button').click()
-  await page.locator('[data-value="Sign in"]').click()
-  await page.getByTestId('github-sign-in-button').click()
+  const cookieValue = encodeURIComponent(signedValue)
+  const cookieObject = {
+    name: 'better-auth.session_token',
+    value: cookieValue,
+    domain: 'localhost',
+    path: '/',
+    httpOnly: true,
+    secure: false,
+    sameSite: 'Lax',
+    expires: Math.floor(expiresAt.getTime() / 1000)
+  }
 
-  // After signing in, wait for the getSession (that has response body) API call to complete
-  const response = await page.waitForResponse(async (r) => {
-    if (r.url().includes('/api/auth/get-session') && r.status() === 200) {
-      try {
-        const data = await r.json()
-        return !!data
-      } catch {
-        return false
-      }
-    }
-
-    return false
-  })
-
-  expect(response.status()).toBe(200)
-
-  await page.context().storageState({ path: storagePath })
+  const authDir = path.dirname(authStoragePath)
+  await fs.mkdir(authDir, { recursive: true })
+  await fs.writeFile(authStoragePath, JSON.stringify({ cookies: [cookieObject], origins: [] }, null, 2))
 })

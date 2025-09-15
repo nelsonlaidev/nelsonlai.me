@@ -1,8 +1,8 @@
 import { createId } from '@paralleldrive/cuid2'
-import { expect, test } from '@playwright/test'
+import test, { expect } from '@playwright/test'
 import { comments, db } from '@repo/db'
 
-import { getTestUser } from '../utils/get-test-user'
+import { TEST_UNIQUE_ID } from '../fixtures/auth'
 import { getNumberFlow } from '../utils/number-flow'
 
 test.describe('comment page', () => {
@@ -24,13 +24,12 @@ test.describe('comment page', () => {
 
   test('should be able to delete a comment', async ({ page }) => {
     const commentId = createId()
-    const user = await getTestUser()
 
     await db.insert(comments).values({
       id: commentId,
       body: 'Test Comment',
       postId: 'test-delete',
-      userId: user.id
+      userId: TEST_UNIQUE_ID
     })
 
     await page.goto('/blog/test-delete')
@@ -56,13 +55,12 @@ test.describe('comment page', () => {
   test('should be able to reply to a comment', async ({ page }) => {
     const parentId = createId()
     const replyText = `reply-${createId()}`
-    const user = await getTestUser()
 
     await db.insert(comments).values({
       id: parentId,
       body: 'Parent Comment',
       postId: 'test-reply',
-      userId: user.id
+      userId: TEST_UNIQUE_ID
     })
 
     await page.goto('/blog/test-reply')
@@ -89,20 +87,19 @@ test.describe('comment page', () => {
   test('should be able to delete a reply', async ({ page }) => {
     const parentId = createId()
     const replyId = createId()
-    const user = await getTestUser()
 
     await db.insert(comments).values({
       id: parentId,
       body: 'Parent Comment',
       postId: 'test-delete-reply',
-      userId: user.id
+      userId: TEST_UNIQUE_ID
     })
 
     await db.insert(comments).values({
       id: replyId,
       body: 'Reply comment',
       postId: 'test-delete-reply',
-      userId: user.id,
+      userId: TEST_UNIQUE_ID,
       parentId
     })
 

@@ -36,7 +36,7 @@ export default defineConfig({
     }
   ],
   webServer: {
-    command: `pnpm dev`,
+    command: 'pnpm dev',
     url: baseURL,
     reuseExistingServer: !CI
   }

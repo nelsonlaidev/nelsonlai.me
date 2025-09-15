@@ -106,7 +106,6 @@
     "@types/tinycolor2": "^1.4.6",
     "@vitejs/plugin-react": "^5.0.2",
     "schema-dts": "^1.1.5",
-    "tailwindcss": "^4.1.13",
-    "undici": "^7.16.0"
+    "tailwindcss": "^4.1.13"
   }
 }

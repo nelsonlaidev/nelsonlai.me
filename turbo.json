@@ -3,7 +3,6 @@
   "globalDependencies": [".env.*local"],
   "globalEnv": [
     "NODE_ENV",
-    "MOCK_SERVER",
     "CI",
     "ANALYZE",
     "NEXT_RUNTIME",
