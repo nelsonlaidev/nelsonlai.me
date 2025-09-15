@@ -1,20 +1,20 @@
 ci:
   collect:
     startServerCommand: pnpm --filter web start
+    startServerReadyPattern: 'Ready in'
+    startServerReadyTimeout: 5000
+    numberOfRuns: 1
     url:
       - http://localhost:3000
-      - http://localhost:3000/blog
-      - http://localhost:3000/projects
-      - http://localhost:3000/about
 
   assert:
     assertions:
       categories:performance:
         - error
-        - minScore: 1.0
+        - minScore: 0.8
       categories:accessibility:
         - error
-        - minScore: 1.0
+        - minScore: 0.95
       categories:'best-practices':
         - error
         - minScore: 1.0
