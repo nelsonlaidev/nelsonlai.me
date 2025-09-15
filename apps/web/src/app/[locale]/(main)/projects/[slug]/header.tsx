@@ -1,6 +1,6 @@
 'use client'
 
-import type { Project } from 'content-collections'
+import type { Project } from '@/lib/content'
 
 import { useTranslations } from '@repo/i18n/client'
 import { buttonVariants } from '@repo/ui/components/button'

@@ -190,7 +190,7 @@ importers:
         version: 15.5.3(@babel/core@7.28.3)(@playwright/test@1.55.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
       next-intl:
         specifier: ^4.3.8
-        version: 4.3.8(next@15.5.3(@babel/core@7.28.3)(@playwright/test@1.55.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1))(react@19.1.1)(typescript@5.9.2)
+        version: 4.3.8(next@15.5.3(@playwright/test@1.55.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1))(react@19.1.1)(typescript@5.9.2)
       next-themes:
         specifier: ^0.4.6
         version: 0.4.6(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
@@ -230,6 +230,9 @@ importers:
       rss:
         specifier: ^1.2.2
         version: 1.2.2
+      server-only:
+        specifier: ^0.0.1
+        version: 0.0.1
       shiki:
         specifier: ^3.12.2
         version: 3.12.2
@@ -425,7 +428,7 @@ importers:
         version: 15.5.3(@babel/core@7.28.3)(@playwright/test@1.55.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
       next-intl:
         specifier: ^4.3.8
-        version: 4.3.8(next@15.5.3(@babel/core@7.28.3)(@playwright/test@1.55.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1))(react@19.1.1)(typescript@5.9.2)
+        version: 4.3.8(next@15.5.3(@playwright/test@1.55.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1))(react@19.1.1)(typescript@5.9.2)
 
   packages/kv:
     dependencies:
@@ -8781,6 +8784,9 @@ packages:
   serve-static@1.16.2:
     resolution: {integrity: sha512-VqpjJZKadQB/PEbEwvFdO43Ax5dFBZ2UECszz8bQ7pi7wt//PWe1P6MN7eCnjsatYtBT6EuiClbjSWP2WrIoTw==}
     engines: {node: '>= 0.8.0'}
+
+  server-only@0.0.1:
+    resolution: {integrity: sha512-qepMx2JxAa5jjfzxG79yPPq+8BuFToHd1hm7kI+Z4zAq1ftQiP7HcxMhDDItrbtwVeLg/cY2JnKnrcFkmiswNA==}
 
   set-cookie-parser@2.7.1:
     resolution: {integrity: sha512-IOc8uWeOZgnb3ptbCURJWNjWUPcO3ZnTTdzsurqERrP6nPyv+paC55vJM0LpOlT2ne+Ix+9+CRG1MNLlyZ4GjQ==}
@@ -18480,7 +18486,7 @@ snapshots:
 
   neo-async@2.6.2: {}
 
-  next-intl@4.3.8(next@15.5.3(@babel/core@7.28.3)(@playwright/test@1.55.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1))(react@19.1.1)(typescript@5.9.2):
+  next-intl@4.3.8(next@15.5.3(@playwright/test@1.55.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1))(react@19.1.1)(typescript@5.9.2):
     dependencies:
       '@formatjs/intl-localematcher': 0.5.10
       negotiator: 1.0.0
@@ -19655,6 +19661,8 @@ snapshots:
       send: 0.19.0
     transitivePeerDependencies:
       - supports-color
+
+  server-only@0.0.1: {}
 
   set-cookie-parser@2.7.1: {}
 

@@ -1,9 +1,10 @@
 'use client'
 
-import { useLocale, useTranslations } from '@repo/i18n/client'
+import type { Post } from '@/lib/content'
+
+import { useTranslations } from '@repo/i18n/client'
 import { buttonVariants } from '@repo/ui/components/button'
 import { cn } from '@repo/utils'
-import { allPosts, type Post } from 'content-collections'
 import { ArrowUpRightIcon, PencilIcon } from 'lucide-react'
 import { motion, useInView } from 'motion/react'
 import { useRef } from 'react'
@@ -25,17 +26,15 @@ const variants = {
   }
 }
 
-const LatestArticles = () => {
+type LatestArticlesProps = {
+  posts: Post[]
+}
+
+const LatestArticles = (props: LatestArticlesProps) => {
+  const { posts } = props
   const projectsRef = useRef<HTMLDivElement>(null)
   const isInView = useInView(projectsRef, { once: true, margin: '-100px' })
   const t = useTranslations()
-  const locale = useLocale()
-  const filteredPosts = allPosts
-    .toSorted((a, b) => {
-      return new Date(b.date).getTime() - new Date(a.date).getTime()
-    })
-    .filter((post) => post.locale === locale)
-    .slice(0, 2)
 
   return (
     <motion.div
@@ -78,7 +77,7 @@ const LatestArticles = () => {
           duration: 0.3
         }}
       >
-        {filteredPosts.map((post) => (
+        {posts.map((post) => (
           <Card key={post.slug} post={post} />
         ))}
       </motion.div>

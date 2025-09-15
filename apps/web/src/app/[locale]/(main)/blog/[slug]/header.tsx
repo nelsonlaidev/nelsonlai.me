@@ -1,6 +1,6 @@
 'use client'
 
-import type { Post } from 'content-collections'
+import type { Post } from '@/lib/content'
 
 import NumberFlow from '@number-flow/react'
 import { useTranslations } from '@repo/i18n/client'

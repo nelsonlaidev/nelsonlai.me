@@ -1,14 +1,14 @@
 'use client'
 
-import { useLocale, useTranslations } from '@repo/i18n/client'
+import { useTranslations } from '@repo/i18n/client'
 import { buttonVariants } from '@repo/ui/components/button'
 import { cn } from '@repo/utils'
-import { allProjects, type Project } from 'content-collections'
 import { ArrowUpRightIcon, LightbulbIcon } from 'lucide-react'
 import { motion, useInView } from 'motion/react'
 import { useRef } from 'react'
 
 import BlurImage from '@/components/blur-image'
+import { type Project } from '@/lib/content'
 
 import Link from '../link'
 
@@ -27,12 +27,15 @@ type CardProps = {
   project: Project
 }
 
-const SelectedProjects = () => {
+type SelectedProjectsProps = {
+  projects: Project[]
+}
+
+const SelectedProjects = (props: SelectedProjectsProps) => {
+  const { projects } = props
   const projectsRef = useRef<HTMLDivElement>(null)
   const isInView = useInView(projectsRef, { once: true, margin: '-100px' })
   const t = useTranslations()
-  const locale = useLocale()
-  const filteredProjects = allProjects.filter((project) => project.selected && project.locale === locale)
 
   return (
     <motion.div
@@ -75,7 +78,7 @@ const SelectedProjects = () => {
           duration: 0.3
         }}
       >
-        {filteredProjects.map((project) => (
+        {projects.map((project) => (
           <Card key={project.slug} project={project} />
         ))}
       </motion.div>

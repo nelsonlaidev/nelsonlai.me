@@ -3,9 +3,9 @@ import { createId } from '@paralleldrive/cuid2'
 import { and, asc, comments, count, desc, eq, gt, isNotNull, isNull, lt, ne, votes } from '@repo/db'
 import { CommentEmailTemplate, ReplyEmailTemplate } from '@repo/emails'
 import { env } from '@repo/env'
-import { allPosts } from 'content-collections'
 
 import { IS_PRODUCTION } from '@/lib/constants'
+import { allPosts } from '@/lib/content'
 import { resend } from '@/lib/resend'
 import { getDefaultImage } from '@/utils/get-default-image'
 

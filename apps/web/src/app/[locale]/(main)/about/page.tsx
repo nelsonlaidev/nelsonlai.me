@@ -3,7 +3,6 @@ import type { AboutPage, WithContext } from 'schema-dts'
 
 import { i18n } from '@repo/i18n/config'
 import { getTranslations, setRequestLocale } from '@repo/i18n/server'
-import { allPages } from 'content-collections'
 import { notFound } from 'next/navigation'
 
 import Mdx from '@/components/mdx'
@@ -16,6 +15,7 @@ import {
   SITE_X_URL,
   SITE_YOUTUBE_URL
 } from '@/lib/constants'
+import { allPages } from '@/lib/content'
 import { createMetadata } from '@/lib/metadata'
 import { getBaseUrl } from '@/utils/get-base-url'
 import { getLocalizedPath } from '@/utils/get-localized-path'

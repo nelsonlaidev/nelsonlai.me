@@ -1,8 +1,8 @@
 import type { MetadataRoute } from 'next'
 
 import { supportedLanguages } from '@repo/i18n/config'
-import { allPages, allPosts, allProjects } from 'content-collections'
 
+import { allPages, allPosts, allProjects } from '@/lib/content'
 import { getLocalizedPath } from '@/utils/get-localized-path'
 
 const sitemap = (): MetadataRoute.Sitemap => {
