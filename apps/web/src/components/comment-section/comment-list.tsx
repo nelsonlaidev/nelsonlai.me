@@ -4,7 +4,7 @@ import { useTranslations } from '@repo/i18n/client'
 import { useEffect } from 'react'
 import { useInView } from 'react-intersection-observer'
 import { getSingletonHighlighterCore } from 'shiki'
-import { createOnigurumaEngine } from 'shiki/engine/oniguruma'
+import { createJavaScriptRegexEngine } from 'shiki/engine/javascript'
 import githubDarkDefault from 'shiki/themes/github-dark-default.mjs'
 import githubLightDefault from 'shiki/themes/github-light-default.mjs'
 import { useShallow } from 'zustand/react/shallow'
@@ -50,7 +50,7 @@ const CommentList = () => {
 
     getSingletonHighlighterCore({
       themes: [githubLightDefault, githubDarkDefault],
-      engine: createOnigurumaEngine(import('shiki/wasm'))
+      engine: createJavaScriptRegexEngine()
     }).then((instance) => {
       setHighlighter(instance)
     })
