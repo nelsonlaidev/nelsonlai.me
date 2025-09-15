@@ -25,6 +25,7 @@ const MainLayout = (props: MainLayoutProps) => {
         alt=''
         role='presentation'
         priority
+        fetchPriority='high'
       />
       <Image
         width={1512}
