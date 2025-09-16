@@ -123,6 +123,39 @@ jobs:
     container:
       image: mcr.microsoft.com/playwright:v1.55.0-noble
       options: --user 1001
+    services:
+      db:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: nelsonlaidev
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd="pg_isready -U postgres"
+          --health-interval=5s
+          --health-timeout=5s
+          --health-retries=5
+
+      redis:
+        image: redis
+        ports:
+          - 6379:6379
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 5
+
+      redis-http:
+        image: hiett/serverless-redis-http:latest
+        env:
+          SRH_MODE: env
+          SRH_TOKEN: nelsonlaidev
+          SRH_CONNECTION_STRING: redis://redis:6379
+        ports:
+          - 8079:80
     steps:
       - name: Checkout branch
         uses: actions/checkout@v4
@@ -160,8 +193,8 @@ jobs:
       - name: Build apps
         run: pnpm build:apps
 
-      - name: Run services
-        run: docker compose up -d
+      # - name: Run services
+      #   run: docker compose up -d
 
       - name: Migrate database
         run: pnpm db:migrate
