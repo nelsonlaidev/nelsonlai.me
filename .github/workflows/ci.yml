@@ -127,6 +127,9 @@ jobs:
       - name: Setup
         uses: ./.github/actions/setup
 
+      - name: Setup Playwright
+        run: pnpm playwright install --with-deps chromium --only-shell
+
       - name: Create test posts
         run: |
           mkdir -p apps/web/src/content/blog/en/
