@@ -10,15 +10,21 @@ export const checkStoredTheme = async (page: Page, expectedTheme: string) => {
   expect(localStorage.theme).toBe(expectedTheme)
 }
 
-export const createBrowserContext = async (browser: Browser) => {
+type CreateBrowserContextOptions = {
+  baseURL?: string
+  colorScheme?: 'light' | 'dark' | 'no-preference'
+  localStorage?: Array<{ name: string; value: string }>
+}
+
+export const createBrowserContext = async (browser: Browser, options: CreateBrowserContextOptions = {}) => {
   return browser.newContext({
-    colorScheme: 'no-preference',
+    colorScheme: options.colorScheme ?? 'no-preference',
     storageState: {
       cookies: [],
       origins: [
         {
-          origin: 'http://localhost:3000',
-          localStorage: []
+          origin: options.baseURL ?? 'http://localhost:3000',
+          localStorage: options.localStorage ?? []
         }
       ]
     }
