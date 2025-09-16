@@ -20,7 +20,7 @@
     "zod": "^4.1.8"
   },
   "devDependencies": {
-    "@nelsonlaidev/eslint-config": "^1.0.0",
+    "@nelsonlaidev/eslint-config": "^2.0.0",
     "@nelsonlaidev/typescript-config": "^0.0.3"
   }
 }

@@ -29,7 +29,7 @@
     "postgres": "^3.4.7"
   },
   "devDependencies": {
-    "@nelsonlaidev/eslint-config": "^1.0.0",
+    "@nelsonlaidev/eslint-config": "^2.0.0",
     "@nelsonlaidev/typescript-config": "^0.0.3",
     "@types/node": "^24.3.3",
     "consola": "^3.4.2",

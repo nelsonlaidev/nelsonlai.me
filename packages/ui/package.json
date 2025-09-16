@@ -46,7 +46,7 @@
     "sonner": "^2.0.7"
   },
   "devDependencies": {
-    "@nelsonlaidev/eslint-config": "^1.0.0",
+    "@nelsonlaidev/eslint-config": "^2.0.0",
     "@nelsonlaidev/typescript-config": "^0.0.3",
     "@repo/utils": "workspace:*",
     "@tailwindcss/postcss": "^4.1.13",
