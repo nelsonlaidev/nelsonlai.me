@@ -41,6 +41,3 @@ apps/web/src/e2e/.auth/
 # TypeScript
 *.tsbuildinfo
 next-env.d.ts
-
-# Lighthouse
-.lighthouseci/
