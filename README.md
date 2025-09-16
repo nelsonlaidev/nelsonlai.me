@@ -51,7 +51,7 @@ Welcome to the monorepo of my personal blog! This repository houses the code for
 
 - Lighthouse score of nearly 100
 - SEO optimized with meta tags and JSON-LD
-- Open graph images using `next/og`
+- Dynamic open graph images using `next/og`
 
 ### Development Experience
 
@@ -168,13 +168,16 @@ The services will be available at the following URLs:
 
 ## Credits
 
-This project has been made possible thanks to the wonderful open-source community. Special thanks to [Timothy](https://www.timlrx.com/) for the [Tailwind nextjs starter blog template](https://github.com/timlrx/tailwind-nextjs-starter-blog).
+This project has been made possible thanks to the wonderful open-source community. Special thanks to:
+
+- [Timothy](https://www.timlrx.com/) for the [Tailwind nextjs starter blog template](https://github.com/timlrx/tailwind-nextjs-starter-blog).
+- [Eihab](https://www.eihabkhan.com/) for the UI design inspiration ([Figma](https://www.figma.com/community/file/1266863403759514317/geist-ui-kit-for-figma))
 
 This project also uses/adapts the following open-source projects:
 
 - Comment System - from [fuma-comment](https://github.com/fuma-nama/fuma-comment)
 - Rehype Plugins - from [fumadocs](https://github.com/fuma-nama/fumadocs)
-- UI - from [shadcn/ui](https://github.com/shadcn-ui/ui)
+- UI components - from [shadcn/ui](https://github.com/shadcn-ui/ui)
 - ESLint config - from [@antfu/eslint-config](https://github.com/antfu/eslint-config)
 - Admin UI - from [shadcn-admin](https://github.com/satnaing/shadcn-admin)
 
@@ -198,8 +201,6 @@ The following projects were referenced for inspiration:
 - [ui.aceternity.com](https://ui.aceternity.com/)
 - [hover.dev](https://www.hover.dev/)
 - [vocs.dev](https://vocs.dev/)
-
-and many others
 
 ## Author
 
