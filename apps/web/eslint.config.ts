@@ -7,6 +7,9 @@ export default defineConfig({
   overrides: {
     tailwindcss: {
       'better-tailwindcss/no-unregistered-classes': ['error', { ignore: ['not-prose', 'shiki'] }]
+    },
+    playwright: {
+      'playwright/expect-expect': ['error', { assertFunctionNames: ['a11y', 'checkAppliedTheme', 'checkStoredTheme'] }]
     }
   }
 })
