@@ -89,8 +89,8 @@ Welcome to the monorepo of my personal blog! This repository houses the code for
 
 ### Prerequisites
 
-- Node.js (recommended version `>=22`) with [corepack](https://nodejs.org/api/corepack.html) enabled
-- pnpm (recommended version `>=9`)
+- Node.js with [corepack](https://nodejs.org/api/corepack.html) enabled
+- pnpm
 - Docker
 - [Visual Studio Code](https://code.visualstudio.com/) with [recommended extensions](.vscode/extensions.json)
 - Optionally [React Developer Tools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en)
