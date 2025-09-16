@@ -3,8 +3,8 @@
 import { useTranslations } from '@repo/i18n/client'
 import createGlobe from 'cobe'
 import { MapPinIcon } from 'lucide-react'
+import { useMotionValue, useSpring } from 'motion/react'
 import { useEffect, useRef } from 'react'
-import { useSpring } from 'react-spring'
 
 const LocationCard = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -13,15 +13,12 @@ const LocationCard = () => {
   const fadeMask = 'radial-gradient(circle at 50% 50%, rgb(0, 0, 0) 60%, rgb(0, 0, 0, 0) 70%)'
   const t = useTranslations()
 
-  const [{ r }, api] = useSpring(() => ({
-    r: 0,
-    config: {
-      mass: 1,
-      tension: 280,
-      friction: 40,
-      precision: 0.001
-    }
-  }))
+  const rotation = useMotionValue(0)
+  const springRotation = useSpring(rotation, {
+    stiffness: 280,
+    damping: 40,
+    mass: 1
+  })
 
   useEffect(() => {
     let width = 0
@@ -43,7 +40,7 @@ const LocationCard = () => {
       theta: 0,
       dark: 1,
       diffuse: 2,
-      mapSamples: 12_000,
+      mapSamples: 16_000,
       mapBrightness: 2,
       baseColor: [0.8, 0.8, 0.8],
       markerColor: [1, 1, 1],
@@ -51,7 +48,7 @@ const LocationCard = () => {
       markers: [{ location: [22.3193, 114.1694], size: 0.1 }],
       scale: 1.05,
       onRender: (state) => {
-        state.phi = 2.75 + r.get()
+        state.phi = 2.75 + springRotation.get()
         state.width = width * 2
         state.height = width * 2
       }
@@ -61,7 +58,7 @@ const LocationCard = () => {
       globe.destroy()
       window.removeEventListener('resize', onResize)
     }
-  }, [r])
+  }, [springRotation])
 
   return (
     <div className='relative flex h-60 flex-col gap-6 overflow-hidden rounded-xl p-4 shadow-feature-card lg:p-6'>
@@ -107,18 +104,14 @@ const LocationCard = () => {
                 if (pointerInteracting.current !== null) {
                   const delta = e.clientX - pointerInteracting.current
                   pointerInteractionMovement.current = delta
-                  api.start({
-                    r: delta / 200
-                  })
+                  rotation.set(delta / 200)
                 }
               }}
               onTouchMove={(e) => {
                 if (pointerInteracting.current !== null && e.touches[0]) {
                   const delta = e.touches[0].clientX - pointerInteracting.current
                   pointerInteractionMovement.current = delta
-                  api.start({
-                    r: delta / 100
-                  })
+                  rotation.set(delta / 100)
                 }
               }}
               style={{
