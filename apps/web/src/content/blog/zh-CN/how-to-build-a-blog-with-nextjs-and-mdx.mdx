@@ -1,7 +1,7 @@
 ---
 title: 如何使用 Next.js 和 MDX 建立博客
 date: '2022-08-22T00:00:00Z'
-modifiedTime: '2024-02-24T00:00:00Z'
+modifiedTime: '2025-09-16T15:11:03Z'
 summary: 使用 Next.js 建立博客非常简单！
 ---
 
@@ -117,7 +117,7 @@ export const allSlugs = fs.readdirSync(POSTS_PATH)
 
 ```js title='lib/mdx.js'
 export const formatSlug = (slug) => slug.replace(/\.mdx$/, '')
-/**
+/*
  * 示例: formatSlug('markdown.mdx')
  * 输出: 'markdown'
  */

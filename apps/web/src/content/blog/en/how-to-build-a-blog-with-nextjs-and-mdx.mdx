@@ -1,7 +1,7 @@
 ---
 title: How to build a blog with Next.js and MDX
 date: '2022-08-22T00:00:00Z'
-modifiedTime: '2024-02-24T00:00:00Z'
+modifiedTime: '2025-09-16T15:11:03Z'
 summary: Using Next.js to build a blog is very easy!
 ---
 
@@ -117,7 +117,7 @@ Then write a function to remove the file extension, which will be used later.
 
 ```js title='lib/mdx.js'
 export const formatSlug = (slug) => slug.replace(/\.mdx$/, '')
-/**
+/*
  * Example: formatSlug('markdown.mdx')
  * Output: 'markdown'
  */

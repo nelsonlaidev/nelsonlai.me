@@ -1,4 +1,4 @@
-/**
+/*
  * Inspired by: https://jahir.dev/uses
  */
 import BlurImage from '@/components/blur-image'

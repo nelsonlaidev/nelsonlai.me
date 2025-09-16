@@ -1,4 +1,4 @@
-/**
+/*
  * Inspired by: https://fig.io
  */
 'use client'

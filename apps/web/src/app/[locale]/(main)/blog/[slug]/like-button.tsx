@@ -1,6 +1,6 @@
 'use client'
 
-/**
+/*
  * Inspired by: https://framer.university/resources/like-button-component
  */
 import NumberFlow from '@number-flow/react'

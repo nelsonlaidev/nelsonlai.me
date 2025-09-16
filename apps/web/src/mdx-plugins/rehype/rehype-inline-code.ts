@@ -1,4 +1,4 @@
-/**
+/*
  * vocs (MIT License)
  * Copyright (c) weth, LLC
  * Source: https://github.com/wevm/vocs/blob/75e0cfc874e7abe8648be139a8554e1fe87a18d1/src/vite/plugins/rehype/inline-shiki.ts
@@ -78,7 +78,7 @@ export const rehypeInlineCode: Plugin<[RehypeShikiCoreOptions], Root> = () => {
       const inlineCode = preNode.children[0]
       if (inlineCode?.type !== 'element') return
 
-      /**
+      /*
        * Set the color by scope if language is not specified
        * @example `myFunction{:.entity.name.function}`
        */

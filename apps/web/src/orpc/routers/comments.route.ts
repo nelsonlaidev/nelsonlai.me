@@ -218,8 +218,10 @@ export const deleteComment = protectedProcedure
       throw new ORPCError('UNAUTHORIZED')
     }
 
-    // If the comment has replies, just mark it as deleted.
-    // And keep the replies.
+    /*
+     * If the comment has replies, just mark it as deleted.
+     * And keep the replies.
+     */
     if (comment.replies.length > 0) {
       await context.db.update(comments).set({ isDeleted: true }).where(eq(comments.id, input.id))
 

@@ -55,8 +55,10 @@ const SidebarProvider = (props: SidebarProviderProps) => {
   const isMobile = useIsMobile()
   const [openMobile, setOpenMobile] = useState(false)
 
-  // This is the internal state of the sidebar.
-  // We use openProp and setOpenProp for control from outside the component.
+  /*
+   * This is the internal state of the sidebar.
+   * We use openProp and setOpenProp for control from outside the component.
+   */
   // eslint-disable-next-line @eslint-react/naming-convention/use-state -- Internal state
   const [_open, _setOpen] = useState(defaultOpen)
   const open = openProp ?? _open
@@ -100,8 +102,10 @@ const SidebarProvider = (props: SidebarProviderProps) => {
     }
   }, [toggleSidebar])
 
-  // We add a state so that we can do data-state="expanded" or "collapsed".
-  // This makes it easier to style the sidebar with Tailwind classes.
+  /*
+   * We add a state so that we can do data-state="expanded" or "collapsed".
+   * This makes it easier to style the sidebar with Tailwind classes.
+   */
   const state = open ? 'expanded' : 'collapsed'
 
   const contextValue = useMemo<SidebarContextProps>(
