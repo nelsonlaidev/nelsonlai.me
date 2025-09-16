@@ -3,12 +3,12 @@ import type { CollectionPage, WithContext } from 'schema-dts'
 
 import { i18n } from '@repo/i18n/config'
 import { getTranslations, setRequestLocale } from '@repo/i18n/server'
-import { allPosts } from 'content-collections'
 
 import FilteredPosts from '@/components/filtered-posts'
 import JsonLd from '@/components/json-ld'
 import PageTitle from '@/components/page-title'
 import { MY_NAME } from '@/lib/constants'
+import { allPosts } from '@/lib/content'
 import { createMetadata } from '@/lib/metadata'
 import { getBaseUrl } from '@/utils/get-base-url'
 import { getLocalizedPath } from '@/utils/get-localized-path'

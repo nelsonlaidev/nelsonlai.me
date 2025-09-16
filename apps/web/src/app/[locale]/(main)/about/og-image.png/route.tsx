@@ -1,11 +1,11 @@
 import { getErrorMessage } from '@repo/utils'
-import { allPages } from 'content-collections'
 import { ImageResponse } from 'next/og'
 import { NextResponse } from 'next/server'
 import { getTranslations } from 'next-intl/server'
 
 import OGImage from '@/components/og-image'
 import { OG_IMAGE_HEIGHT, OG_IMAGE_WIDTH } from '@/lib/constants'
+import { allPages } from '@/lib/content'
 import { getOGImageFonts } from '@/lib/fonts'
 
 export const GET = async (_request: Request, props: RouteContext<'/[locale]/about/og-image.png'>) => {

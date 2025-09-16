@@ -4,8 +4,7 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
-      "~/*": ["./public/*"],
-      "content-collections": ["./.content-collections/generated"]
+      "~/*": ["./public/*"]
     }
   },
   "exclude": ["node_modules"],

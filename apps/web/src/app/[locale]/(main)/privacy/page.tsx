@@ -2,11 +2,11 @@ import type { Metadata } from 'next'
 
 import { i18n } from '@repo/i18n/config'
 import { getTranslations, setRequestLocale } from '@repo/i18n/server'
-import { allPages } from 'content-collections'
 import { notFound } from 'next/navigation'
 
 import Mdx from '@/components/mdx'
 import PageTitle from '@/components/page-title'
+import { allPages } from '@/lib/content'
 import { createMetadata } from '@/lib/metadata'
 
 export const generateStaticParams = (): Array<Awaited<PageProps<'/[locale]/privacy'>['params']>> => {

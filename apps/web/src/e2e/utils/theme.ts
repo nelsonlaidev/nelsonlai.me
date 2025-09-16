@@ -16,7 +16,7 @@ type CreateBrowserContextOptions = {
   localStorage?: Array<{ name: string; value: string }>
 }
 
-export const createBrowserContext = async (browser: Browser, options: CreateBrowserContextOptions) => {
+export const createBrowserContext = async (browser: Browser, options: CreateBrowserContextOptions = {}) => {
   return browser.newContext({
     colorScheme: options.colorScheme ?? 'no-preference',
     storageState: {
@@ -29,4 +29,10 @@ export const createBrowserContext = async (browser: Browser, options: CreateBrow
       ]
     }
   })
+}
+
+export const setThemeInLocalStorage = async (page: Page, theme: string) => {
+  await page.addInitScript((t: string) => {
+    globalThis.localStorage.setItem('theme', t)
+  }, theme)
 }

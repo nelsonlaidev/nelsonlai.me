@@ -18,6 +18,7 @@ import {
   SITE_X_URL,
   SITE_YOUTUBE_URL
 } from '@/lib/constants'
+import { allPosts, allProjects } from '@/lib/content'
 import { createMetadata } from '@/lib/metadata'
 import { getBaseUrl } from '@/utils/get-base-url'
 import { getLocalizedPath } from '@/utils/get-localized-path'
@@ -68,13 +69,22 @@ const Page = async (props: PageProps<'/[locale]'>) => {
     inLanguage: locale
   }
 
+  const filteredPosts = allPosts
+    .toSorted((a, b) => {
+      return new Date(b.date).getTime() - new Date(a.date).getTime()
+    })
+    .filter((post) => post.locale === locale)
+    .slice(0, 2)
+
+  const filteredProjects = allProjects.filter((project) => project.selected && project.locale === locale)
+
   return (
     <>
       <JsonLd json={jsonLd} />
       <Hero />
-      <SelectedProjects />
+      <SelectedProjects projects={filteredProjects} />
       <AboutMe />
-      <LatestArticles />
+      <LatestArticles posts={filteredPosts} />
       <GetInTouch />
     </>
   )

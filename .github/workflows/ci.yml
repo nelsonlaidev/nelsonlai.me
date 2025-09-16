@@ -19,7 +19,6 @@ env:
   UPSTASH_REDIS_REST_TOKEN: ${{ secrets.UPSTASH_REDIS_REST_TOKEN }}
   IP_ADDRESS_SALT: ${{ secrets.IP_ADDRESS_SALT }}
   BETTER_AUTH_SECRET: ${{ secrets.BETTER_AUTH_SECRET }}
-  MOCK_SERVER: ${{ secrets.MOCK_SERVER }}
   GITHUB_CLIENT_ID: ${{ secrets.GH_CLIENT_ID }}
   GITHUB_CLIENT_SECRET: ${{ secrets.GH_CLIENT_SECRET }}
 
@@ -31,7 +30,7 @@ jobs:
       - name: Checkout branch
         uses: actions/checkout@v4
 
-      - name: Setup
+      - name: Configure environment
         uses: ./.github/actions/setup
 
       - name: Run unit tests
@@ -44,7 +43,7 @@ jobs:
       - name: Checkout branch
         uses: actions/checkout@v4
 
-      - name: Setup
+      - name: Configure environment
         uses: ./.github/actions/setup
 
       - name: Build MDX
@@ -63,7 +62,7 @@ jobs:
       - name: Checkout branch
         uses: actions/checkout@v4
 
-      - name: Setup
+      - name: Configure environment
         uses: ./.github/actions/setup
 
       - name: Generate Next.js route types
@@ -82,7 +81,7 @@ jobs:
       - name: Checkout branch
         uses: actions/checkout@v4
 
-      - name: Setup
+      - name: Configure environment
         uses: ./.github/actions/setup
 
       - name: Run Prettier format check
@@ -95,7 +94,7 @@ jobs:
       - name: Checkout branch
         uses: actions/checkout@v4
 
-      - name: Setup
+      - name: Configure environment
         uses: ./.github/actions/setup
 
       - name: Run spelling check
@@ -108,7 +107,7 @@ jobs:
       - name: Checkout branch
         uses: actions/checkout@v4
 
-      - name: Setup
+      - name: Configure environment
         uses: ./.github/actions/setup
 
       - name: Build MDX
@@ -121,16 +120,45 @@ jobs:
     name: End-to-end tests
     runs-on: ubuntu-latest
     timeout-minutes: 30
-    needs: [tests, eslint, types]
     steps:
       - name: Checkout branch
         uses: actions/checkout@v4
 
-      - name: Setup
+      - name: Configure environment
         uses: ./.github/actions/setup
 
-      - name: Setup Playwright
+      - name: Install Playwright with dependencies
         run: pnpm playwright install --with-deps chromium --only-shell
+
+      - name: Create test posts
+        run: |
+          mkdir -p apps/web/src/content/blog/en/
+
+          frontmatter() {
+            cat << EOF
+          ---
+          title: $1
+          date: '1970-01-01T00:00:00Z'
+          modifiedTime: '1970-01-01T00:00:00Z'
+          summary: This is a test post.
+          ---
+
+          # $1
+
+          This is a test post.
+          EOF
+          }
+
+          # Create posts
+          frontmatter "Test Submit Comment" > apps/web/src/content/blog/en/test-submit.mdx
+          frontmatter "Test Delete Comment" > apps/web/src/content/blog/en/test-delete.mdx
+          frontmatter "Test Reply Comment" > apps/web/src/content/blog/en/test-reply.mdx
+          frontmatter "Test Delete Reply" > apps/web/src/content/blog/en/test-delete-reply.mdx
+          frontmatter "Test View Post" > apps/web/src/content/blog/en/test-view.mdx
+          frontmatter "Test Like Post" > apps/web/src/content/blog/en/test-like.mdx
+
+      - name: Build apps
+        run: pnpm build:apps
 
       - name: Run services
         run: docker compose up -d

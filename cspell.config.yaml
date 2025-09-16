@@ -4,7 +4,7 @@ useGitignore: true
 files:
   - '**'
   - .*
-  - .**/*
+  - .*/**
   - '!.git/**'
 ignorePaths:
   - pnpm-lock.yaml
@@ -58,13 +58,11 @@ words:
   - nerdfish
   - nextdotjs
   - nikolovlazar
-  - nlcj
   - nodedotjs
   - nosniff
   - noto
   - nums
   - nuqs
-  - octocat
   - oliveira
   - orbstack
   - orpc

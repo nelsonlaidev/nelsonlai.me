@@ -1,6 +1,6 @@
 'use client'
 
-import type { Post } from 'content-collections'
+import type { Post } from '@/lib/content'
 
 import { useTranslations } from '@repo/i18n/client'
 

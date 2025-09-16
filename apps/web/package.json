@@ -5,9 +5,9 @@
   "author": "Nelson Lai <me@nelsonlai.dev> (https://github.com/nelsonlaidev/)",
   "type": "module",
   "scripts": {
+    "analyze": "cross-env ANALYZE=true pnpm with-env next build",
     "build": "pnpm with-env next build --turbo",
     "build:mdx": "content-collections build",
-    "bundle-analyzer": "cross-env ANALYZE=true pnpm build",
     "clean": "rm -rf .next .turbo .content-collections test-results playwright-report",
     "dev": "pnpm with-env next dev --turbopack -p 3000",
     "lint": "eslint . --max-warnings 0",
@@ -72,6 +72,7 @@
     "remark-gfm": "^4.0.1",
     "resend": "^6.0.3",
     "rss": "^1.2.2",
+    "server-only": "^0.0.1",
     "shiki": "^3.12.2",
     "tinycolor2": "^1.6.0",
     "unified": "^11.0.5",
@@ -105,7 +106,6 @@
     "@types/tinycolor2": "^1.4.6",
     "@vitejs/plugin-react": "^5.0.2",
     "schema-dts": "^1.1.5",
-    "tailwindcss": "^4.1.13",
-    "undici": "^7.16.0"
+    "tailwindcss": "^4.1.13"
   }
 }

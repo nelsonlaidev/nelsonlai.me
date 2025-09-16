@@ -13,7 +13,7 @@ jobs:
       - name: Checkout branch
         uses: actions/checkout@v4
 
-      - name: Setup
+      - name: Configure environment
         uses: ./.github/actions/setup
 
       - name: Run pnpm audit

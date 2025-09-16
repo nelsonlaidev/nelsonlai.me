@@ -1,6 +1,6 @@
 'use client'
 
-import type { Project } from 'content-collections'
+import type { Project } from '@/lib/content'
 
 import BlurImage from '@/components/blur-image'
 
