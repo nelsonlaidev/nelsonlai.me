@@ -120,15 +120,15 @@ jobs:
     name: End-to-end tests
     runs-on: ubuntu-latest
     timeout-minutes: 30
+    container:
+      image: mcr.microsoft.com/playwright:v1.55.0-noble
+      options: --user 1001
     steps:
       - name: Checkout branch
         uses: actions/checkout@v4
 
       - name: Setup
         uses: ./.github/actions/setup
-
-      - name: Setup Playwright
-        run: pnpm playwright install --with-deps chromium --only-shell
 
       - name: Create test posts
         run: |
