@@ -30,6 +30,10 @@ setup('setup blog', async () => {
       })
       .onConflictDoNothing({ target: posts.slug })
     const testPostPath = path.join(process.cwd(), `src/content/blog/en/${post.slug}.mdx`)
-    await fs.writeFile(testPostPath, createTestPost(post.title))
+
+    // For CI, we need to build the app, so we'll create the test files in CI workflow.
+    if (!process.env.CI) {
+      await fs.writeFile(testPostPath, createTestPost(post.title))
+    }
   }
 })
