@@ -59,7 +59,7 @@ setup('setup auth', async () => {
       })
   })
 
-  const signature = crypto.createHmac('sha256', env.BETTER_AUTH_SECRET).update(TEST_USER.sessionToken).digest('base64') // 直接輸出 base64（等同於 btoa）
+  const signature = crypto.createHmac('sha256', env.BETTER_AUTH_SECRET).update(TEST_USER.sessionToken).digest('base64')
   const signedValue = `${TEST_USER.sessionToken}.${signature}`
 
   const cookieValue = encodeURIComponent(signedValue)
