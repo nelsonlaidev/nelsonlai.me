@@ -1,0 +1,137 @@
+---
+title: 使用 Better Auth 進行端到端測試
+date: '2025-09-17T07:01:11.746Z'
+modifiedTime: '2025-09-17T07:01:11.746Z'
+summary: 了解如何使用 Better Auth 設置端到端測試。
+---
+
+## 簡要概述
+
+您需要生成一個有效的會話令牌並將其儲存為 Cookie。這允許您的端到端測試訪問需要身份驗證的路由，而無需手動登錄。此方法適用於基於憑證和 OAuth 的身份驗證。
+
+> GitHub 倉庫：[nelsonlaidev/e2e-testing-with-better-auth](https://github.com/nelsonlaidev/e2e-testing-with-better-auth)
+
+## 前言
+
+在本指南中，我們將使用 [Playwright](https://playwright.dev/) 作為我們的端到端測試框架，但這些概念同樣適用於其他框架，如 [Cypress](https://www.cypress.io/)。
+
+為了簡單起見，我們將使用基於憑證的身份驗證範例。然而，相同的原則也適用於 OAuth 提供者。
+
+此外，我們使用 SQLite 資料庫進行示範。請根據您的設置調整資料庫交互（例如，表名、欄位類型）。
+
+## 生成會話令牌
+
+為了模擬已驗證的會話，我們需要使用 `BETTER_AUTH_SECRET` 生成一個簽名的會話令牌。此令牌將用於會話 Cookie 中。
+
+```ts
+import crypto from 'node:crypto'
+
+export const TEST_USER = {
+  name: '測試用戶',
+  email: 'test@example.com',
+  sessionToken: '00000000000000000000000000000000',
+  accountId: '000'
+}
+
+const signature = crypto
+  .createHmac('sha256', process.env.BETTER_AUTH_SECRET!)
+  .update(TEST_USER.sessionToken)
+  .digest('base64')
+const signedValue = `${TEST_USER.sessionToken}.${signature}`
+```
+
+## 插入測試資料
+
+我們希望保持測試用戶的靜態，以避免在測試期間創建多個用戶。如果測試用戶、帳戶和會話尚未存在，則將其插入資料庫。為簡單起見，我們使用 `0` 作為所有主鍵的唯一 ID。
+
+```ts
+import { db } from '@/lib/db'
+
+const TEST_UNIQUE_ID = '0'
+
+const now = new Date().getTime()
+const expiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).getTime() // 7 天
+
+const transaction = db.transaction(() => {
+  db.prepare(
+    `
+      INSERT OR IGNORE INTO user (
+        id, name, email, emailVerified, createdAt, updatedAt
+      ) VALUES (?, ?, ?, ?, ?, ?)
+    `
+  ).run(TEST_UNIQUE_ID, TEST_USER.name, TEST_USER.email, 0, now, now)
+
+  db.prepare(
+    `
+      INSERT OR IGNORE INTO account (
+        id, accountId, providerId, userId, password, createdAt, updatedAt
+      ) VALUES (?, ?, ?, ?, ?, ?, ?)
+    `
+  ).run(TEST_UNIQUE_ID, TEST_USER.accountId, 'credential', TEST_UNIQUE_ID, 'password_hash', now, now)
+
+  db.prepare(
+    `
+      INSERT INTO session (
+        id, token, userId, expiresAt, createdAt, updatedAt
+      ) VALUES (?, ?, ?, ?, ?, ?)
+      ON CONFLICT(token) DO UPDATE SET
+      expiresAt = excluded.expiresAt,
+      updatedAt = excluded.updatedAt
+    `
+  ).run(TEST_UNIQUE_ID, TEST_USER.sessionToken, TEST_UNIQUE_ID, expiresAt, now, now)
+})
+
+transaction()
+```
+
+## 儲存會話
+
+將簽名的令牌儲存為 JSON 檔案中的 Cookie，以便在測試框架中使用。不要忘記對 Cookie 值進行 `encodeURIComponent` 編碼。
+
+```ts
+import fs from 'node:fs/promises'
+
+const cookieObject = {
+  name: 'better-auth.session_token',
+  value: encodeURIComponent(signedValue), // [!code highlight]
+  domain: 'localhost',
+  path: '/',
+  httpOnly: true,
+  secure: false,
+  sameSite: 'Lax',
+  expires: Math.round(expiresAt / 1000)
+}
+
+await fs.writeFile('.auth/auth.json', JSON.stringify({ cookies: [cookieObject], origins: [] }, null, 2))
+```
+
+## 在測試中使用會話
+
+在您的端到端測試中載入儲存的會話，以訪問受保護的路由，而無需登錄。以下範例使用 Playwright，但這可以適應任何支援 Cookie 注入的測試庫（例如，Cypress）。
+
+```ts title='playwright.config.ts'
+export default defineConfig({
+  // ...
+  projects: [
+    { name: 'setup', testMatch: /global\.setup\.ts/, teardown: 'teardown' }, // [!code highlight]
+
+    { name: 'teardown', testMatch: /global\.teardown\.ts/ }, // [!code highlight]
+
+    {
+      name: 'chromium',
+      use: {
+        ...devices['Desktop Chrome'],
+        storageState: '.auth/auth.json' // [!code highlight]
+      },
+      dependencies: ['setup'] // [!code highlight]
+    }
+  ]
+})
+```
+
+## 有用的連結
+
+- [Playwright 設置與拆卸](https://playwright.dev/docs/test-global-setup-teardown)
+- [Playwright 儲存狀態](https://playwright.dev/docs/auth#reuse-authentication-in-other-scenarios)
+- [Cypress 鉤子](https://docs.cypress.io/app/core-concepts/writing-and-organizing-tests#Hooks)
+- [Cypress 設置 Cookie](https://docs.cypress.io/api/commands/setcookie)
