@@ -1,0 +1,137 @@
+---
+title: E2E Testing with Better Auth
+date: '2025-09-17T07:01:11.746Z'
+modifiedTime: '2025-09-17T07:01:11.746Z'
+summary: Learn how to set up end-to-end testing with Better Auth.
+---
+
+## TL;DR
+
+You will need to generate a valid session token and store it as cookies. This allows your E2E tests to access authenticated routes without manual login. This method works for both credentials-based and OAuth authentication.
+
+> GitHub Repo: [nelsonlaidev/e2e-testing-with-better-auth](https://github.com/nelsonlaidev/e2e-testing-with-better-auth)
+
+## Preface
+
+In this guide, we'll use [Playwright](https://playwright.dev/) as our E2E testing framework, but the concepts can be applied to other frameworks like [Cypress](https://www.cypress.io/).
+
+For simplicity, we'll use a credentials-based authentication example. However, the same principles apply to OAuth providers.
+
+Also, we use a SQLite database for demonstration purposes. Adjust the database interactions **(e.g., table names, column types)** according to your setup.
+
+## Generating a Session Token
+
+To simulate an authenticated session, we'll need to generate a signed session token using `BETTER_AUTH_SECRET`. This token will be used in session cookies.
+
+```ts
+import crypto from 'node:crypto'
+
+export const TEST_USER = {
+  name: 'Test User',
+  email: 'test@example.com',
+  sessionToken: '00000000000000000000000000000000',
+  accountId: '000'
+}
+
+const signature = crypto
+  .createHmac('sha256', process.env.BETTER_AUTH_SECRET!)
+  .update(TEST_USER.sessionToken)
+  .digest('base64')
+const signedValue = `${TEST_USER.sessionToken}.${signature}`
+```
+
+## Inserting Test Data
+
+We want to keep our test user static to avoid creating multiple users during tests. Insert a test user, account, and session into the database if they don't already exist. We use `0` as the unique ID for all primary keys for simplicity.
+
+```ts
+import { db } from '@/lib/db'
+
+const TEST_UNIQUE_ID = '0'
+
+const now = new Date().getTime()
+const expiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).getTime() // 7 days
+
+const transaction = db.transaction(() => {
+  db.prepare(
+    `
+      INSERT OR IGNORE INTO user (
+        id, name, email, emailVerified, createdAt, updatedAt
+      ) VALUES (?, ?, ?, ?, ?, ?)
+    `
+  ).run(TEST_UNIQUE_ID, TEST_USER.name, TEST_USER.email, 0, now, now)
+
+  db.prepare(
+    `
+      INSERT OR IGNORE INTO account (
+        id, accountId, providerId, userId, password, createdAt, updatedAt
+      ) VALUES (?, ?, ?, ?, ?, ?, ?)
+    `
+  ).run(TEST_UNIQUE_ID, TEST_USER.accountId, 'credential', TEST_UNIQUE_ID, 'password_hash', now, now)
+
+  db.prepare(
+    `
+      INSERT INTO session (
+        id, token, userId, expiresAt, createdAt, updatedAt
+      ) VALUES (?, ?, ?, ?, ?, ?)
+      ON CONFLICT(token) DO UPDATE SET
+      expiresAt = excluded.expiresAt,
+      updatedAt = excluded.updatedAt
+    `
+  ).run(TEST_UNIQUE_ID, TEST_USER.sessionToken, TEST_UNIQUE_ID, expiresAt, now, now)
+})
+
+transaction()
+```
+
+## Storing the Session
+
+Save the signed token as a cookie in a JSON file for use in testing frameworks. Don't forget to `encodeURIComponent{:.entity.name.function}` the cookie value.
+
+```ts
+import fs from 'node:fs/promises'
+
+const cookieObject = {
+  name: 'better-auth.session_token',
+  value: encodeURIComponent(signedValue), // [!code highlight]
+  domain: 'localhost',
+  path: '/',
+  httpOnly: true,
+  secure: false,
+  sameSite: 'Lax',
+  expires: Math.round(expiresAt / 1000)
+}
+
+await fs.writeFile('.auth/auth.json', JSON.stringify({ cookies: [cookieObject], origins: [] }, null, 2))
+```
+
+## Using the Session in Tests
+
+Load the stored session in your E2E tests to access protected routes without logging in. The example below uses Playwright, but this can be adapted to any testing library (e.g., Cypress) that supports cookie injection.
+
+```ts title='playwright.config.ts'
+export default defineConfig({
+  // ...
+  projects: [
+    { name: 'setup', testMatch: /global\.setup\.ts/, teardown: 'teardown' }, // [!code highlight]
+
+    { name: 'teardown', testMatch: /global\.teardown\.ts/ }, // [!code highlight]
+
+    {
+      name: 'chromium',
+      use: {
+        ...devices['Desktop Chrome'],
+        storageState: '.auth/auth.json' // [!code highlight]
+      },
+      dependencies: ['setup'] // [!code highlight]
+    }
+  ]
+})
+```
+
+## Useful Links
+
+- [Playwright Setup and Teardown](https://playwright.dev/docs/test-global-setup-teardown)
+- [Playwright Storage State](https://playwright.dev/docs/auth#reuse-authentication-in-other-scenarios)
+- [Cypress Hooks](https://docs.cypress.io/app/core-concepts/writing-and-organizing-tests#Hooks)
+- [Cypress Set Cookie](https://docs.cypress.io/api/commands/setcookie)
