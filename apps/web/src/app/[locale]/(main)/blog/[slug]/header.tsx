@@ -78,18 +78,14 @@ const Header = (props: HeaderProps) => {
           </div>
         </div>
       </div>
-      <ImageZoom
-        zoomImg={{
-          src: `/images/blog/${post.slug}/cover.png`,
-          alt: post.title
-        }}
-      >
+      <ImageZoom>
         <BlurImage
           src={`/images/blog/${post.slug}/cover.png`}
           className='rounded-lg'
           width={1200}
           height={630}
           lazy={false}
+          fetchPriority='high'
           alt={post.title}
         />
       </ImageZoom>
