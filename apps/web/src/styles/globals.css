@@ -5,7 +5,7 @@
 @source '../../../../packages/ui/src/**/*.{ts,tsx}';
 
 @theme {
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-geist-sans), var(--font-noto-sans-tc), var(--font-noto-sans-sc);
   --font-mono: var(--font-geist-mono);
 
   --color-anchor: var(--anchor);

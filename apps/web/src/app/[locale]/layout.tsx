@@ -8,7 +8,7 @@ import { routing } from '@repo/i18n/routing'
 import { setRequestLocale } from '@repo/i18n/server'
 import { cn } from '@repo/utils'
 import { SpeedInsights } from '@vercel/speed-insights/next'
-import { Geist, Geist_Mono } from 'next/font/google'
+import { Geist, Geist_Mono, Noto_Sans_SC, Noto_Sans_TC } from 'next/font/google'
 import { notFound } from 'next/navigation'
 import { NuqsAdapter } from 'nuqs/adapters/next/app'
 
@@ -39,6 +39,18 @@ const geistMono = Geist_Mono({
   subsets: ['latin']
 })
 
+const notoSansTC = Noto_Sans_TC({
+  variable: '--font-noto-sans-tc',
+  subsets: ['latin'],
+  display: 'swap'
+})
+
+const notoSansSC = Noto_Sans_SC({
+  variable: '--font-noto-sans-sc',
+  subsets: ['latin'],
+  display: 'swap'
+})
+
 const Layout = async (props: LayoutProps<'/[locale]'>) => {
   const { children, params } = props
   const { locale } = await params
@@ -52,7 +64,7 @@ const Layout = async (props: LayoutProps<'/[locale]'>) => {
   return (
     <html
       lang={locale}
-      className={cn(geistSans.variable, geistMono.variable)}
+      className={cn(geistSans.variable, geistMono.variable, notoSansTC.variable, notoSansSC.variable)}
       data-scroll-behavior='smooth'
       suppressHydrationWarning
     >
