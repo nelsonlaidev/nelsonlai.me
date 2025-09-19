@@ -3,25 +3,11 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "./src/*"
-      ],
-      "~/*": [
-        "./public/*"
-      ]
-    },
-    "jsx": "react-jsx"
+      "@/*": ["./src/*"],
+      "~/*": ["./public/*"]
+    }
   },
-  "exclude": [
-    "node_modules"
-  ],
+  "exclude": ["node_modules"],
   "extends": "@nelsonlaidev/typescript-config/nextjs.json",
-  "include": [
-    "**/*.ts",
-    "**/*.tsx",
-    ".next/types/**/*.ts",
-    "next-env.d.ts",
-    "postcss.config.mjs",
-    "**/*.mts"
-  ]
+  "include": ["**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "next-env.d.ts", "postcss.config.mjs"]
 }
