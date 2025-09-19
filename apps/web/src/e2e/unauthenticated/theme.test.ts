@@ -24,8 +24,6 @@ test.describe('theme', () => {
 
       await checkStoredTheme(page, theme)
       await checkAppliedTheme(page, theme)
-
-      await context.close()
     })
   }
 
@@ -49,8 +47,6 @@ test.describe('theme', () => {
 
       await checkStoredTheme(page, theme)
       await checkAppliedTheme(page, theme)
-
-      await context.close()
     })
   }
 
