@@ -34,13 +34,13 @@ setup('setup blog', async () => {
     const testPostPath = path.join(process.cwd(), `src/content/blog/en/${post.slug}.mdx`)
     const testPostCoverPath = path.join(process.cwd(), `public/images/blog/${post.slug}/cover.png`)
 
-    const coverDir = path.dirname(testPostCoverPath)
-    await fs.mkdir(coverDir, { recursive: true })
-    await makeDummyImage(1200, 630, testPostCoverPath)
-
     // For CI, we need to build the app, so we'll create the test files in CI workflow.
     if (!process.env.CI) {
       await fs.writeFile(testPostPath, createTestPost(post.title))
+
+      const coverDir = path.dirname(testPostCoverPath)
+      await fs.mkdir(coverDir, { recursive: true })
+      await makeDummyImage(testPostCoverPath)
     }
   }
 })

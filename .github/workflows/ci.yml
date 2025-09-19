@@ -130,32 +130,69 @@ jobs:
       - name: Install Playwright with dependencies
         run: pnpm playwright install --with-deps chromium --only-shell
 
-      - name: Create test posts
+      - name: Create test posts and copy dummy images
         run: |
           mkdir -p apps/web/src/content/blog/en/
+          mkdir -p apps/web/public/images/blog/
 
           frontmatter() {
+            local title="$1"
+            local slug="$2"
             cat << EOF
-          ---
-          title: $1
-          date: '1970-01-01T00:00:00Z'
-          modifiedTime: '1970-01-01T00:00:00Z'
-          summary: This is a test post.
-          ---
+            ---
+            title: $title
+            date: '1970-01-01T00:00:00Z'
+            modifiedTime: '1970-01-01T00:00:00Z'
+            summary: This is a test post.
+            ---
 
-          # $1
+            # $title
 
-          This is a test post.
-          EOF
+            This is a test post.
+            EOF
           }
 
-          # Create posts
-          frontmatter "Test Submit Comment" > apps/web/src/content/blog/en/test-submit.mdx
-          frontmatter "Test Delete Comment" > apps/web/src/content/blog/en/test-delete.mdx
-          frontmatter "Test Reply Comment" > apps/web/src/content/blog/en/test-reply.mdx
-          frontmatter "Test Delete Reply" > apps/web/src/content/blog/en/test-delete-reply.mdx
-          frontmatter "Test View Post" > apps/web/src/content/blog/en/test-view.mdx
-          frontmatter "Test Like Post" > apps/web/src/content/blog/en/test-like.mdx
+          dummy_image_path="apps/web/public/images/dummy.png"
+          if [ ! -f "$dummy_image_path" ]; then
+            echo "Error: Dummy image not found at $dummy_image_path"
+            exit 1
+          fi
+
+          declare -A posts=(
+            ["Test Submit Comment"]="test-submit"
+            ["Test Delete Comment"]="test-delete"
+            ["Test Reply Comment"]="test-reply"
+            ["Test Delete Reply"]="test-delete-reply"
+            ["Test View Post"]="test-view"
+            ["Test Like Post"]="test-like"
+          )
+
+          # Loop through posts to create .mdx files and copy dummy images
+          for title in "${!posts[@]}"; do
+            slug="${posts[$title]}"
+            post_path="apps/web/src/content/blog/en/$slug.mdx"
+            cover_dir="apps/web/public/images/blog/$slug"
+            cover_path="$cover_dir/cover.png"
+
+            # Create .mdx file
+            frontmatter "$title" "$slug" > "$post_path"
+            if [ -f "$post_path" ]; then
+              echo "Successfully created test post at $post_path"
+            else
+              echo "Error: Failed to create test post at $post_path"
+              exit 1
+            fi
+
+            # Create image folder and copy dummy image
+            mkdir -p "$cover_dir"
+            cp "$dummy_image_path" "$cover_path"
+            if [ -f "$cover_path" ]; then
+              echo "Successfully copied dummy image to $cover_path"
+            else
+              echo "Error: Failed to copy dummy image to $cover_path"
+              exit 1
+            fi
+          done
 
       - name: Build apps
         run: pnpm build:apps
