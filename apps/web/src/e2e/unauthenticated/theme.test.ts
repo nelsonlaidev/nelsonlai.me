@@ -1,4 +1,4 @@
-import { type BrowserContext, test } from '@playwright/test'
+import { type BrowserContext, expect, test } from '@playwright/test'
 
 import { checkAppliedTheme, checkStoredTheme, createBrowserContext, setThemeInLocalStorage } from '../utils/theme'
 
@@ -19,7 +19,10 @@ test.describe('theme', () => {
       await setThemeInLocalStorage(page, theme)
       await page.goto('/')
 
-      await page.getByTestId('theme-toggle').click()
+      const themeToggle = page.getByTestId('theme-toggle')
+
+      await expect(themeToggle).toBeVisible()
+      await themeToggle.click()
       await page.getByTestId(`theme-${theme}-button`).click()
 
       await checkStoredTheme(page, theme)
