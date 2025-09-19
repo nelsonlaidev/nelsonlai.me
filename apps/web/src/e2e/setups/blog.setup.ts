@@ -5,6 +5,7 @@ import { test as setup } from '@playwright/test'
 import { db, posts } from '@repo/db'
 
 import { TEST_POSTS } from '../fixtures/posts'
+import { makeDummyImage } from '../utils/make-dummy-image'
 
 const createTestPost = (title: string) => `\
 ---
@@ -29,7 +30,13 @@ setup('setup blog', async () => {
         likes: 0
       })
       .onConflictDoNothing({ target: posts.slug })
+
     const testPostPath = path.join(process.cwd(), `src/content/blog/en/${post.slug}.mdx`)
+    const testPostCoverPath = path.join(process.cwd(), `public/images/blog/${post.slug}/cover.png`)
+
+    const coverDir = path.dirname(testPostCoverPath)
+    await fs.mkdir(coverDir, { recursive: true })
+    await makeDummyImage(1200, 630, testPostCoverPath)
 
     // For CI, we need to build the app, so we'll create the test files in CI workflow.
     if (!process.env.CI) {
