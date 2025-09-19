@@ -138,18 +138,18 @@ jobs:
           frontmatter() {
             local title="$1"
             local slug="$2"
+            local display_title="${title//_/ }"
             cat << EOF
-            ---
-            title: $title
-            date: '1970-01-01T00:00:00Z'
-            modifiedTime: '1970-01-01T00:00:00Z'
-            summary: This is a test post.
-            ---
+          ---
+          title: $display_title
+          date: '1970-01-01T00:00:00Z'
+          modifiedTime: '1970-01-01T00:00:00Z'
+          summary: This is a test post.
+          ---
 
-            # $title
 
-            This is a test post.
-            EOF
+          This is a test post.
+          EOF
           }
 
           dummy_image_path="apps/web/public/images/dummy.png"
@@ -158,23 +158,16 @@ jobs:
             exit 1
           fi
 
-          declare -A posts=(
-            ["Test Submit Comment"]="test-submit"
-            ["Test Delete Comment"]="test-delete"
-            ["Test Reply Comment"]="test-reply"
-            ["Test Delete Reply"]="test-delete-reply"
-            ["Test View Post"]="test-view"
-            ["Test Like Post"]="test-like"
-          )
+          titles=("Test_Submit_Comment" "Test_Delete_Comment" "Test_Reply_Comment" "Test_Delete_Reply" "Test_View_Post" "Test_Like_Post")
+          slugs=("test-submit" "test-delete" "test-reply" "test-delete-reply" "test-view" "test-like")
 
-          # Loop through posts to create .mdx files and copy dummy images
-          for title in "${!posts[@]}"; do
-            slug="${posts[$title]}"
+          for i in "${!titles[@]}"; do
+            title="${titles[$i]}"
+            slug="${slugs[$i]}"
             post_path="apps/web/src/content/blog/en/$slug.mdx"
             cover_dir="apps/web/public/images/blog/$slug"
             cover_path="$cover_dir/cover.png"
 
-            # Create .mdx file
             frontmatter "$title" "$slug" > "$post_path"
             if [ -f "$post_path" ]; then
               echo "Successfully created test post at $post_path"
@@ -183,7 +176,6 @@ jobs:
               exit 1
             fi
 
-            # Create image folder and copy dummy image
             mkdir -p "$cover_dir"
             cp "$dummy_image_path" "$cover_path"
             if [ -f "$cover_path" ]; then
