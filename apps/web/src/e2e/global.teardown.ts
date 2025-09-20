@@ -20,6 +20,7 @@ teardown('teardown global', async () => {
   // Delete test blog posts
   for (const post of TEST_POSTS) {
     await fs.rm(path.join(process.cwd(), 'src/content/blog/en', `${post.slug}.mdx`))
+    await fs.rm(path.join(process.cwd(), 'public/images/blog', post.slug), { recursive: true })
   }
 
   // Clean cache

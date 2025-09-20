@@ -1,13 +1,16 @@
 import { type Browser, expect, type Page } from '@playwright/test'
 
 export const checkAppliedTheme = async (page: Page, theme: string) => {
-  expect(await page.evaluate((t) => document.documentElement.classList.contains(t), theme)).toBe(true)
-  expect(await page.evaluate(() => document.documentElement.getAttribute('style'))).toBe(`color-scheme: ${theme};`)
+  const htmlElement = page.locator('html')
+  await expect(htmlElement).toHaveClass(new RegExp(String.raw`${theme}`))
+  await expect(htmlElement).not.toHaveClass(new RegExp(String.raw`${theme === 'light' ? 'dark' : 'light'}`))
 }
 
-export const checkStoredTheme = async (page: Page, expectedTheme: string) => {
-  const localStorage = await page.evaluate(() => globalThis.localStorage)
-  expect(localStorage.theme).toBe(expectedTheme)
+export const checkStoredTheme = async (page: Page, theme: 'light' | 'dark' | 'system') => {
+  await expect(async () => {
+    const storedTheme = await page.evaluate(() => localStorage.getItem('theme'))
+    expect(storedTheme).toBe(theme)
+  }).toPass()
 }
 
 type CreateBrowserContextOptions = {

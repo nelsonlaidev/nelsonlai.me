@@ -17,7 +17,7 @@ export default defineConfig({
     screenshot: 'only-on-failure',
     video: 'retain-on-failure'
   },
-  expect: { timeout: 10_000 },
+  expect: { timeout: 5000 },
   projects: [
     { name: 'setup', testMatch: /\.setup\.ts$/, teardown: 'teardown' },
     { name: 'authenticated', testMatch: /\.authenticated\.test\.ts$/, dependencies: ['setup'] },
